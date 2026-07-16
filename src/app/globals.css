@@ -85,7 +85,15 @@
 
 ::selection { background: var(--color-primary); color: white; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor jumps by the fixed navbar height (h-16 / lg:h-20) plus breathing room */
+  scroll-padding-top: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  html { scroll-padding-top: 6.5rem; }
+}
 
 body {
   background-color: var(--color-background);

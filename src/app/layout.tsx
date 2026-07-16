@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import HashScrollHandler from "@/components/HashScrollHandler";
 import { SITE_URL } from "@/lib/constants";
 
 const inter = Inter({
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Buy IPTV Subscription",
   },
   description:
-    "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription, built-in VPN, five screens, 30-day guarantee. From £12.99. Order now.",
+    "Buy IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Trusted UK IPTV subscription with built-in VPN, five screens and a 30-day guarantee. From £12.99. Order now.",
   keywords: [
     "buy iptv",
     "buy iptv subscription",
@@ -74,13 +75,22 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy IPTV? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
+    images: [
+      {
+        url: `${SITE_URL}/buy-iptv.webp`,
+        width: 1024,
+        height: 1024,
+        alt: "Buy IPTV Subscription — UK IPTV Subscription",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy IPTV? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
+    images: [`${SITE_URL}/buy-iptv.webp`],
   },
   robots: {
     index: true,
@@ -118,6 +128,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <HashScrollHandler />
         <Navbar />
         <main id="main" className="flex-1">{children}</main>
         <Footer />
