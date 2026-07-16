@@ -23,7 +23,7 @@ export default function HomePage() {
   const webpageId = `${SITE_URL}/#webpage`;
   const productId = `${SITE_URL}/#product`;
   const breadcrumbId = `${SITE_URL}/#breadcrumb`;
-  const logoUrl = `${SITE_URL}/fast-iptv.webp`;
+  const logoUrl = `${SITE_URL}/buy-iptv.webp`;
 
   return (
     <>
