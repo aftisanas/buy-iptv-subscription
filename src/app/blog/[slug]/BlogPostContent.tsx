@@ -17,6 +17,53 @@ interface BlogPostContentProps {
   content: string[];
 }
 
+/**
+ * Renders inline `**bold**` and `[text](url)` inside a line of body copy.
+ * External links open in a new tab with rel="noopener noreferrer"; internal
+ * ones route through next/link so client navigation still works.
+ */
+function renderInline(text: string, keyPrefix: string) {
+  const tokens = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
+
+  return tokens.map((token, i) => {
+    const key = `${keyPrefix}-${i}`;
+
+    const link = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      const [, label, href] = link;
+      if (href.startsWith("/")) {
+        return (
+          <Link key={key} href={href} className="text-primary hover:underline">
+            {label}
+          </Link>
+        );
+      }
+      return (
+        <a
+          key={key}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline"
+        >
+          {label}
+        </a>
+      );
+    }
+
+    const bold = token.match(/^\*\*([^*]+)\*\*$/);
+    if (bold) {
+      return (
+        <strong key={key} className="text-foreground">
+          {bold[1]}
+        </strong>
+      );
+    }
+
+    return <span key={key}>{token}</span>;
+  });
+}
+
 export default function BlogPostContent({ post, content }: BlogPostContentProps) {
   return (
     <div className="pt-20">
@@ -81,29 +128,25 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
               return (
                 <div key={i} className="mb-8">
                   {lines.map((line, j) => {
+                    if (line.startsWith("### ")) {
+                      return (
+                        <h3
+                          key={j}
+                          className="text-lg font-semibold text-foreground mt-7 mb-3"
+                        >
+                          {renderInline(line.replace("### ", ""), `${i}-${j}`)}
+                        </h3>
+                      );
+                    }
                     if (line.startsWith("## ")) {
                       return (
                         <h2
                           key={j}
                           className="text-2xl font-bold text-foreground mt-10 mb-4"
                         >
-                          {line.replace("## ", "")}
+                          {renderInline(line.replace("## ", ""), `${i}-${j}`)}
                         </h2>
                       );
-                    }
-                    if (line.startsWith("- **")) {
-                      const match = line.match(/- \*\*(.+?)\*\*(.+)/);
-                      if (match) {
-                        return (
-                          <li
-                            key={j}
-                            className="text-sm text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
-                          >
-                            <strong className="text-foreground">{match[1]}</strong>
-                            {match[2]}
-                          </li>
-                        );
-                      }
                     }
                     if (line.startsWith("- ")) {
                       return (
@@ -111,7 +154,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                           key={j}
                           className="text-sm text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
                         >
-                          {line.replace("- ", "")}
+                          {renderInline(line.replace("- ", ""), `${i}-${j}`)}
                         </li>
                       );
                     }
@@ -121,7 +164,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                         key={j}
                         className="text-base text-gray-600 leading-relaxed mb-4"
                       >
-                        {line}
+                        {renderInline(line, `${i}-${j}`)}
                       </p>
                     );
                   })}

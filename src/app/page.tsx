@@ -11,10 +11,10 @@ import CTASection from "@/components/CTASection";
 import {
   CONTACT_EMAIL,
   FAQ_ITEMS,
+  PRICE_VALID_UNTIL,
   PRICING_PLANS,
   SITE_NAME,
   SITE_URL,
-  TESTIMONIALS,
 } from "@/lib/constants";
 
 export default function HomePage() {
@@ -56,7 +56,7 @@ export default function HomePage() {
                   url: logoUrl,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription with built-in VPN, five screens, 30-day guarantee and 24/7 UK support — from £12.99.",
+                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription with five screens, an optional Secure Proxy, 30-day guarantee and 24/7 UK support — from £12.99.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -92,7 +92,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription, built-in VPN, five screens and a 30-day money-back guarantee.",
+                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription, five screens, an optional Secure Proxy and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -125,9 +125,9 @@ export default function HomePage() {
             "@id": productId,
             name: "Buy IPTV Subscription",
             url: SITE_URL,
-            image: [logoUrl],
+            image: [`${SITE_URL}/og-image.jpg`, logoUrl],
             description:
-              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and a built-in VPN — from £12.99.",
+              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £12.99.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
@@ -136,14 +136,19 @@ export default function HomePage() {
               priceCurrency: "GBP",
               availability: "https://schema.org/InStock",
               itemCondition: "https://schema.org/NewCondition",
+              priceValidUntil: PRICE_VALID_UNTIL,
               url: `${SITE_URL}/#pricing`,
+              seller: { "@id": organizationId },
+              hasMerchantReturnPolicy: {
+                "@type": "MerchantReturnPolicy",
+                applicableCountry: "GB",
+                returnPolicyCategory:
+                  "https://schema.org/MerchantReturnFiniteReturnWindow",
+                merchantReturnDays: 30,
+                returnMethod: "https://schema.org/ReturnByMail",
+                returnFees: "https://schema.org/FreeReturn",
+              },
             })),
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "50000",
-              bestRating: "5",
-            },
           }),
         }}
       />
@@ -164,26 +169,14 @@ export default function HomePage() {
           }),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": TESTIMONIALS.map((t, i) => ({
-              "@type": "Review",
-              "@id": `${SITE_URL}/#review-${i + 1}`,
-              itemReviewed: { "@id": productId },
-              author: { "@type": "Person", name: `${t.name} — ${t.location}` },
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: t.rating.toString(),
-                bestRating: "5",
-              },
-              reviewBody: t.text,
-            })),
-          }),
-        }}
-      />
+      {/*
+        Review / AggregateRating markup intentionally omitted.
+        The on-page testimonials are illustrative marketing copy, not collected
+        customer reviews, so marking them up as schema.org/Review would be
+        fabricated structured data — a spammy-structured-markup manual action
+        risk. Reinstate only when backed by genuine, verifiable reviews with a
+        real count (e.g. a Trustpilot feed).
+      */}
     </>
   );
 }

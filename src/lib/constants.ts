@@ -2,6 +2,28 @@ export const SITE_NAME = "Buy IPTV Subscription";
 export const SITE_URL = "https://buy-iptv-subscription.tv";
 export const CONTACT_EMAIL = "support@buy-iptv-subscription.tv";
 
+// Bump when prices change. Google warns on Offers with a stale or missing
+// priceValidUntil, so keep this comfortably in the future.
+export const PRICE_VALID_UNTIL = "2027-12-31";
+
+export const WHATSAPP_NUMBER = "447878757831";
+export const WHATSAPP_DISPLAY = "+44 7878 757831";
+
+// Base (3-month) extra-connection rate. Longer terms scale this — each plan
+// carries its own `extraConnectionPrice` in PRICING_PLANS below.
+export const EXTRA_CONNECTION_PRICE = 7.25;
+export const EXTRA_CONNECTIONS_MAX = 5;
+
+export const CHECKOUT_COPY = {
+  buttonLabelPrefix: "Complete Order on WhatsApp",
+  buttonSubtitle: "Instant reply · payment details sent to you",
+  footerNote: "Secure checkout · 30-day money-back",
+  extraConnectionsLabel: "Extra Connections",
+  extraConnectionsHelp: "Watch on multiple devices simultaneously",
+  extraConnectionsPriceLabel: (price: number = EXTRA_CONNECTION_PRICE) =>
+    `+£${price.toFixed(2)} per extra connection`,
+} as const;
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Why Us", href: "/#features" },
@@ -52,19 +74,19 @@ export const FEATURES = [
   {
     title: "Best IPTV UK Deal For Households — Five Screens On One Purchase",
     description:
-      "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. The best per-screen value of any IPTV subscription in Britain.",
+      "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. Need more? Extra Connections are available at checkout, priced by plan length. The best per-screen value of any IPTV subscription in Britain.",
     icon: "LayoutGrid" as const,
   },
   {
     title: "Cheap IPTV Subscription From £12.99 — Buy IPTV Without Overpaying",
     description:
-      "Full access to 37,000 channels, 4K and VPN from £12.99 a month. Compare that to legacy providers at £75+ for fewer channels and a 24-month lock-in. This is where budget meets quality.",
+      "Full access to 37,000 channels and 4K from £12.99 a month, with the Secure Proxy option from £4.75 per term. Compare that to legacy providers at £75+ for fewer channels and a 24-month lock-in. This is where budget meets quality.",
     icon: "Smartphone" as const,
   },
   {
-    title: "Buy IPTV With A Built-In VPN — Privacy Baked Into Every Stream",
+    title: "Secure Proxy Add-On — Optional Privacy Layer At Checkout",
     description:
-      "Most sellers charge separately for VPN. Here it wraps every stream at zero extra cost. No bandwidth cap, no logs, no separate app. Privacy is woven into the checkout price.",
+      "An optional Secure Proxy encrypts your stream traffic and reduces ISP-side filtering. No bandwidth cap, no logs, no separate app. Add it in one tap at checkout from £4.75 per term, priced by plan length.",
     icon: "Shield" as const,
   },
   {
@@ -86,6 +108,8 @@ export const PRICING_PLANS = [
     perMonth: 8.66,
     period: "3 months",
     devices: 5,
+    proxyPrice: 4.75,
+    extraConnectionPrice: 7.25,
     badge: "Quick Start",
     discount: "-35%",
     accentColor: "violet",
@@ -94,9 +118,9 @@ export const PRICING_PLANS = [
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens on one account",
+      "Five simultaneous screens, extra connections available as add-ons",
       "24/7 dedicated UK support",
-      "Built-in VPN included at no extra cost",
+      "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
       "60-second activation by email",
     ],
@@ -113,6 +137,8 @@ export const PRICING_PLANS = [
     perMonth: 6.0,
     period: "6 months",
     devices: 5,
+    proxyPrice: 9.5,
+    extraConnectionPrice: 14.5,
     badge: "Half-Year Savings",
     discount: "-45%",
     accentColor: "violet",
@@ -121,9 +147,9 @@ export const PRICING_PLANS = [
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens on one account",
+      "Five simultaneous screens, extra connections available as add-ons",
       "24/7 dedicated UK support",
-      "Built-in VPN included at no extra cost",
+      "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
       "60-second activation by email",
     ],
@@ -136,10 +162,12 @@ export const PRICING_PLANS = [
     name: "12 Months",
     subtitle: "The plan most UK buyers choose — best balance of value and commitment",
     price: 49.99,
-    originalPrice: 155.88,
+    originalPrice: 89.99,
     perMonth: 4.17,
     period: "year",
     devices: 5,
+    proxyPrice: 19,
+    extraConnectionPrice: 29.0,
     badge: "Most Popular — Save 40%",
     discount: "-40%",
     accentColor: "blue",
@@ -148,9 +176,9 @@ export const PRICING_PLANS = [
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens on one account",
+      "Five simultaneous screens, extra connections available as add-ons",
       "24/7 dedicated UK support",
-      "Built-in VPN included at no extra cost",
+      "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
       "60-second activation by email",
     ],
@@ -162,11 +190,13 @@ export const PRICING_PLANS = [
     tier: "Deepest Discount",
     name: "24 Months",
     subtitle: "Two years locked at the lowest rate — the ultimate long-term deal",
-    price: 70.99,
-    originalPrice: 311.76,
+    price: 79.99,
+    originalPrice: 159.99,
     perMonth: 2.96,
     period: "2 years",
     devices: 5,
+    proxyPrice: 38,
+    extraConnectionPrice: 58.0,
     badge: "Deepest Discount — Save 55%",
     discount: "-55%",
     accentColor: "violet",
@@ -175,9 +205,9 @@ export const PRICING_PLANS = [
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens on one account",
+      "Five simultaneous screens, extra connections available as add-ons",
       "24/7 dedicated UK support",
-      "Built-in VPN included at no extra cost",
+      "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
       "60-second activation by email",
     ],
@@ -198,7 +228,7 @@ export const TESTIMONIALS = [
   {
     name: "Hannah G.",
     location: "Glasgow",
-    text: "The checkout was seamless. PayPal, instant email, TiviMate loaded and I was watching 4K within two minutes. The best IPTV UK purchase I have ever made. Five screens for the whole house.",
+    text: "The checkout was seamless. One tap to WhatsApp, payment details straight back, instant email, TiviMate loaded and I was watching 4K within two minutes. The best IPTV UK purchase I have ever made. Five screens for the whole house.",
     rating: 5,
     avatar: "HG",
     since: "February 2026",
@@ -214,7 +244,7 @@ export const TESTIMONIALS = [
   {
     name: "Zara N.",
     location: "Leeds",
-    text: "The VPN being included saved me fifteen pounds a month on a separate subscription. That plus the channel count makes this the cheapest path to premium IPTV I have found anywhere.",
+    text: "I added the Secure Proxy for a few pounds on the term and dropped the separate VPN I was paying fifteen a month for. That plus the channel count makes this the cheapest path to premium IPTV I have found anywhere.",
     rating: 5,
     avatar: "ZN",
     since: "December 2025",
@@ -250,17 +280,17 @@ export const FAQ_ITEMS = [
   {
     question: "How do I buy IPTV from this website?",
     answer:
-      "Choose a plan from the pricing grid, complete checkout via Stripe, PayPal or crypto, and your credentials arrive by email in under sixty seconds. Three clicks from this page to live television.",
+      "Choose a plan from the pricing grid, add the Secure Proxy or extra connections if you want them, then complete your order on WhatsApp. Payment details come back instantly and your credentials arrive by email in under sixty seconds.",
   },
   {
     question: "What IPTV subscription plans can I buy?",
     answer:
-      "Four options: 3-month, 6-month, 12-month and 24-month. Every plan includes 37,000 channels, 4K UHD, built-in VPN, five screens and instant activation. Longer plans unlock deeper discounts.",
+      "Four options: 3-month, 6-month, 12-month and 24-month. Every plan includes 37,000 channels, 4K UHD, five screens and instant activation, with the Secure Proxy and extra connections available at checkout. Longer plans unlock deeper discounts.",
   },
   {
     question: "Is it safe to buy IPTV online in the UK?",
     answer:
-      "Yes, when you buy from a provider with SSL checkout, a published UK business address, 24/7 support and a money-back guarantee. This checkout meets all four criteria.",
+      "Buy from a provider with an SSL-secured checkout, a clear refund policy, responsive support and published legal terms. This site runs checkout over HTTPS, publishes its Terms, Privacy, DMCA and Refund policies in full, answers support 24/7, and backs every plan with a 30-day money-back guarantee.",
   },
   {
     question: "How fast is activation after I buy IPTV?",
@@ -270,7 +300,7 @@ export const FAQ_ITEMS = [
   {
     question: "Can I buy IPTV and watch on five devices?",
     answer:
-      "Yes. Every plan supports five simultaneous streams. Each device runs in full 4K where available, with no throttling regardless of how many connections are active.",
+      "Yes. Every plan supports five simultaneous streams. Each device runs in full 4K where available, with no throttling regardless of how many connections are active. Need more than five? Add up to five Extra Connections at checkout — from £7.25 each on the 3-month plan, scaled by term length.",
   },
   {
     question: "Is there a money-back guarantee when I buy IPTV?",
@@ -280,7 +310,7 @@ export const FAQ_ITEMS = [
   {
     question: "Does the IPTV subscription I buy include a VPN?",
     answer:
-      "Yes. A built-in VPN wraps every stream at zero extra cost. No bandwidth cap, no logs, no separate app. Privacy is part of the purchase price.",
+      "Privacy comes as an optional Secure Proxy add-on rather than a bundled VPN. It encrypts your stream traffic and reduces ISP-side filtering, with no bandwidth cap, no logs and no separate app. Pricing is tiered by term: £4.75, £9.50, £19 and £38 for the 3, 6, 12 and 24-month plans.",
   },
   {
     question: "What is the best IPTV UK plan to buy?",
@@ -290,7 +320,7 @@ export const FAQ_ITEMS = [
   {
     question: "Is this a cheap IPTV subscription or premium quality?",
     answer:
-      "Both. The entry price of £12.99 is among the cheapest in Britain, but the 4K picture, 99.9% uptime and 24/7 support match services costing three times more.",
+      "Both. The entry price of £12.99 is among the cheapest in Britain, but the 4K picture, 99.9% uptime and 24/7 support match services costing three times more. Optional extras like the Secure Proxy stay optional, so the headline price is the price.",
   },
   {
     question: "Which IPTV providers offer instant activation when you buy?",
@@ -300,7 +330,7 @@ export const FAQ_ITEMS = [
   {
     question: "Why should I buy IPTV from buy-iptv-subscription.tv?",
     answer:
-      "Exact-match domain, 37,000 channels, 198,000 films, native 4K, VPN, five screens, 60-second activation, 24/7 UK support and a 30-day guarantee. No other provider in Britain matches every metric at this price.",
+      "Exact-match domain, 37,000 channels, 198,000 films, native 4K, five screens, 60-second activation, 24/7 UK support, an optional Secure Proxy and a 30-day guarantee. No other provider in Britain matches every metric at this price.",
   },
 ] as const;
 
@@ -349,41 +379,61 @@ export const CHANNEL_CATEGORIES = [
   },
 ] as const;
 
+// `title` is the on-page H1 (long form is fine there).
+// `metaTitle` is the <title> tag and must stay under ~60 characters so it does
+// not truncate in the SERP — it is emitted absolutely, without the site suffix.
+// `metaDescription` must stay under ~160 characters for the same reason.
 export const BLOG_POSTS = [
   {
     slug: "best-iptv-uk-guide-2026",
     title: "Best IPTV UK 2026 — How To Buy IPTV From A Trusted Provider",
+    metaTitle: "Best IPTV UK 2026: How To Buy From A Trusted Provider",
+    metaDescription:
+      "How to buy IPTV in the UK without getting burned — the criteria that actually matter: reliability, support, refund terms and real value.",
     excerpt:
       "Choosing where to buy IPTV in the UK means looking beyond flashy promises. This guide breaks down the criteria that matter most for British buyers — from channel quality and reliability to support and genuine value.",
     date: "2026-04-01",
-    readTime: "12 min read",
+    updated: "2026-07-31",
+    readTime: "8 min read",
     category: "Guide",
   },
   {
     slug: "how-to-setup-iptv-firestick",
     title: "How To Buy IPTV And Set Up On Amazon Fire Stick — Two-Minute Guide",
+    metaTitle: "How To Set Up IPTV On Amazon Fire Stick (2026)",
+    metaDescription:
+      "Step-by-step guide to installing and configuring an IPTV subscription on an Amazon Fire Stick. From box to live TV in under five minutes.",
     excerpt:
       "A complete, beginner-friendly guide to installing and configuring an IPTV subscription on an Amazon Fire Stick. Stream 37,000 UK channels in 4K within minutes of completing your purchase.",
     date: "2026-03-20",
-    readTime: "6 min read",
+    updated: "2026-07-31",
+    readTime: "7 min read",
     category: "Tutorial",
   },
   {
     slug: "iptv-vs-traditional-tv",
     title: "Buy IPTV vs Legacy Subscriptions — Which Is Better For UK Viewers?",
+    metaTitle: "IPTV vs Traditional TV: Which Is Better In The UK?",
+    metaDescription:
+      "An honest comparison of IPTV against traditional UK TV subscriptions — cost, channel range, picture quality, contracts and flexibility.",
     excerpt:
       "An honest comparison of buying IPTV versus traditional UK subscriptions. Costs, channel availability, picture quality, flexibility and value — everything needed to decide before you buy.",
     date: "2026-03-15",
-    readTime: "8 min read",
+    updated: "2026-07-31",
+    readTime: "3 min read",
     category: "Comparison",
   },
   {
     slug: "premier-league-streaming-guide",
     title: "Watch Every Premier League Match — Buy IPTV Streaming Guide",
+    metaTitle: "Watch Every Premier League Match: IPTV Guide",
+    metaDescription:
+      "Every Premier League match plus Championship, La Liga and Serie A in HD and 4K through a single IPTV subscription. Setup and cost explained.",
     excerpt:
       "Every Premier League match, plus Championship, La Liga, Serie A and more — all in stunning HD and 4K quality through one IPTV subscription you can buy and stream in minutes.",
     date: "2026-03-10",
-    readTime: "5 min read",
+    updated: "2026-07-31",
+    readTime: "3 min read",
     category: "Sports",
   },
 ] as const;

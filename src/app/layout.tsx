@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Buy IPTV Subscription",
   },
   description:
-    "Buy IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Trusted UK IPTV subscription with built-in VPN, five screens and a 30-day guarantee. From £12.99. Order now.",
+    "Buy an IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Five screens, optional Secure Proxy, 30-day guarantee. From £12.99.",
   keywords: [
     "buy iptv",
     "buy iptv subscription",
@@ -75,13 +75,15 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
     images: [
       {
-        url: `${SITE_URL}/buy-iptv.webp`,
-        width: 1024,
-        height: 1024,
-        alt: "Buy IPTV Subscription — UK IPTV Subscription",
+        // 1.91:1 — the ratio summary_large_image and Facebook/LinkedIn expect.
+        // The square logo letterboxed badly at 1024x1024.
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Buy IPTV Subscription — 37,000+ channels in 4K UHD with UK support, from £12.99",
       },
     ],
   },
@@ -89,8 +91,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, VPN included. Pay now, stream in 60 seconds. The shortcut to better television.",
-    images: [`${SITE_URL}/buy-iptv.webp`],
+      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,

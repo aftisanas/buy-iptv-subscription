@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Play, MessageCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
 import SectionLink from "./SectionLink";
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/constants";
 
 export default function CTASection() {
   return (
@@ -64,7 +65,7 @@ export default function CTASection() {
             <SectionLink href="/#pricing" className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline">
               IPTV plan
             </SectionLink>{" "}
-            locks the lowest rate while delivering 37,000 channels, 198,000 films, native 4K, built-in VPN and five simultaneous screens. First channel plays sixty seconds after payment, backed by a{" "}
+            locks the lowest rate while delivering 37,000 channels, 198,000 films, native 4K, five simultaneous screens and an optional Secure Proxy. First channel plays sixty seconds after payment, backed by a{" "}
             <Link href="/refund" className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline">
               30-day guarantee
             </Link>{" "}
@@ -80,7 +81,7 @@ export default function CTASection() {
               className="group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 px-8 py-4 text-base font-semibold text-white transition-all hover:shadow-2xl hover:shadow-purple-500/30 active:scale-[0.98] w-full sm:w-auto justify-center"
             >
               <Play className="h-5 w-5 fill-current" />
-              Buy IPTV Now — From £12.99
+              Buy IPTV Now — From £4.75
               <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 transition-opacity group-hover:opacity-100" />
             </SectionLink>
             <SectionLink
@@ -93,7 +94,23 @@ export default function CTASection() {
           </div>
 
           <p className="mt-8 text-sm text-gray-400">
-            Questions? WhatsApp +44 20 0000 0000 or email support@buy-iptv-subscription.tv — average reply under four minutes.
+            Questions? WhatsApp{" "}
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline"
+            >
+              {WHATSAPP_DISPLAY}
+            </a>{" "}
+            or email{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>{" "}
+            — average reply under four minutes.
           </p>
         </motion.div>
       </div>

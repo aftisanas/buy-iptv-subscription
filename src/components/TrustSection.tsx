@@ -19,9 +19,9 @@ const trustItems = [
   },
   {
     icon: Lock,
-    title: "Built-In VPN — Premium IPTV Privacy Included In Your Purchase",
+    title: "Secure Proxy Add-On — Optional IPTV Privacy Layer",
     description:
-      "The VPN encrypts every stream with no latency penalty. No bandwidth cap, no logs, no separate subscription. Privacy is included at no additional cost.",
+      "An optional Secure Proxy encrypts your stream traffic with no latency penalty and reduces ISP-side filtering. No bandwidth cap, no logs, no separate subscription. Available at checkout from £4.75 per term.",
   },
   {
     icon: ServerCog,

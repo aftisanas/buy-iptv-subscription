@@ -12,9 +12,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
-  // Security headers. CSP ships in Report-Only mode so violations surface
-  // in DevTools without breaking the site. HSTS includes preload; only keep
-  // `preload` if the domain is submitted to hstspreload.org.
+  // Security headers. The CSP is now enforced rather than report-only — the
+  // policy deliberately keeps the permissive `https:` fallbacks it was audited
+  // with, so enforcement changes nothing that was previously passing. Tighten
+  // by removing 'unsafe-inline'/'unsafe-eval' and the https: wildcards only
+  // after confirming no violations in DevTools. HSTS includes preload; only
+  // keep `preload` if the domain is submitted to hstspreload.org.
   async headers() {
     return [
       {
@@ -29,7 +32,7 @@ const nextConfig: NextConfig = {
             value: "camera=(), microphone=(), geolocation=(), payment=()",
           },
           {
-            key: "Content-Security-Policy-Report-Only",
+            key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
@@ -37,10 +40,21 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: https:",
               "font-src 'self' data:",
               "connect-src 'self' https:",
+              // wa.me checkout opens in a new tab, so no frame-src needed.
               "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'",
+              "object-src 'none'",
+              "upgrade-insecure-requests",
             ].join("; "),
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
           },
         ],
       },

@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import LegalPageSchema from "@/components/LegalPageSchema";
+
+const DESCRIPTION = `${SITE_NAME} refund policy: a 30-day money-back guarantee on all plans, how to request a refund, processing times and the few exclusions that apply.`;
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: `${SITE_NAME} refund policy. 30-day money-back guarantee on all plans.`,
+  description: DESCRIPTION,
   alternates: { canonical: "/refund" },
 };
 
 export default function RefundPage() {
   return (
+    <>
     <div className="pt-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Refund Policy</h1>
@@ -37,5 +41,12 @@ export default function RefundPage() {
         </div>
       </div>
     </div>
+    <LegalPageSchema
+      slug="refund"
+      name="Refund Policy"
+      description={DESCRIPTION}
+      dateModified="2026-04-01"
+    />
+    </>
   );
 }

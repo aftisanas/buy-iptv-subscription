@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import LegalPageSchema from "@/components/LegalPageSchema";
+
+const DESCRIPTION = `Terms and conditions for using ${SITE_NAME}: account rules, acceptable use, billing, subscription terms, liability and cancellation.`;
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: `Terms and conditions for using ${SITE_NAME} IPTV services.`,
+  description: DESCRIPTION,
   alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
   return (
+    <>
     <div className="pt-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Terms of Service</h1>
@@ -52,5 +56,12 @@ export default function TermsPage() {
         </div>
       </div>
     </div>
+    <LegalPageSchema
+      slug="terms"
+      name="Terms of Service"
+      description={DESCRIPTION}
+      dateModified="2026-04-01"
+    />
+    </>
   );
 }

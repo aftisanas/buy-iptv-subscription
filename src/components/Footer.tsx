@@ -30,7 +30,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6">
-              Buy IPTV and stream in 60 seconds. 37,000 channels, 198,000 films in native 4K, built-in VPN, five screens and 24/7 UK support — trusted by 50,000 UK homes from £12.99.
+              Buy IPTV and stream in 60 seconds. 37,000 channels, 198,000 films in native 4K, five screens, an optional Secure Proxy and 24/7 UK support — trusted by 50,000 UK homes from £12.99.
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted">

@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import LegalPageSchema from "@/components/LegalPageSchema";
+
+const DESCRIPTION = `DMCA and copyright policy for ${SITE_NAME}: how to file a takedown notice, what to include, our response process and counter-notice procedure.`;
 
 export const metadata: Metadata = {
   title: "DMCA Policy",
-  description: `DMCA and copyright policy for ${SITE_NAME}.`,
+  description: DESCRIPTION,
   alternates: { canonical: "/dmca" },
 };
 
 export default function DMCAPage() {
   return (
+    <>
     <div className="pt-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">DMCA Policy</h1>
@@ -40,5 +44,12 @@ export default function DMCAPage() {
         </div>
       </div>
     </div>
+    <LegalPageSchema
+      slug="dmca"
+      name="DMCA Policy"
+      description={DESCRIPTION}
+      dateModified="2026-04-01"
+    />
+    </>
   );
 }

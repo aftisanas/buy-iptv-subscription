@@ -113,7 +113,7 @@ export default function PricingSection() {
             <span className="gradient-text">Four Plans, One Checkout, Instant Delivery</span>
           </h2>
           <p className="mx-auto max-w-2xl text-base text-muted leading-relaxed">
-            Every plan delivers the identical experience: 37,000 channels, 4K, VPN, five screens and 60-second activation. Longer terms unlock bigger savings.
+            Every plan delivers the identical experience: 37,000 channels, 4K, five screens and 60-second activation, with the Secure Proxy and extra connections available at checkout. Longer terms unlock bigger savings.
           </p>
         </motion.div>
 
@@ -256,7 +256,7 @@ export default function PricingSection() {
           className="mt-14 flex flex-wrap items-center justify-center gap-6 lg:gap-10"
         >
           {[
-            { icon: Shield, label: "SSL-secured Stripe & PayPal · GBP pricing" },
+            { icon: Shield, label: "Secure WhatsApp ordering · GBP pricing" },
             { icon: CreditCard, label: "30-day money-back guarantee" },
             { icon: Star, label: "60-second activation" },
           ].map((item) => (
@@ -269,10 +269,13 @@ export default function PricingSection() {
       </div>
 
       <OrderSummaryModal
+        key={selectedPlan?.id ?? "none"}
         open={selectedPlan !== null}
         onClose={() => setSelectedPlan(null)}
         planName={selectedPlan ? toAccessLabel(selectedPlan.name) : ""}
         planPrice={selectedPlan?.price ?? 0}
+        proxyPrice={selectedPlan?.proxyPrice ?? 0}
+        extraConnectionPrice={selectedPlan?.extraConnectionPrice}
       />
     </section>
   );

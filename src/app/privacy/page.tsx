@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import LegalPageSchema from "@/components/LegalPageSchema";
+
+const DESCRIPTION = `How ${SITE_NAME} collects, uses, stores and protects your personal data, including cookies, third-party processors and your UK GDPR rights.`;
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `Privacy policy for ${SITE_NAME}. Learn how we collect, use, and protect your personal data.`,
+  description: DESCRIPTION,
   alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
   return (
+    <>
     <div className="pt-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Privacy Policy</h1>
@@ -47,5 +51,12 @@ export default function PrivacyPage() {
         </div>
       </div>
     </div>
+    <LegalPageSchema
+      slug="privacy"
+      name="Privacy Policy"
+      description={DESCRIPTION}
+      dateModified="2026-04-01"
+    />
+    </>
   );
 }
