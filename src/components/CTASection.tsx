@@ -53,19 +53,19 @@ export default function CTASection() {
             className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-white/[0.07] backdrop-blur-md px-5 py-2 text-sm text-purple-300 mb-8"
           >
             <Sparkles className="h-4 w-4 text-cyan-400" />
-            <span className="font-medium">Join 50,000+ UK Households</span>
+            <span className="font-medium">Five Screens · 4K · No Contract</span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Stop Browsing &mdash; Buy IPTV Now And{" "}
-            <span className="gradient-text-hero">Stream In Under Two Minutes</span>
+            <span className="gradient-text-hero">Stream In Under 60 Seconds</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300/90 mb-10 leading-relaxed">
-            Over 50,000 UK homes already completed this checkout. The 24-month{" "}
+            The 24-month{" "}
             <SectionLink href="/#pricing" className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline">
               IPTV plan
             </SectionLink>{" "}
-            locks the lowest rate while delivering 37,000 channels, 198,000 films, native 4K, five simultaneous screens and an optional Secure Proxy. First channel plays sixty seconds after payment, backed by a{" "}
+            locks the lowest rate while delivering 37,000 channels, 198,000 films, native 4K, five simultaneous screens and an optional Secure Proxy. Credentials are emailed automatically the moment payment clears, backed by a{" "}
             <Link href="/refund" className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline">
               30-day guarantee
             </Link>{" "}
@@ -109,8 +109,8 @@ export default function CTASection() {
               className="text-cyan-300 hover:text-cyan-200 underline-offset-2 hover:underline"
             >
               {CONTACT_EMAIL}
-            </a>{" "}
-            — average reply under four minutes.
+            </a>
+            .
           </p>
         </motion.div>
       </div>

@@ -24,11 +24,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Buy IPTV Subscription 2026 | Trusted UK IPTV From £12.99",
+    default: "Buy IPTV Subscription 2026 | UK IPTV From £25.99",
     template: "%s | Buy IPTV Subscription",
   },
   description:
-    "Buy an IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Five screens, optional Secure Proxy, 30-day guarantee. From £12.99.",
+    "Buy an IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Five screens, optional Secure Proxy, 30-day guarantee. From £25.99.",
   keywords: [
     "buy iptv",
     "buy iptv subscription",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Buy an IPTV subscription in a couple of taps: 37,000 channels, 198,000 films and series, native 4K UHD and five simultaneous screens. Credentials emailed automatically the moment payment clears. From £25.99.",
     images: [
       {
         // 1.91:1 — the ratio summary_large_image and Facebook/LinkedIn expect.
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Buy IPTV Subscription — 37,000+ channels in 4K UHD with UK support, from £12.99",
+        alt: "Buy IPTV Subscription — 37,000+ channels in 4K UHD with UK support, from £25.99",
       },
     ],
   },
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Buy an IPTV subscription in a couple of taps: 37,000 channels, 198,000 films and series, native 4K UHD and five simultaneous screens. Credentials emailed automatically the moment payment clears. From £25.99.",
     images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {

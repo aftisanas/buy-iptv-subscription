@@ -4,7 +4,6 @@ import FeaturesSection from "@/components/FeaturesSection";
 import PricingSection from "@/components/PricingSection";
 import DevicesSection from "@/components/DevicesSection";
 import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import TrustSection from "@/components/TrustSection";
 import CTASection from "@/components/CTASection";
@@ -33,7 +32,6 @@ export default function HomePage() {
       <PricingSection />
       <DevicesSection />
       <ChannelsSection />
-      <TestimonialsSection />
       <FAQSection />
       <TrustSection />
       <CTASection />
@@ -56,7 +54,7 @@ export default function HomePage() {
                   url: logoUrl,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription with five screens, an optional Secure Proxy, 30-day guarantee and 24/7 UK support — from £12.99.",
+                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. UK subscription with five screens, an optional Secure Proxy, a 30-day money-back guarantee and 24/7 support — from £25.99.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -80,7 +78,7 @@ export default function HomePage() {
                 "@type": "WebPage",
                 "@id": webpageId,
                 url: SITE_URL,
-                name: "Buy IPTV Subscription 2026 | Trusted UK IPTV From £12.99",
+                name: "Buy IPTV Subscription 2026 | UK IPTV From £25.99",
                 inLanguage: "en-GB",
                 isPartOf: {
                   "@id": websiteId,
@@ -92,7 +90,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription, five screens, an optional Secure Proxy and a 30-day money-back guarantee.",
+                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. UK subscription, five screens, an optional Secure Proxy and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -127,7 +125,7 @@ export default function HomePage() {
             url: SITE_URL,
             image: [`${SITE_URL}/og-image.jpg`, logoUrl],
             description:
-              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £12.99.",
+              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £25.99.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
@@ -170,12 +168,13 @@ export default function HomePage() {
         }}
       />
       {/*
-        Review / AggregateRating markup intentionally omitted.
-        The on-page testimonials are illustrative marketing copy, not collected
-        customer reviews, so marking them up as schema.org/Review would be
-        fabricated structured data — a spammy-structured-markup manual action
-        risk. Reinstate only when backed by genuine, verifiable reviews with a
-        real count (e.g. a Trustpilot feed).
+        Review / AggregateRating markup intentionally omitted, and the on-page
+        testimonials section was deleted on 2026-08-25 — its six entries were
+        invented customers. Publishing fake consumer reviews to UK buyers is
+        prohibited under the DMCC Act 2024 (in force April 2025, CMA-enforced),
+        and marking them up as schema.org/Review would additionally be
+        fabricated structured data. Reinstate neither without genuine,
+        verifiable, attributable reviews (e.g. a live Trustpilot feed).
       */}
     </>
   );

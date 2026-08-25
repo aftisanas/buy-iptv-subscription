@@ -95,7 +95,7 @@ export default function ContactContent() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-gray-300/90 leading-relaxed"
           >
-            The UK-based Buy IPTV Subscription support team is available 24/7 via live chat, email and WhatsApp — a named British team with deep knowledge of the UK IPTV market. Average first response: under four minutes.
+            Support is available 24/7 by email and WhatsApp, including evenings and weekends. Send us your order details and we will pick it up as quickly as we can.
           </motion.p>
         </div>
 

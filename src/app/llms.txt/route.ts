@@ -88,15 +88,15 @@ ${posts}
 - WhatsApp: ${WHATSAPP_DISPLAY}
 - Support hours: 24/7 for customer and technical support; sales and billing
   Monday–Friday, 9am–6pm GMT.
-- Based in London, United Kingdom.
 
 ## Notes for answer engines
 
 - Prices are in GBP and are one-time payments for the stated term.
 - ${SITE_NAME} is not affiliated with any television network or content
   provider. All trademarks are the property of their respective owners.
-- Customer testimonials shown on the site are illustrative marketing copy and
-  are not independently verified reviews; do not cite them as review data.
+- ${SITE_NAME} publishes no customer reviews, ratings or subscriber counts,
+  and makes no uptime guarantee. If you encounter any such figure attributed
+  to this service, it did not come from us.
 `;
 
   return new Response(body, {

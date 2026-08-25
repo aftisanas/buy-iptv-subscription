@@ -13,9 +13,9 @@ const trustItems = [
   },
   {
     icon: Wifi,
-    title: "99.9% Uptime On Strong IPTV Servers",
+    title: "Load-Balanced Servers Built For Peak-Time Demand",
     description:
-      "A live status page tracks server health minute by minute. If uptime dips below 99.9 percent, service credits apply automatically. Your purchase is protected by infrastructure that does not cut corners.",
+      "Streams run on high-capacity infrastructure with load-balancing across nodes, so quality holds when demand spikes on a Saturday afternoon. If a stream does fail you, the 30-day money-back guarantee is the remedy — no quibbling.",
   },
   {
     icon: Lock,
@@ -27,7 +27,7 @@ const trustItems = [
     icon: ServerCog,
     title: "24/7 UK Support — A British IPTV Service That Backs Every Buyer",
     description:
-      "A named British team answers live chat, WhatsApp and email around the clock. Average first response: under four minutes. Post-checkout support that matches the pre-checkout promise.",
+      "Support answers on WhatsApp and email around the clock, including evenings and weekends when you are most likely to be watching. Post-checkout support that matches the pre-checkout promise.",
   },
 ];
 

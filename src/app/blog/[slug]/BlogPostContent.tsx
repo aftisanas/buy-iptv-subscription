@@ -184,7 +184,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
               Ready to Start Streaming?
             </h3>
             <p className="text-muted mb-6">
-              Get started with Buy IPTV Subscription today. Plans from £12.99/month with a 30-day money-back guarantee.
+              Get started with Buy IPTV Subscription today. Plans from £25.99 with a 30-day money-back guarantee.
             </p>
             <SectionLink
               href="/#pricing"

@@ -17,7 +17,7 @@ export default function TermsPage() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">Terms of Service</h1>
         <div className="space-y-6 text-sm text-gray-600 leading-relaxed">
-          <p className="text-muted">Last updated: 1 April 2026</p>
+          <p className="text-muted">Last updated: 31 July 2026</p>
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">1. Acceptance of Terms</h2>
@@ -60,7 +60,7 @@ export default function TermsPage() {
       slug="terms"
       name="Terms of Service"
       description={DESCRIPTION}
-      dateModified="2026-04-01"
+      dateModified="2026-07-31"
     />
     </>
   );

@@ -28,7 +28,6 @@ export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Why Us", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Reviews", href: "/#testimonials" },
   { label: "FAQ", href: "/#faq" },
 ] as const;
 
@@ -39,11 +38,15 @@ export const LEGAL_LINKS = [
   { label: "Refund Policy", href: "/refund" },
 ] as const;
 
+// Every figure here must be checkable against something we actually publish.
+// Channel and library counts come from the service itself; screens and the
+// refund window are set by PRICING_PLANS below. Subscriber counts and uptime
+// percentages were removed — neither is measured, so neither can be claimed.
 export const STATS = [
   { value: "37,000+", label: "Live Channels" },
   { value: "198,000+", label: "Films & Series" },
-  { value: "99.9%", label: "Uptime" },
-  { value: "50,000+", label: "UK Subscribers" },
+  { value: "5", label: "Screens Included" },
+  { value: "30-Day", label: "Money-Back Guarantee" },
 ] as const;
 
 export const FEATURES = [
@@ -60,27 +63,27 @@ export const FEATURES = [
     icon: "Monitor" as const,
   },
   {
-    title: "Strong IPTV Servers On UK Data Centres — 99.9% Uptime Guaranteed",
+    title: "Load-Balanced IPTV Servers — Built For Peak-Time Demand",
     description:
-      "Your purchase is backed by high-capacity servers hosted on British soil. Anti-Freeze technology, intelligent load-balancing and a published 99.9% uptime target keep every stream buffer-free — even on packed Saturday evenings.",
+      "Streams are served from high-capacity infrastructure with load-balancing across nodes, so picture quality holds up when demand spikes on a Saturday afternoon. Adaptive bitrate absorbs the rest at your end.",
     icon: "Zap" as const,
   },
   {
     title: "Fast IPTV Activation — Buy IPTV And Stream In Under 60 Seconds",
     description:
-      "Complete the checkout and your credentials land in your inbox before the confirmation page finishes loading. No manual review, no activation queue. The fastest delivery pipeline of any IPTV provider in the UK.",
+      "Complete the checkout and your credentials are emailed automatically the moment payment clears. No waiting for manual approval, no activation queue, no office-hours restriction.",
     icon: "Clock" as const,
   },
   {
     title: "Best IPTV UK Deal For Households — Five Screens On One Purchase",
     description:
-      "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. Need more? Extra Connections are available at checkout, priced by plan length. The best per-screen value of any IPTV subscription in Britain.",
+      "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. Need more? Extra Connections are available at checkout, priced by plan length.",
     icon: "LayoutGrid" as const,
   },
   {
-    title: "Cheap IPTV Subscription From £12.99 — Buy IPTV Without Overpaying",
+    title: "Cheap IPTV Subscription From £25.99 — Buy IPTV Without Overpaying",
     description:
-      "Full access to 37,000 channels and 4K from £12.99 a month, with the Secure Proxy option from £4.75 per term. Compare that to legacy providers at £75+ for fewer channels and a 24-month lock-in. This is where budget meets quality.",
+      "Full access to 37,000 channels and 4K starts at £25.99 for three months, falling to £2.96 a month effective on the 24-month plan. The Secure Proxy is optional from £4.75 per term. No contract, no early-termination fee.",
     icon: "Smartphone" as const,
   },
   {
@@ -90,9 +93,9 @@ export const FEATURES = [
     icon: "Shield" as const,
   },
   {
-    title: "IPTV Reviews Rate This IPTV Service 4.9/5 — 50,000 UK Buyers Agree",
+    title: "198,000 Films And Series On Demand — Plus 7-Day Catch-Up TV",
     description:
-      "Independent IPTV reviews across Trustpilot and Reddit consistently rate this service top tier. Fifty thousand UK households bought, tested and stayed. The ratings are the receipts.",
+      "The on-demand library runs to 198,000 films and series alongside the live channels, and a full EPG with 7-day catch-up means a missed match or episode is still there when you get to it. Included in every plan at no extra cost.",
     icon: "Film" as const,
   },
 ] as const;
@@ -216,56 +219,12 @@ export const PRICING_PLANS = [
   },
 ] as const;
 
-export const TESTIMONIALS = [
-  {
-    name: "Oliver S.",
-    location: "Manchester",
-    text: "I decided to buy IPTV on a Sunday night at ten. Credentials arrived before I put my phone down. Forty-eight hours later I cancelled my old provider. Thirty-seven thousand channels for twelve ninety-nine is not a deal — it is a revolution.",
-    rating: 5,
-    avatar: "OS",
-    since: "January 2026",
-  },
-  {
-    name: "Hannah G.",
-    location: "Glasgow",
-    text: "The checkout was seamless. One tap to WhatsApp, payment details straight back, instant email, TiviMate loaded and I was watching 4K within two minutes. The best IPTV UK purchase I have ever made. Five screens for the whole house.",
-    rating: 5,
-    avatar: "HG",
-    since: "February 2026",
-  },
-  {
-    name: "Callum T.",
-    location: "Nottingham",
-    text: "Uptime has been flawless for three months. Not a single buffer during Premier League weekends. The strong servers behind this are clearly built for scale. Money well spent.",
-    rating: 5,
-    avatar: "CT",
-    since: "November 2025",
-  },
-  {
-    name: "Zara N.",
-    location: "Leeds",
-    text: "I added the Secure Proxy for a few pounds on the term and dropped the separate VPN I was paying fifteen a month for. That plus the channel count makes this the cheapest path to premium IPTV I have found anywhere.",
-    rating: 5,
-    avatar: "ZN",
-    since: "December 2025",
-  },
-  {
-    name: "Patrick F.",
-    location: "Southampton",
-    text: "Support replied on WhatsApp in two minutes at midnight. For an IPTV service at this price, the aftercare is exceptional. They helped me set up on Enigma2 step by step.",
-    rating: 5,
-    avatar: "PF",
-    since: "March 2026",
-  },
-  {
-    name: "Maya W.",
-    location: "Brighton",
-    text: "Read the IPTV reviews, compared three providers, and this was the clear winner. The 30-day guarantee removed any risk. Four months in and I could not be happier with the purchase.",
-    rating: 5,
-    avatar: "MW",
-    since: "October 2025",
-  },
-] as const;
+// TESTIMONIALS removed 2026-08-25. The six entries here were invented people
+// with invented names, cities and "customer since" dates. Publishing fake
+// consumer reviews to UK buyers is prohibited under the Digital Markets,
+// Competition and Consumers Act 2024 (in force April 2025, CMA-enforced).
+// Do not reinstate without genuine, verifiable, attributable reviews.
+
 
 export const DEVICES = [
   { name: "Amazon Fire Stick", icon: "Flame" as const },
@@ -320,17 +279,17 @@ export const FAQ_ITEMS = [
   {
     question: "Is this a cheap IPTV subscription or premium quality?",
     answer:
-      "Both. The entry price of £12.99 is among the cheapest in Britain, but the 4K picture, 99.9% uptime and 24/7 support match services costing three times more. Optional extras like the Secure Proxy stay optional, so the headline price is the price.",
+      "Both. Entry is £25.99 for three months, falling to £2.96 a month effective on the 24-month plan, and the 4K picture, channel range and 24/7 support are the same on every tier. Optional extras like the Secure Proxy stay optional, so the headline price is the price you pay.",
   },
   {
     question: "Which IPTV providers offer instant activation when you buy?",
     answer:
-      "Very few. Most take hours or require manual review. Our automated system delivers credentials in under sixty seconds, verified by 50,000 UK subscribers.",
+      "Very few. Most take hours or require manual approval. Our checkout emails your credentials automatically the moment payment clears, so there is no queue and no office-hours restriction.",
   },
   {
     question: "Why should I buy IPTV from buy-iptv-subscription.tv?",
     answer:
-      "Exact-match domain, 37,000 channels, 198,000 films, native 4K, five screens, 60-second activation, 24/7 UK support, an optional Secure Proxy and a 30-day guarantee. No other provider in Britain matches every metric at this price.",
+      "37,000 channels, 198,000 films and series, native 4K, five simultaneous screens, automatic 60-second activation, 24/7 UK support, an optional Secure Proxy and a 30-day money-back guarantee — from £25.99, with no contract and no auto-renewal.",
   },
 ] as const;
 
@@ -392,7 +351,7 @@ export const BLOG_POSTS = [
       "How to buy IPTV in the UK without getting burned — the criteria that actually matter: reliability, support, refund terms and real value.",
     excerpt:
       "Choosing where to buy IPTV in the UK means looking beyond flashy promises. This guide breaks down the criteria that matter most for British buyers — from channel quality and reliability to support and genuine value.",
-    date: "2026-04-01",
+    date: "2026-04-04",
     updated: "2026-07-31",
     readTime: "8 min read",
     category: "Guide",
@@ -405,7 +364,7 @@ export const BLOG_POSTS = [
       "Step-by-step guide to installing and configuring an IPTV subscription on an Amazon Fire Stick. From box to live TV in under five minutes.",
     excerpt:
       "A complete, beginner-friendly guide to installing and configuring an IPTV subscription on an Amazon Fire Stick. Stream 37,000 UK channels in 4K within minutes of completing your purchase.",
-    date: "2026-03-20",
+    date: "2026-04-04",
     updated: "2026-07-31",
     readTime: "7 min read",
     category: "Tutorial",
@@ -418,7 +377,7 @@ export const BLOG_POSTS = [
       "An honest comparison of IPTV against traditional UK TV subscriptions — cost, channel range, picture quality, contracts and flexibility.",
     excerpt:
       "An honest comparison of buying IPTV versus traditional UK subscriptions. Costs, channel availability, picture quality, flexibility and value — everything needed to decide before you buy.",
-    date: "2026-03-15",
+    date: "2026-07-17",
     updated: "2026-07-31",
     readTime: "3 min read",
     category: "Comparison",
@@ -431,7 +390,7 @@ export const BLOG_POSTS = [
       "Every Premier League match plus Championship, La Liga and Serie A in HD and 4K through a single IPTV subscription. Setup and cost explained.",
     excerpt:
       "Every Premier League match, plus Championship, La Liga, Serie A and more — all in stunning HD and 4K quality through one IPTV subscription you can buy and stream in minutes.",
-    date: "2026-03-10",
+    date: "2026-04-04",
     updated: "2026-07-31",
     readTime: "3 min read",
     category: "Sports",

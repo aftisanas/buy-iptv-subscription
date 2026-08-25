@@ -83,7 +83,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.18 }}
           className="text-base sm:text-lg text-gray-300/90 max-w-3xl mb-3 px-2 sm:px-0"
         >
-          From decision to live television in under sixty seconds. Pay now and unlock 37,000 channels, 198,000 films, native 4K UHD and five screens — all for £4.75 a month, with an optional Secure Proxy at checkout. Joined by 50,000 UK buyers who rate the service 4.9/5.
+          From decision to live television in under sixty seconds. Pay now and unlock 37,000 channels, 198,000 films, native 4K UHD and five simultaneous screens — from £25.99 for three months, or £2.96 a month effective on the 24-month plan. Optional Secure Proxy at checkout, 30-day money-back guarantee.
         </motion.p>
 
         {/* Promo banner — replaces hero device image */}
