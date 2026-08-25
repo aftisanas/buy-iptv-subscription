@@ -1,23 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HashScrollHandler from "@/components/HashScrollHandler";
 import { SITE_URL } from "@/lib/constants";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
-
-const outfit = Outfit({
+// Display carries the H1, which is the LCP element — so it preloads and the
+// body serif does not. Weights are pinned rather than variable to keep the
+// mobile font payload inside the performance budget (DESIGN-SPEC §6).
+const archivo = Archivo({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
-  weight: ["600", "700"],
+  weight: ["700", "800"],
+  preload: true,
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600"],
   preload: false,
 });
 
@@ -108,7 +112,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#14110d",
   width: "device-width",
   initialScale: 1,
 };
@@ -121,12 +125,12 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${outfit.variable} antialiased`}
+      className={`${archivo.variable} ${sourceSerif.variable}`}
     >
-      <body className="min-h-screen bg-background text-foreground font-(--font-sans)">
+      <body className="min-h-screen bg-paper text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg focus:outline-2 focus:outline-violet-600"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-orange focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:text-white"
         >
           Skip to main content
         </a>

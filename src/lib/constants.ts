@@ -6,6 +6,12 @@ export const CONTACT_EMAIL = "support@buy-iptv-subscription.tv";
 // priceValidUntil, so keep this comfortably in the future.
 export const PRICE_VALID_UNTIL = "2027-12-31";
 
+// Single source of truth for the support-hours line rendered under every
+// WhatsApp CTA. Keep it identical to the hours published in /llms.txt and on
+// /contact — a CTA that promises more than the contact page is a trust leak.
+export const SUPPORT_HOURS =
+  "Support answers 24/7 · sales and billing Mon–Fri, 9am–6pm GMT";
+
 export const WHATSAPP_NUMBER = "447878757831";
 export const WHATSAPP_DISPLAY = "+44 7878 757831";
 
@@ -25,10 +31,10 @@ export const CHECKOUT_COPY = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Why Us", href: "/#features" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Specification", href: "/#specification" },
+  { label: "Plans", href: "/#plans" },
+  { label: "Ordering", href: "/#ordering" },
+  { label: "Questions", href: "/#faq" },
 ] as const;
 
 export const LEGAL_LINKS = [
@@ -47,6 +53,23 @@ export const STATS = [
   { value: "198,000+", label: "Films & Series" },
   { value: "5", label: "Screens Included" },
   { value: "30-Day", label: "Money-Back Guarantee" },
+] as const;
+
+// The product specification, rendered as a real table (DESIGN-SPEC §7).
+// This is the trust mechanism for a site with no reviews: state exactly what
+// is and is not included, including the limits. Every row must be checkable
+// against PRICING_PLANS, a published policy, or the service itself.
+export const SPECIFICATION = [
+  { label: "Live channels", value: "37,000+", note: "UK, Irish and international" },
+  { label: "Films & series", value: "198,000+", note: "On demand, included" },
+  { label: "Resolution", value: "Up to 4K UHD", note: "Where the broadcaster supplies it" },
+  { label: "Simultaneous screens", value: "5", note: "Up to 5 more at checkout" },
+  { label: "Programme guide", value: "7-day catch-up", note: "Full EPG" },
+  { label: "Activation", value: "Under 60 seconds", note: "Automatic on payment" },
+  { label: "Contract", value: "None", note: "One payment, no auto-renewal" },
+  { label: "Refund window", value: "30 days", note: "See /refund for the full terms" },
+  { label: "Support", value: "WhatsApp & email", note: "No phone line, no live chat" },
+  { label: "Payment", value: "Arranged on WhatsApp", note: "No card form on this site" },
 ] as const;
 
 export const FEATURES = [

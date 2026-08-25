@@ -60,3 +60,13 @@ export function buildWhatsAppCheckoutUrl(order: WhatsAppOrderDetails): string {
   const message = lines.join("\n");
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Generic enquiry link for CTAs that aren't tied to a chosen plan (hero,
+ * masthead, sticky mobile bar). Pre-fills an opening line so the buyer never
+ * faces an empty compose box — the single biggest drop-off on a WhatsApp CTA.
+ */
+export function buildWhatsAppEnquiryUrl(message?: string): string {
+  const text = message ?? "Hi 👋 I'd like to buy an IPTV subscription. Which plans do you have?";
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}

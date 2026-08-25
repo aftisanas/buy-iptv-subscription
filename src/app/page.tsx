@@ -1,12 +1,12 @@
-import HeroSection from "@/components/HeroSection";
-import StatsBar from "@/components/StatsBar";
-import FeaturesSection from "@/components/FeaturesSection";
-import PricingSection from "@/components/PricingSection";
-import DevicesSection from "@/components/DevicesSection";
-import ChannelsSection from "@/components/ChannelsSection";
-import FAQSection from "@/components/FAQSection";
-import TrustSection from "@/components/TrustSection";
-import CTASection from "@/components/CTASection";
+import Hero from "@/components/Hero";
+import Seam from "@/components/Seam";
+import Specification from "@/components/Specification";
+import Plans from "@/components/Plans";
+import Ordering from "@/components/Ordering";
+import Included from "@/components/Included";
+import Questions from "@/components/Questions";
+import Guarantee from "@/components/Guarantee";
+import StickyCta from "@/components/StickyCta";
 import {
   CONTACT_EMAIL,
   FAQ_ITEMS,
@@ -26,15 +26,15 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
-      <StatsBar />
-      <FeaturesSection />
-      <PricingSection />
-      <DevicesSection />
-      <ChannelsSection />
-      <FAQSection />
-      <TrustSection />
-      <CTASection />
+      <Hero />
+      <Seam />
+      <Specification />
+      <Plans />
+      <Ordering />
+      <Included />
+      <Questions />
+      <Guarantee />
+      <StickyCta />
 
       {/* JSON-LD Structured Data */}
       <script

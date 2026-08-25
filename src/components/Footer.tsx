@@ -1,101 +1,116 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { Mail, MapPin } from "lucide-react";
-import { NAV_LINKS, LEGAL_LINKS, SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
-import SectionLink from "@/components/SectionLink";
+import {
+  CONTACT_EMAIL,
+  LEGAL_LINKS,
+  NAV_LINKS,
+  SITE_NAME,
+  SUPPORT_HOURS,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "@/lib/constants";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="relative border-t border-violet-100/50 bg-gradient-to-b from-[#fafbff] to-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 py-10 sm:py-14 lg:py-16 lg:max-w-5xl lg:mx-auto">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="relative h-12 w-12 shrink-0">
-                <Image
-                  src="/buy-iptv.webp"
-                  alt="Buy IPTV Subscription logo"
-                  fill
-                  sizes="48px"
-                  loading="lazy"
-                  className="object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-                />
-              </div>
-              <span className="text-lg font-bold text-foreground">
-                Buy<span className="gradient-text"> IPTV </span>Subscription
-              </span>
-            </Link>
-            <p className="text-sm text-muted leading-relaxed mb-6">
-              Buy IPTV and stream in 60 seconds. 37,000 channels, 198,000 films in native 4K, five screens, an optional Secure Proxy and 24/7 UK support — from £25.99.
+    <footer className="border-t border-rule bg-paper">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="lg:col-span-2">
+            <p className="font-display text-base font-extrabold tracking-tight">
+              Buy<span className="text-orange">IPTV</span>Subscription
             </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <Mail className="h-4 w-4 text-violet-500/60" />
-                <span>{CONTACT_EMAIL}</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <MapPin className="h-4 w-4 text-violet-500/60" />
-                <span>London, United Kingdom</span>
-              </div>
-            </div>
+            <p className="measure mt-4 text-sm leading-relaxed text-ink-muted">
+              A UK-focused IPTV subscription. 37,000 live channels and 198,000
+              films and series over standard broadband — no dish, no cable, no
+              engineer visit. One payment per term, no auto-renewal.
+            </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="lg:justify-self-center">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
+          <nav aria-label="Site">
+            <p className="eyebrow">Site</p>
+            <ul className="mt-4 space-y-2.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <SectionLink
+                  <Link
                     href={link.href}
-                    className="text-sm text-muted transition-colors hover:text-violet-600"
+                    className="text-sm text-ink-muted transition-colors hover:text-orange"
                   >
                     {link.label}
-                  </SectionLink>
+                  </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-ink-muted transition-colors hover:text-orange"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-ink-muted transition-colors hover:text-orange"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
-          </div>
+          </nav>
 
-          {/* Legal */}
-          <div className="lg:justify-self-start">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-              Legal
-            </h3>
-            <ul className="space-y-3">
+          <nav aria-label="Legal">
+            <p className="eyebrow">Legal</p>
+            <ul className="mt-4 space-y-2.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted transition-colors hover:text-violet-600"
+                    className="text-sm text-ink-muted transition-colors hover:text-orange"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-
+          </nav>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-violet-100/50 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted text-center sm:text-left">
-              © {new Date().getFullYear()} buy-iptv-subscription.tv — Buy IPTV | Buy IPTV Subscription | IPTV UK | Trusted UK IPTV
-            </p>
-            <p className="text-xs text-gray-500 text-center sm:text-right max-w-md">
-              {SITE_NAME} is not affiliated with any television networks or content providers.
-              All trademarks are property of their respective owners.
-            </p>
+        <div className="mt-12 grid gap-6 border-t border-rule pt-6 sm:grid-cols-2">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <ul className="mt-3 space-y-1.5">
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="data text-sm text-ink transition-colors hover:text-orange"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="data text-sm text-ink transition-colors hover:text-orange"
+                >
+                  {WHATSAPP_DISPLAY}
+                </a>
+              </li>
+            </ul>
+            <p className="eyebrow mt-3">{SUPPORT_HOURS}</p>
           </div>
+
+          <p className="text-sm leading-relaxed text-ink-muted sm:text-right">
+            {SITE_NAME} is not affiliated with any television network or content
+            provider. All trademarks are the property of their respective owners.
+          </p>
         </div>
+
+        <p className="eyebrow mt-10">
+          © {year} {SITE_NAME}
+        </p>
       </div>
     </footer>
   );
