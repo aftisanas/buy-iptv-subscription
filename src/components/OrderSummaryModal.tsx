@@ -1,6 +1,7 @@
-// WhatsApp is the sole checkout flow on this site. Card checkout lives on the
-// hub and is ported separately; do not add an apologetic "card coming soon"
-// note here — see DESIGN-SPEC §8.
+// The WhatsApp order path. NOT the only checkout — /checkout takes card
+// payment through the hub and emails Xtream codes automatically. This modal is
+// the alternative for buyers who would rather arrange the order in chat, and
+// the fallback the hub itself falls back to when stores are unavailable.
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -110,7 +111,7 @@ export default function OrderSummaryModal({
             type="button"
             onClick={onClose}
             aria-label="Close order summary"
-            className="-mr-2 p-2 text-ink-muted transition-colors hover:text-orange"
+            className="-mr-2 p-2 text-ink-muted transition-colors hover:text-gold"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -122,7 +123,7 @@ export default function OrderSummaryModal({
               {planName}
             </span>
             <div className="text-right">
-              <div className="data text-xl font-medium">
+              <div className="tabular text-xl font-medium">
                 {formatPrice(planPrice, currency)}
               </div>
               <div className="eyebrow mt-0.5">One-time payment</div>
@@ -144,7 +145,7 @@ export default function OrderSummaryModal({
                 aria-label="Toggle Secure Proxy"
                 onClick={() => setProxyOn((v) => !v)}
                 className={`relative inline-flex h-6 w-11 shrink-0 items-center transition-colors ${
-                  proxyOn ? "bg-orange" : "bg-rule"
+                  proxyOn ? "bg-gold" : "bg-rule"
                 }`}
               >
                 <span
@@ -154,7 +155,7 @@ export default function OrderSummaryModal({
                 />
               </button>
             </div>
-            <div className="data mt-1.5 text-sm font-medium text-orange">
+            <div className="tabular mt-1.5 text-sm font-medium text-gold">
               +{formatPrice(proxyPrice, currency)}
             </div>
             <p className="mt-2 text-xs leading-relaxed text-ink-muted">
@@ -181,13 +182,13 @@ export default function OrderSummaryModal({
                   onClick={() => setExtraConnections((v) => Math.max(0, v - 1))}
                   disabled={extraConnections === 0}
                   aria-label="Decrease extra connections"
-                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
+                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
                 >
                   <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
                 <span
                   aria-live="polite"
-                  className="data w-7 text-center text-sm font-medium"
+                  className="tabular w-7 text-center text-sm font-medium"
                 >
                   {extraConnections}
                 </span>
@@ -200,19 +201,19 @@ export default function OrderSummaryModal({
                   }
                   disabled={extraConnections === EXTRA_CONNECTIONS_MAX}
                   aria-label="Increase extra connections"
-                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
+                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
                 >
                   <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
               </div>
             </div>
 
-            <div className="data mt-2 text-xs font-medium text-orange">
+            <div className="tabular mt-2 text-xs font-medium text-gold">
               {CHECKOUT_COPY.extraConnectionsPriceLabel(extraConnectionPrice)}
             </div>
 
             {extraConnections > 0 && (
-              <div className="data mt-1 text-xs text-ink-muted">
+              <div className="tabular mt-1 text-xs text-ink-muted">
                 {extraConnections} × {formatPrice(extraConnectionPrice, currency)}{" "}
                 = {formatPrice(extraConnectionsSubtotal, currency)}
               </div>
@@ -223,7 +224,7 @@ export default function OrderSummaryModal({
         <div className="border-t-2 border-ink bg-paper-sunk px-5 py-5">
           <div className="flex items-baseline justify-between">
             <span className="eyebrow">Total</span>
-            <span className="data text-2xl font-medium">
+            <span className="tabular text-2xl font-medium">
               {formatPrice(total, currency)}
             </span>
           </div>
@@ -232,7 +233,7 @@ export default function OrderSummaryModal({
             type="button"
             onClick={handleCheckout}
             aria-label={`${CHECKOUT_COPY.buttonLabelPrefix} for ${formatPrice(total, currency)}`}
-            className="mt-4 flex w-full items-center justify-center gap-2 bg-orange px-6 py-3.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-orange-hover"
+            className="mt-4 flex w-full items-center justify-center gap-2 bg-gold px-6 py-3.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-gold-hover"
           >
             {CHECKOUT_COPY.buttonLabelPrefix} · {formatPrice(total, currency)}
           </button>

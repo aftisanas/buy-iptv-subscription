@@ -45,7 +45,7 @@ export default function Navbar() {
           className="font-display text-base font-extrabold tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
-          Buy<span className="text-orange">IPTV</span>Subscription
+          Buy<span className="text-gold">IPTV</span>Subscription
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -53,7 +53,7 @@ export default function Navbar() {
             <SectionLink
               key={link.href}
               href={link.href}
-              className="font-display text-sm font-bold tracking-tight text-ink-muted transition-colors hover:text-orange"
+              className="font-display text-sm font-bold tracking-tight text-ink-muted transition-colors hover:text-gold"
             >
               {link.label}
             </SectionLink>

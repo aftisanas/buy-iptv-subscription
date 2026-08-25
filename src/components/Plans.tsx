@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { Check, MessageCircle } from "lucide-react";
 import OrderSummaryModal from "./OrderSummaryModal";
 import { PRICING_PLANS } from "@/lib/constants";
 
@@ -13,140 +14,109 @@ const toAccessLabel = (planName: string) => {
 };
 
 /**
- * Plans as a comparison table on desktop, cards on mobile.
+ * Plan cards, each carrying its own feature list.
  *
- * Every sibling site renders a four-card row; a real <table> with tabular
- * figures is both the structural break (DESIGN-SPEC §2) and the honest way to
- * present four options that differ only by duration and price.
+ * The previous pass hoisted the shared features into one list below the table
+ * to avoid repetition; that made every plan look identical and gave the buyer
+ * nothing to read inside the card they were deciding on. Repetition is correct
+ * here — the card has to stand alone.
  *
- * The originalPrice/discount badges are deliberately not rendered — the
- * reference prices they compare against are unverified and internally
- * incoherent (3 months "was" £59.99 while 24 months costs £79.99 today).
- * Under DMCC/CPR price-transparency rules a "was" price must have been
- * genuinely charged. Reinstate only with evidence.
+ * originalPrice/discount badges remain unrendered: the reference prices are
+ * internally incoherent (3 months "was" £59.99 while 24 months costs £79.99
+ * today) and under DMCC/CPR rules a "was" price must have been genuinely
+ * charged.
  */
-
-const INCLUDED = [
-  "37,000+ live channels",
-  "198,000+ films & series",
-  "Up to 4K UHD",
-  "5 simultaneous screens",
-  "7-day catch-up EPG",
-  "30-day money-back",
-];
-
 export default function Plans() {
   const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
 
   return (
     <section id="plans" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="eyebrow">Plans</p>
-        <h2 className="marker mt-4 font-display text-3xl lg:text-4xl">
-          Four terms, one product
-        </h2>
-        <p className="measure mt-4 text-ink-muted">
-          Every plan carries the identical service — the only variables are how
-          long it runs and what it costs. Longer terms cost less per month.
-          Nothing renews automatically.
-        </p>
-
-        {/* Desktop: comparison table */}
-        <div className="mt-10 hidden overflow-x-auto lg:block">
-          <table className="w-full text-left">
-            <caption className="sr-only">IPTV subscription plans and prices</caption>
-            <thead>
-              <tr className="border-b-2 border-ink">
-                <th scope="col" className="eyebrow py-3 pr-4 font-normal">Term</th>
-                <th scope="col" className="eyebrow py-3 pr-4 font-normal">Price</th>
-                <th scope="col" className="eyebrow py-3 pr-4 font-normal">Per month</th>
-                <th scope="col" className="eyebrow py-3 pr-4 font-normal">Secure Proxy</th>
-                <th scope="col" className="eyebrow py-3 pr-4 font-normal">Extra connection</th>
-                <th scope="col" className="sr-only">Order</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PRICING_PLANS.map((plan) => (
-                <tr key={plan.id} className="border-b border-rule">
-                  <th scope="row" className="py-5 pr-4 align-middle">
-                    <span className="font-display text-xl font-extrabold tracking-tight">
-                      {plan.name}
-                    </span>
-                    {plan.popular && (
-                      <span className="eyebrow ml-3 text-orange">Most chosen</span>
-                    )}
-                  </th>
-                  <td className="data py-5 pr-4 align-middle text-2xl font-medium">
-                    £{plan.price.toFixed(2)}
-                  </td>
-                  <td className="data py-5 pr-4 align-middle text-ink-muted">
-                    £{plan.perMonth.toFixed(2)}
-                  </td>
-                  <td className="data py-5 pr-4 align-middle text-ink-muted">
-                    +£{plan.proxyPrice.toFixed(2)}
-                  </td>
-                  <td className="data py-5 pr-4 align-middle text-ink-muted">
-                    +£{plan.extraConnectionPrice.toFixed(2)}
-                  </td>
-                  <td className="py-5 text-right align-middle">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedPlan(plan)}
-                      className="bg-orange px-5 py-2.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-orange-hover"
-                    >
-                      Order this plan
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="text-center">
+          <p className="eyebrow">Pricing</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-[2.75rem]">
+            Buy IPTV UK Plans — Four Terms, One Full Service
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-ink-muted">
+            Every plan to buy IPTV UK carries the identical channel library, 4K
+            streaming and five screens. Only the term and the price change, and
+            longer terms cost less per month. Nothing renews automatically.
+          </p>
         </div>
 
-        {/* Mobile: cards */}
-        <ul className="mt-10 space-y-4 lg:hidden">
-          {PRICING_PLANS.map((plan) => (
-            <li
-              key={plan.id}
-              className={`border bg-paper p-6 ${plan.popular ? "border-orange border-2" : "border-rule"}`}
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-display text-xl font-extrabold tracking-tight">
-                  {plan.name}
-                </h3>
-                {plan.popular && <span className="eyebrow text-orange">Most chosen</span>}
-              </div>
-              <p className="data mt-3 text-3xl font-medium">£{plan.price.toFixed(2)}</p>
-              <p className="eyebrow mt-1">£{plan.perMonth.toFixed(2)} per month</p>
-              <dl className="mt-4 border-t border-rule pt-3 text-sm text-ink-muted">
-                <div className="flex justify-between py-1">
-                  <dt>Secure Proxy</dt>
-                  <dd className="data">+£{plan.proxyPrice.toFixed(2)}</dd>
-                </div>
-                <div className="flex justify-between py-1">
-                  <dt>Extra connection</dt>
-                  <dd className="data">+£{plan.extraConnectionPrice.toFixed(2)}</dd>
-                </div>
-              </dl>
-              <button
-                type="button"
-                onClick={() => setSelectedPlan(plan)}
-                className="mt-5 w-full bg-orange px-5 py-3.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-orange-hover"
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:items-start">
+          {PRICING_PLANS.map((plan) => {
+            const popular = plan.popular;
+            return (
+              <li
+                key={plan.id}
+                className={`relative flex flex-col bg-paper transition-shadow ${
+                  popular
+                    ? "border-2 border-gold shadow-xl shadow-gold/15 lg:-mt-4 lg:mb-4"
+                    : "border border-rule hover:shadow-lg hover:shadow-ink/5"
+                }`}
               >
-                Order this plan
-              </button>
-            </li>
-          ))}
+                {popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-flame px-3.5 py-1 text-[0.7rem] font-extrabold uppercase tracking-wide text-white">
+                    Most popular
+                  </span>
+                )}
+
+                <div className={`px-6 pb-6 ${popular ? "pt-8" : "pt-6"}`}>
+                  <h3 className="font-display text-2xl">{plan.name}</h3>
+                  <p className="mt-1 text-sm text-ink-muted">{plan.subtitle}</p>
+
+                  <div className="mt-5 flex items-baseline gap-1.5">
+                    <span className="tabular font-display text-4xl text-ink">
+                      £{plan.price.toFixed(2)}
+                    </span>
+                    <span className="text-sm text-ink-muted">one-off</span>
+                  </div>
+                  <p className="tabular mt-1 text-sm font-semibold text-gold">
+                    £{plan.perMonth.toFixed(2)} / month effective
+                  </p>
+
+                  <Link
+                    href={`/checkout?plan=${encodeURIComponent(plan.name)}`}
+                    className={`mt-5 block w-full px-5 py-3.5 text-center text-sm font-extrabold transition-all ${
+                      popular
+                        ? "bg-gradient-to-r from-gold-bright to-gold text-night hover:brightness-110"
+                        : "bg-night text-white hover:bg-night-2"
+                    }`}
+                  >
+                    Buy IPTV UK — {plan.name}
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlan(plan)}
+                    className="mt-2.5 flex w-full items-center justify-center gap-1.5 py-1.5 text-xs font-semibold text-ink-muted transition-colors hover:text-gold"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                    or order on WhatsApp
+                  </button>
+                </div>
+
+                <ul className="mt-auto space-y-2.5 border-t border-rule px-6 py-6">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-muted">
+                      <Check
+                        className={`mt-0.5 h-4 w-4 shrink-0 ${popular ? "text-gold" : "text-ink-muted/60"}`}
+                        aria-hidden="true"
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
         </ul>
 
-        <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-2 border-t border-rule pt-6 sm:grid-cols-2 lg:grid-cols-3">
-          {INCLUDED.map((item) => (
-            <li key={item} className="flex items-start gap-2.5 text-sm text-ink-muted">
-              <Check className="mt-1 h-4 w-4 shrink-0 text-orange" aria-hidden="true" />
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-muted">
+          All prices in GBP and payable once for the stated term. Add the Secure
+          Proxy or extra connections at checkout.
+        </p>
       </div>
 
       <OrderSummaryModal

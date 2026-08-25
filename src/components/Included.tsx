@@ -16,15 +16,15 @@ export default function Included() {
   return (
     <section id="included" className="border-b border-rule py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="eyebrow">Included</p>
+        <p className="eyebrow">Channel library</p>
         <h2 className="marker mt-4 font-display text-3xl lg:text-4xl">
-          What the library covers
+          Buy IPTV UK and Get Every Category Covered
         </h2>
 
         <ul className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
           {CHANNEL_CATEGORIES.map((cat) => (
             <li key={cat.name} className="bg-paper p-6">
-              <p className="data text-sm text-orange">{cat.count}</p>
+              <p className="tabular text-sm text-gold">{cat.count}</p>
               <h3 className="mt-2 font-display text-base font-extrabold tracking-tight">
                 {cat.name.split("—")[0].trim()}
               </h3>
@@ -38,7 +38,7 @@ export default function Included() {
         <div className="mt-14">
           <p className="eyebrow">Compatibility</p>
           <h3 className="marker mt-4 font-display text-2xl lg:text-3xl">
-            Runs on what you already own
+            Buy IPTV UK on Hardware You Already Own
           </h3>
           <p className="measure mt-4 text-ink-muted">
             Any device that runs an M3U or Xtream-compatible player. Setup takes
@@ -47,7 +47,7 @@ export default function Included() {
           </p>
           <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-2 border-t border-rule pt-5">
             {DEVICES.map((device) => (
-              <li key={device.name} className="data text-sm text-ink-muted">
+              <li key={device.name} className="tabular text-sm text-ink-muted">
                 {device.name}
               </li>
             ))}

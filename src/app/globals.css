@@ -1,44 +1,58 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────
-   "The spec sheet" — see docs/DESIGN-SPEC.md
-   Warm neutrals, one orange accent, serif body, mono data.
-   Deliberately NOT the violet/cyan dark theme shared by the
-   eight sibling properties: palette alone does not break a
-   template signature, but it is the surface layer of doing so.
+   "Royal broadcast" — see docs/DESIGN-SPEC.md
+
+   Deep indigo ground, gold primary, red for urgency. Gold is
+   chosen to work WITH the existing crowned-lion brand mark
+   (public/buy-iptv.webp) rather than fight it, and to stay off
+   the violet+cyan pairing that eight sibling properties share.
+
+   Font rule:
+     --font-display (Newsreader, serif) → narrative headings.
+       H1, H2, H3, plan names, card titles.
+     --font-sans (Plus Jakarta Sans)    → body copy, UI, labels,
+       eyebrows, table headers, buttons.
+   Tracking stays tight. Wide letter-spacing on uppercase labels
+   was the single most-disliked thing in the first pass.
    ───────────────────────────────────────────────────────────── */
 
 @theme {
-  --color-paper: #fbfaf7;
-  --color-paper-sunk: #f2efe9;
-  --color-ink: #16130f;
-  --color-ink-muted: #5a5348;
-  --color-rule: #ddd8ce;
+  --color-paper: #ffffff;
+  --color-paper-sunk: #f6f5f2;
+  --color-ink: #14121f;
+  --color-ink-muted: #4c4860;
+  --color-rule: #e4e1da;
 
-  /* Single accent. 4.6:1 on paper — large text and UI only, never body. */
-  --color-orange: #dc5b0e;
-  --color-orange-hover: #b84a0b;
+  /* Gold — primary action, active state, section markers. */
+  --color-gold: #b8791a;
+  --color-gold-bright: #f0a930;
+  --color-gold-hover: #96610f;
+  --color-gold-soft: #fdf3e0;
 
-  --color-night: #14110d;
-  --color-night-2: #221d16;
+  /* Red — urgency only: most-popular badge, savings, promo. */
+  --color-flame: #d93a2b;
+  --color-flame-hover: #b32c1f;
+
+  --color-night: #0b0a1a;
+  --color-night-2: #17152c;
+  --color-night-3: #241f3f;
 
   --color-success: #1f6f43;
   --color-danger: #b3261e;
 
-  /* Aliases kept so Tailwind's bg-background/text-foreground still resolve. */
-  --color-background: #fbfaf7;
-  --color-foreground: #16130f;
-  --color-muted: #5a5348;
-  --color-border: #ddd8ce;
+  /* Aliases so legacy utilities still resolve on un-migrated pages. */
+  --color-background: #ffffff;
+  --color-foreground: #14121f;
+  --color-muted: #4c4860;
+  --color-border: #e4e1da;
 
-  --font-display: "Archivo", system-ui, -apple-system, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-data: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Clears the fixed masthead on anchor jumps. */
   scroll-padding-top: 5rem;
 }
 
@@ -51,16 +65,10 @@ html {
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-}
-
-@media (min-width: 1024px) {
-  body {
-    font-size: 1.125rem;
-  }
 }
 
 h1,
@@ -69,49 +77,76 @@ h3,
 h4,
 .font-display {
   font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-weight: 600;
+  /* Near-zero tracking. The first pass used -0.02em display plus 0.12em
+     uppercase eyebrows and read as over-spaced throughout. */
+  letter-spacing: -0.011em;
+  line-height: 1.12;
 }
 
-/* Every figure on the site is tabular — prices line up in columns. */
-.data,
+.tabular,
 th,
 td {
   font-variant-numeric: tabular-nums;
 }
 
-.data {
-  font-family: var(--font-data);
-}
-
-/* Eyebrow: the small mono label above a section heading. */
+/* Eyebrow — tightened from 0.12em to 0.05em and no longer monospace. */
 .eyebrow {
-  font-family: var(--font-data);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-gold);
 }
 
-/* Section marker — the 2px orange rule that replaces decorative imagery. */
 .marker::before {
   content: "";
   display: block;
-  width: 3rem;
-  height: 2px;
-  background: var(--color-orange);
-  margin-bottom: 1.25rem;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--color-gold-bright);
+  margin-bottom: 1rem;
 }
 
-/* Prose measure. 68ch keeps long-form cluster copy readable. */
 .measure {
-  max-width: 68ch;
+  max-width: 64ch;
+}
+
+/* ── Surfaces ─────────────────────────────────────────────── */
+
+/* Night ground with a subtle indigo bloom — carries the hero and
+   the guarantee band without needing a photographic background. */
+.night-field {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(80, 60, 160, 0.4),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 30%,
+      rgba(184, 121, 26, 0.16),
+      transparent 70%
+    ),
+    var(--color-night);
+}
+
+/* Faint grid, evokes a programme guide. Pure CSS, no image request. */
+.guide-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.gold-text {
+  color: var(--color-gold-bright);
 }
 
 ::selection {
-  background: var(--color-orange);
-  color: #fff;
+  background: var(--color-gold-bright);
+  color: var(--color-night);
 }
 
 ::-webkit-scrollbar {
@@ -124,31 +159,22 @@ td {
   background: var(--color-rule);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-orange);
+  background: var(--color-gold);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-orange);
+  outline: 2px solid var(--color-gold-bright);
   outline-offset: 2px;
 }
 
-/* ── The seam ──────────────────────────────────────────────
-   Dark hero to light body. A hard edge with an orange rule,
-   never a gradient fade — see DESIGN-SPEC §5. */
-.seam-rule {
-  height: 4px;
-  background: var(--color-orange);
-}
-
 /* ── Motion ────────────────────────────────────────────────
-   One staggered load reveal, transform/opacity only, ≤400ms.
-   ParticleBackground and the aurora blobs were removed: a
-   per-frame O(n²) canvas loop inside the LCP region is the
-   single worst thing you can ship to a 70%-mobile audience. */
+   CSS only, transform/opacity only. ParticleBackground (a
+   per-frame O(n²) canvas loop inside the LCP region) stays
+   deleted — 70% of clicks are mobile. */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translate3d(0, 12px, 0);
+    transform: translate3d(0, 14px, 0);
   }
   to {
     opacity: 1;
@@ -156,21 +182,34 @@ td {
   }
 }
 
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
 .rise {
-  animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .rise-1 {
-  animation-delay: 0.05s;
+  animation-delay: 0.04s;
 }
 .rise-2 {
-  animation-delay: 0.12s;
+  animation-delay: 0.1s;
 }
 .rise-3 {
-  animation-delay: 0.19s;
+  animation-delay: 0.16s;
 }
 .rise-4 {
-  animation-delay: 0.26s;
+  animation-delay: 0.22s;
+}
+.rise-5 {
+  animation-delay: 0.28s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -181,12 +220,14 @@ td {
   .rise-1,
   .rise-2,
   .rise-3,
-  .rise-4 {
+  .rise-4,
+  .rise-5 {
     animation: none;
   }
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
 }

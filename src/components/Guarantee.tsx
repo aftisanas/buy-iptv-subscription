@@ -17,11 +17,11 @@ export default function Guarantee() {
           <div>
             <p className="eyebrow text-white/45">Guarantee</p>
             <h2 className="mt-4 font-display text-3xl lg:text-4xl">
-              <span className="mb-5 block h-0.5 w-12 bg-orange" />
-              Stated in full, not summarised
+              <span className="mb-5 block h-0.5 w-12 bg-gold" />
+              Buy IPTV UK With a Guarantee Stated in Full
             </h2>
 
-            <blockquote className="measure mt-6 border-l-2 border-orange pl-5 text-white/80">
+            <blockquote className="measure mt-6 border-l-2 border-gold pl-5 text-white/80">
               <p>
                 At {SITE_NAME}, we stand behind our service with a
                 no-questions-asked 30-day money-back guarantee on all new
@@ -37,14 +37,14 @@ export default function Guarantee() {
               a 7-day window. Read the{" "}
               <Link
                 href="/refund"
-                className="text-white underline decoration-orange decoration-2 underline-offset-4"
+                className="text-white underline decoration-gold decoration-2 underline-offset-4"
               >
                 full refund policy
               </Link>{" "}
               and the{" "}
               <Link
                 href="/terms"
-                className="text-white underline decoration-orange decoration-2 underline-offset-4"
+                className="text-white underline decoration-gold decoration-2 underline-offset-4"
               >
                 terms of service
               </Link>{" "}

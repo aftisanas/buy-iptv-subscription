@@ -15,11 +15,11 @@ export default function Questions() {
           <div>
             <p className="eyebrow">Questions</p>
             <h2 className="marker mt-4 font-display text-3xl lg:text-4xl">
-              The awkward ones too
+              Buy IPTV UK — Questions, Including the Awkward Ones
             </h2>
             <p className="measure mt-4 text-ink-muted">
-              If something is not answered here, ask on WhatsApp before you pay
-              rather than after.
+              If something about how to buy IPTV UK is not answered here, ask on
+              WhatsApp before you pay rather than after.
             </p>
           </div>
 
@@ -33,7 +33,7 @@ export default function Questions() {
                   {item.question}
                   <span
                     aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-orange transition-transform group-open:rotate-45"
+                    className="mt-0.5 shrink-0 text-gold transition-transform group-open:rotate-45"
                   >
                     +
                   </span>

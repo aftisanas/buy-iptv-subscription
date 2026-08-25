@@ -1,37 +1,27 @@
+import Image from "next/image";
+import Link from "next/link";
 import SectionLink from "./SectionLink";
-import { WhatsAppCta, WhatsAppExpectation } from "./ui/WhatsAppCta";
+import HeroArt from "./art/HeroArt";
+import { ShieldCheck, Zap, Tv, Users } from "lucide-react";
 
 /**
- * Dark hero, typographic. No canvas, no blobs, no framer-motion — this is the
- * LCP region and 70% of clicks are mobile (820/1,172, buy-iptv-uk.com 90d).
- * The only motion is a CSS staggered reveal under prefers-reduced-motion.
- *
- * Deliberately carries no imagery: every competitor template leads with
- * broadcaster logos or film posters, both of which are enforcement triggers we
- * will not ship. Absence is the differentiator (DESIGN-SPEC §1).
+ * Centred hero on a night field. No canvas loop, no framer-motion — this is
+ * the LCP region and 70% of clicks are mobile. The background is CSS
+ * (radial blooms + a faint programme-guide grid) and the artwork is inline
+ * SVG, so neither costs a network request.
  */
 
-type SpecItem = { label: string; value: string };
-
-const SPEC: SpecItem[] = [
-  { label: "Live channels", value: "37,000+" },
-  { label: "Films & series", value: "198,000+" },
-  { label: "Screens", value: "5" },
-  { label: "Money-back", value: "30 days" },
+const BADGES = [
+  { icon: Zap, label: "Xtream codes in 60 seconds" },
+  { icon: Tv, label: "37,000+ UK & global channels" },
+  { icon: Users, label: "5 screens included" },
+  { icon: ShieldCheck, label: "30-day money-back" },
 ];
 
 export default function Hero({
-  eyebrow = "Buy IPTV · United Kingdom",
-  title = (
-    <>
-      Buy IPTV.
-      <br />
-      37,000 channels,
-      <br />
-      <span className="text-orange">live in 60 seconds.</span>
-    </>
-  ),
-  standfirst = "One payment, no contract, no auto-renewal. Tell us which plan you want, we send the payment details, and your credentials arrive by email. From £25.99 for three months.",
+  eyebrow = "Buy IPTV UK · Instant automated delivery",
+  title,
+  standfirst = "Buy IPTV UK the fast way. Pick a plan, pay at the automated checkout, and your Xtream codes land in your inbox in under a minute — 37,000 live channels, 198,000 films and series, native 4K UHD on five screens at once.",
   compact = false,
 }: {
   eyebrow?: string;
@@ -40,50 +30,78 @@ export default function Hero({
   compact?: boolean;
 }) {
   return (
-    <section
-      className={`bg-night text-white ${compact ? "pt-24 pb-12 lg:pt-32 lg:pb-16" : "pt-28 pb-16 lg:pt-40 lg:pb-24"}`}
-    >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="eyebrow rise rise-1 text-white/55">{eyebrow}</p>
+    <section className="night-field relative overflow-hidden">
+      <div className="guide-grid absolute inset-0" aria-hidden="true" />
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-night to-transparent"
+        aria-hidden="true"
+      />
+
+      <div
+        className={`relative mx-auto max-w-5xl px-5 text-center sm:px-8 ${
+          compact ? "pt-28 pb-12 lg:pt-32 lg:pb-14" : "pt-24 pb-14 lg:pt-32 lg:pb-16"
+        }`}
+      >
+        {!compact && (
+          <Image
+            src="/buy-iptv.webp"
+            alt="Buy IPTV UK"
+            width={72}
+            height={72}
+            priority
+            className="rise rise-1 mx-auto mb-5 h-16 w-16 lg:h-[72px] lg:w-[72px]"
+          />
+        )}
+
+        <p className="rise rise-1 eyebrow">{eyebrow}</p>
 
         <h1
-          className={`rise rise-2 mt-5 font-display tracking-tight ${
+          className={`rise rise-2 mx-auto mt-3 max-w-4xl text-balance font-display text-white ${
             compact
               ? "text-[2rem] sm:text-4xl lg:text-5xl"
-              : "text-[2.5rem] leading-[1.05] sm:text-5xl lg:text-[4.25rem]"
+              : "text-[2.15rem] sm:text-5xl lg:text-[3.75rem]"
           }`}
         >
-          {title}
+          {title ?? (
+            <>
+              Buy IPTV UK — 37,000 Channels in 4K,{" "}
+              <span className="gold-text">Live in 60 Seconds</span>
+            </>
+          )}
         </h1>
 
-        <p className="rise rise-3 measure mt-6 text-white/70">{standfirst}</p>
+        <p className="rise rise-3 mx-auto mt-5 max-w-2xl text-[0.98rem] text-white/65 sm:text-base">
+          {standfirst}
+        </p>
 
-        <div className="rise rise-4 mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
-          <WhatsAppCta className="w-full justify-center sm:w-auto" />
+        <div className="rise rise-4 mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/checkout"
+            className="w-full bg-gradient-to-r from-gold-bright to-gold px-8 py-4 text-center text-sm font-extrabold text-night shadow-lg shadow-gold/20 transition-all hover:brightness-110 sm:w-auto"
+          >
+            Buy IPTV UK Now — From £25.99
+          </Link>
           <SectionLink
             href="/#plans"
-            className="font-display text-sm font-bold tracking-tight text-white underline decoration-orange decoration-2 underline-offset-[6px] transition-colors hover:text-orange"
+            className="w-full border border-white/20 px-8 py-4 text-center text-sm font-bold text-white transition-colors hover:border-gold-bright hover:text-gold-bright sm:w-auto"
           >
-            See all four plans
+            Compare all four plans
           </SectionLink>
         </div>
 
-        <WhatsAppExpectation className="rise rise-4 mt-4 text-white/45" />
+        <ul className="rise rise-5 mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-2.5">
+          {BADGES.map((b) => (
+            <li key={b.label} className="flex items-center gap-2 text-xs font-semibold text-white/55">
+              <b.icon className="h-4 w-4 text-gold-bright" aria-hidden="true" />
+              {b.label}
+            </li>
+          ))}
+        </ul>
 
         {!compact && (
-          <dl className="rise rise-4 mt-14 grid grid-cols-2 border-t border-white/15 sm:grid-cols-4">
-            {SPEC.map((item) => (
-              <div
-                key={item.label}
-                className="border-b border-white/15 py-5 pr-4 sm:border-b-0 sm:pr-6"
-              >
-                <dt className="eyebrow text-white/45">{item.label}</dt>
-                <dd className="data mt-1.5 text-2xl font-medium text-white lg:text-3xl">
-                  {item.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="rise rise-5 mx-auto mt-12 max-w-3xl">
+            <HeroArt className="h-auto w-full" />
+          </div>
         )}
       </div>
     </section>

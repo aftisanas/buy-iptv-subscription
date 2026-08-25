@@ -4,6 +4,15 @@ export const CONTACT_EMAIL = "support@buy-iptv-subscription.tv";
 
 // Bump when prices change. Google warns on Offers with a stale or missing
 // priceValidUntil, so keep this comfortably in the future.
+export const SITE_SLUG = "buy-iptv-subscription";
+
+// The shared checkout hub. Reached through this site's own /api/checkout-hub
+// proxy in the browser so the hub hostname is not visible in page source —
+// every property in the network POSTs to the same origin, which is the
+// cheapest way to enumerate them.
+export const CHECKOUT_HUB_URL =
+  process.env.NEXT_PUBLIC_CHECKOUT_HUB_URL ?? "https://checkout.british-iptv-4k.com";
+
 export const PRICE_VALID_UNTIL = "2027-12-31";
 
 // Single source of truth for the support-hours line rendered under every
@@ -74,49 +83,49 @@ export const SPECIFICATION = [
 
 export const FEATURES = [
   {
-    title: "Buy IPTV With 37,000 Live Channels — The Widest IPTV UK Library",
+    title: "Buy IPTV UK With 37,000 Live Channels",
     description:
       "A single purchase opens the door to 37,000 live feeds spanning UK sport, entertainment, news, kids and global content. Regional variants and +1 timeshift options are included so one transaction opens every category Britain has to offer.",
     icon: "Tv" as const,
   },
   {
-    title: "Premium IPTV Quality In Native 4K UHD — Included In Every Plan",
+    title: "Buy IPTV UK In Native 4K UHD — No Surcharge",
     description:
       "No 4K surcharge, no resolution cap. Every IPTV subscription plan streams in native 4K when the broadcaster supports it. Adaptive bitrate keeps the picture stable on slower broadband. Premium picture quality is standard, not optional.",
     icon: "Monitor" as const,
   },
   {
-    title: "Load-Balanced IPTV Servers — Built For Peak-Time Demand",
+    title: "Buy IPTV UK On Load-Balanced Servers Built For Peak Time",
     description:
       "Streams are served from high-capacity infrastructure with load-balancing across nodes, so picture quality holds up when demand spikes on a Saturday afternoon. Adaptive bitrate absorbs the rest at your end.",
     icon: "Zap" as const,
   },
   {
-    title: "Fast IPTV Activation — Buy IPTV And Stream In Under 60 Seconds",
+    title: "Buy IPTV UK And Get Your Xtream Codes In 60 Seconds",
     description:
       "Complete the checkout and your credentials are emailed automatically the moment payment clears. No waiting for manual approval, no activation queue, no office-hours restriction.",
     icon: "Clock" as const,
   },
   {
-    title: "Best IPTV UK Deal For Households — Five Screens On One Purchase",
+    title: "Buy IPTV UK For The Whole House — Five Screens At Once",
     description:
       "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. Need more? Extra Connections are available at checkout, priced by plan length.",
     icon: "LayoutGrid" as const,
   },
   {
-    title: "Cheap IPTV Subscription From £25.99 — Buy IPTV Without Overpaying",
+    title: "Buy IPTV UK From £25.99 Without Overpaying",
     description:
       "Full access to 37,000 channels and 4K starts at £25.99 for three months, falling to £2.96 a month effective on the 24-month plan. The Secure Proxy is optional from £4.75 per term. No contract, no early-termination fee.",
     icon: "Smartphone" as const,
   },
   {
-    title: "Secure Proxy Add-On — Optional Privacy Layer At Checkout",
+    title: "Buy IPTV UK With An Optional Secure Proxy At Checkout",
     description:
       "An optional Secure Proxy encrypts your stream traffic and reduces ISP-side filtering. No bandwidth cap, no logs, no separate app. Add it in one tap at checkout from £4.75 per term, priced by plan length.",
     icon: "Shield" as const,
   },
   {
-    title: "198,000 Films And Series On Demand — Plus 7-Day Catch-Up TV",
+    title: "Buy IPTV UK With 198,000 Films, Series And 7-Day Catch-Up",
     description:
       "The on-demand library runs to 198,000 films and series alongside the live channels, and a full EPG with 7-day catch-up means a missed match or episode is still there when you get to it. Included in every plan at no extra cost.",
     icon: "Film" as const,
@@ -260,42 +269,42 @@ export const DEVICES = [
 
 export const FAQ_ITEMS = [
   {
-    question: "How do I buy IPTV from this website?",
+    question: "How do I buy IPTV UK from this website?",
     answer:
       "Choose a plan from the pricing grid, add the Secure Proxy or extra connections if you want them, then complete your order on WhatsApp. Payment details come back instantly and your credentials arrive by email in under sixty seconds.",
   },
   {
-    question: "What IPTV subscription plans can I buy?",
+    question: "What buy IPTV UK plans are available?",
     answer:
       "Four options: 3-month, 6-month, 12-month and 24-month. Every plan includes 37,000 channels, 4K UHD, five screens and instant activation, with the Secure Proxy and extra connections available at checkout. Longer plans unlock deeper discounts.",
   },
   {
-    question: "Is it safe to buy IPTV online in the UK?",
+    question: "Is it safe to buy IPTV UK online?",
     answer:
       "Buy from a provider with an SSL-secured checkout, a clear refund policy, responsive support and published legal terms. This site runs checkout over HTTPS, publishes its Terms, Privacy, DMCA and Refund policies in full, answers support 24/7, and backs every plan with a 30-day money-back guarantee.",
   },
   {
-    question: "How fast is activation after I buy IPTV?",
+    question: "How fast is activation after I buy IPTV UK?",
     answer:
       "Under sixty seconds. Your M3U link and app login arrive by email the instant payment clears. No manual review, no office-hours restriction.",
   },
   {
-    question: "Can I buy IPTV and watch on five devices?",
+    question: "Can I buy IPTV UK and watch on five devices?",
     answer:
       "Yes. Every plan supports five simultaneous streams. Each device runs in full 4K where available, with no throttling regardless of how many connections are active. Need more than five? Add up to five Extra Connections at checkout — from £7.25 each on the 3-month plan, scaled by term length.",
   },
   {
-    question: "Is there a money-back guarantee when I buy IPTV?",
+    question: "Is there a money-back guarantee when I buy IPTV UK?",
     answer:
       "Every plan includes a 30-day full refund. Contact support within 30 days and every penny returns same-day. No forms, no retention calls.",
   },
   {
-    question: "Does the IPTV subscription I buy include a VPN?",
+    question: "Does the IPTV UK subscription I buy include a VPN?",
     answer:
       "Privacy comes as an optional Secure Proxy add-on rather than a bundled VPN. It encrypts your stream traffic and reduces ISP-side filtering, with no bandwidth cap, no logs and no separate app. Pricing is tiered by term: £4.75, £9.50, £19 and £38 for the 3, 6, 12 and 24-month plans.",
   },
   {
-    question: "What is the best IPTV UK plan to buy?",
+    question: "What is the best buy IPTV UK plan to choose?",
     answer:
       "The 12-month plan is the most popular — it saves 40 percent and covers a full football season. The 24-month plan saves 55 percent for maximum long-term value.",
   },

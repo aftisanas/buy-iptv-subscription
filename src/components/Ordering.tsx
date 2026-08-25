@@ -1,80 +1,100 @@
-import { WhatsAppCta, WhatsAppExpectation } from "./ui/WhatsAppCta";
+import Link from "next/link";
+import { CreditCard, Mail, PlayCircle, MessageCircle } from "lucide-react";
+import { WhatsAppCta } from "./ui/WhatsAppCta";
 
 /**
- * How ordering works. No sibling site has this section.
+ * How ordering works.
  *
- * Shows the whole path before the buyer commits to the first step — the point
- * of a chat preview is that the next action stops being unfamiliar. Presented
- * as a deliberate channel, never apologised for (DESIGN-SPEC §8).
+ * The first pass described WhatsApp as the only path, which understated the
+ * product: the automated checkout takes card payment through the hub and
+ * emails Xtream codes without anyone touching the order. WhatsApp is the
+ * fallback when the hub reports stores unavailable, and an option for buyers
+ * who prefer to talk first — not the primary route.
  */
 
 const STEPS = [
   {
+    icon: CreditCard,
     n: "01",
-    title: "Tell us the plan",
-    body: "Pick a term, add the Secure Proxy or extra connections if you want them, and the order opens in WhatsApp with the details already written out.",
+    title: "Choose your plan and pay",
+    body: "Pick a term, add the Secure Proxy or extra connections, and pay securely by card at the checkout. Nothing about your card touches this site.",
   },
   {
+    icon: Mail,
     n: "02",
-    title: "We send payment details",
-    body: "You get the payment details back in the same conversation. Nothing is stored on this site and there is no card form to fill in.",
+    title: "Xtream codes arrive by email",
+    body: "The moment payment clears, your Xtream username, password and server URL are generated and emailed automatically. No queue, no manual approval, no office hours.",
   },
   {
+    icon: PlayCircle,
     n: "03",
-    title: "Credentials arrive by email",
-    body: "Once payment clears, your M3U link and app login are emailed automatically. No queue, no manual approval, no office-hours restriction.",
+    title: "Sign in and start watching",
+    body: "Enter the codes in IPTV Smarters, TiviMate or any Xtream-compatible player and the full channel list loads straight away on up to five screens.",
   },
 ];
 
 export default function Ordering() {
   return (
-    <section id="ordering" className="border-b border-rule py-16 lg:py-24">
+    <section id="ordering" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="eyebrow">Ordering</p>
-        <h2 className="marker mt-4 font-display text-3xl lg:text-4xl">
-          Three steps, one conversation
-        </h2>
+        <div className="max-w-3xl">
+          <p className="eyebrow">How it works</p>
+          <h2 className="marker mt-3 font-display text-3xl sm:text-4xl lg:text-[2.75rem]">
+            Buy IPTV UK in Three Steps — Fully Automated
+          </h2>
+          <p className="mt-4 text-ink-muted">
+            When you buy IPTV UK here the whole order is automated end to end,
+            so activation does not depend on anyone being awake.
+          </p>
+        </div>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_minmax(0,22rem)] lg:gap-16">
-          <ol className="border-t-2 border-ink">
-            {STEPS.map((step) => (
-              <li
-                key={step.n}
-                className="grid grid-cols-[3rem_1fr] gap-x-4 border-b border-rule py-6 sm:grid-cols-[4rem_1fr]"
-              >
-                <span className="data text-sm text-orange">{step.n}</span>
-                <div>
-                  <h3 className="font-display text-lg font-extrabold tracking-tight">
-                    {step.title}
-                  </h3>
-                  <p className="measure mt-2 text-ink-muted">{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+        <ol className="mt-12 grid gap-6 lg:grid-cols-3">
+          {STEPS.map((step) => (
+            <li key={step.n} className="relative border border-rule bg-paper p-6">
+              <span className="tabular absolute right-5 top-5 font-display text-4xl text-rule">
+                {step.n}
+              </span>
+              <span className="flex h-11 w-11 items-center justify-center bg-gold text-night">
+                <step.icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3 className="mt-4 font-display text-xl">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                {step.body}
+              </p>
+            </li>
+          ))}
+        </ol>
 
-          {/* Static chat preview — markup, not an image, so it costs nothing
-              and stays legible at 375px. */}
+        <div className="mt-10 flex flex-col items-center justify-between gap-5 border border-rule bg-night px-6 py-7 text-center sm:flex-row sm:text-left">
           <div>
-            <div className="border border-rule bg-night p-5">
-              <p className="eyebrow text-white/45">Preview</p>
-              <div className="mt-4 space-y-2.5">
-                <p className="ml-auto max-w-[85%] bg-orange px-3.5 py-2.5 text-sm leading-snug text-white">
-                  Hi 👋 I&apos;d like the 12-month plan.
-                </p>
-                <p className="max-w-[85%] bg-night-2 px-3.5 py-2.5 text-sm leading-snug text-white/80">
-                  Great — that&apos;s £49.99 for 12 months, 5 screens included.
-                  Here are the payment details…
-                </p>
-                <p className="max-w-[85%] bg-night-2 px-3.5 py-2.5 text-sm leading-snug text-white/80">
-                  Received. Your login is on its way to your inbox now.
-                </p>
-              </div>
-            </div>
-            <WhatsAppCta className="mt-5 w-full" />
-            <WhatsAppExpectation className="mt-3" />
+            <h3 className="font-display text-xl text-white">
+              Would rather talk before you buy IPTV UK?
+            </h3>
+            <p className="mt-1.5 text-sm text-white/60">
+              Message us on WhatsApp and we will set the order up with you and
+              send payment details in the chat.
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row sm:items-center">
+            <Link
+              href="/checkout"
+              className="bg-gradient-to-r from-gold-bright to-gold px-6 py-3.5 text-center text-sm font-extrabold text-night transition-all hover:brightness-110"
+            >
+              Go to checkout
+            </Link>
+            <WhatsAppCta
+              label="WhatsApp"
+              tone="outline"
+              className="border-white/25 text-white hover:border-gold-bright hover:bg-transparent hover:text-gold-bright"
+            />
           </div>
         </div>
+
+        <p className="mt-4 flex items-center justify-center gap-2 text-xs text-ink-muted">
+          <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+          If the card checkout is ever unavailable, the order falls back to
+          WhatsApp automatically — you will not lose your basket.
+        </p>
       </div>
     </section>
   );

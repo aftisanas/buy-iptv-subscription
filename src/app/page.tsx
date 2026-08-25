@@ -1,9 +1,10 @@
 import Hero from "@/components/Hero";
-import Seam from "@/components/Seam";
-import Specification from "@/components/Specification";
+import Features from "@/components/Features";
 import Plans from "@/components/Plans";
 import Ordering from "@/components/Ordering";
+import Devices from "@/components/Devices";
 import Included from "@/components/Included";
+import Specification from "@/components/Specification";
 import Questions from "@/components/Questions";
 import Guarantee from "@/components/Guarantee";
 import StickyCta from "@/components/StickyCta";
@@ -27,11 +28,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Seam />
-      <Specification />
+      <Features />
       <Plans />
       <Ordering />
+      <Devices />
       <Included />
+      <Specification />
       <Questions />
       <Guarantee />
       <StickyCta />
@@ -47,14 +49,14 @@ export default function HomePage() {
                 "@type": "Organization",
                 "@id": organizationId,
                 name: SITE_NAME,
-                alternateName: "Buy IPTV Subscription UK",
+                alternateName: "Buy IPTV UK",
                 url: SITE_URL,
                 logo: {
                   "@type": "ImageObject",
                   url: logoUrl,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. UK subscription with five screens, an optional Secure Proxy, a 30-day money-back guarantee and 24/7 support — from £25.99.",
+                  "Buy IPTV UK with 37,000 channels in 4K. Automated checkout, Xtream codes emailed in 60 seconds, five screens, optional Secure Proxy and a 30-day money-back guarantee — from £25.99.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -78,7 +80,7 @@ export default function HomePage() {
                 "@type": "WebPage",
                 "@id": webpageId,
                 url: SITE_URL,
-                name: "Buy IPTV Subscription 2026 | UK IPTV From £25.99",
+                name: "Buy IPTV UK 2026 | Buy IPTV Subscription From £25.99",
                 inLanguage: "en-GB",
                 isPartOf: {
                   "@id": websiteId,
@@ -90,7 +92,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. UK subscription, five screens, an optional Secure Proxy and a 30-day money-back guarantee.",
+                  "Buy IPTV UK and stream 37,000 channels in 4K. Automated checkout with Xtream codes in 60 seconds, five screens and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -105,7 +107,7 @@ export default function HomePage() {
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: "Buy IPTV",
+                    name: "Buy IPTV UK",
                     item: `${SITE_URL}/#features`,
                   },
                 ],
@@ -121,11 +123,11 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Product",
             "@id": productId,
-            name: "Buy IPTV Subscription",
+            name: "Buy IPTV UK Subscription",
             url: SITE_URL,
             image: [`${SITE_URL}/og-image.jpg`, logoUrl],
             description:
-              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £25.99.",
+              "Buy IPTV UK subscription with automated 60-second Xtream code delivery, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £25.99.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",

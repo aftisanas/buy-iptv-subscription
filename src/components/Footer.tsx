@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { Mail, MessageCircle } from "lucide-react";
 import {
   CONTACT_EMAIL,
   LEGAL_LINKS,
@@ -9,64 +11,61 @@ import {
   WHATSAPP_NUMBER,
 } from "@/lib/constants";
 
+/** Compact four-column footer. The previous version ran to nearly a full
+ *  viewport of mostly empty space; this one is dense by design. */
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-rule bg-paper">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
-            <p className="font-display text-base font-extrabold tracking-tight">
-              Buy<span className="text-orange">IPTV</span>Subscription
-            </p>
-            <p className="measure mt-4 text-sm leading-relaxed text-ink-muted">
-              A UK-focused IPTV subscription. 37,000 live channels and 198,000
-              films and series over standard broadband — no dish, no cable, no
-              engineer visit. One payment per term, no auto-renewal.
+    <footer className="bg-night text-white/70">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/buy-iptv.webp"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8"
+              />
+              <span className="font-display text-base text-white">
+                Buy IPTV UK
+              </span>
+            </div>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/50">
+              Buy IPTV UK with 37,000 live channels and 198,000 films and series
+              over standard broadband. One payment per term, no contract, no
+              auto-renewal.
             </p>
           </div>
 
           <nav aria-label="Site">
             <p className="eyebrow">Site</p>
-            <ul className="mt-4 space-y-2.5">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-ink-muted transition-colors hover:text-orange"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-sm text-ink-muted transition-colors hover:text-orange"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-ink-muted transition-colors hover:text-orange"
-                >
-                  Contact
-                </Link>
-              </li>
+            <ul className="mt-3 space-y-1.5">
+              {[...NAV_LINKS, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map(
+                (link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/55 transition-colors hover:text-gold-bright"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
 
           <nav aria-label="Legal">
             <p className="eyebrow">Legal</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-ink-muted transition-colors hover:text-orange"
+                    className="text-sm text-white/55 transition-colors hover:text-gold-bright"
                   >
                     {link.label}
                   </Link>
@@ -74,17 +73,16 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
-        </div>
 
-        <div className="mt-12 grid gap-6 border-t border-rule pt-6 sm:grid-cols-2">
           <div>
-            <p className="eyebrow">Contact</p>
+            <p className="eyebrow">Support</p>
             <ul className="mt-3 space-y-1.5">
               <li>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="data text-sm text-ink transition-colors hover:text-orange"
+                  className="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-gold-bright"
                 >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                   {CONTACT_EMAIL}
                 </a>
               </li>
@@ -93,24 +91,26 @@ export default function Footer() {
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="data text-sm text-ink transition-colors hover:text-orange"
+                  className="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-gold-bright"
                 >
+                  <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                   {WHATSAPP_DISPLAY}
                 </a>
               </li>
             </ul>
-            <p className="eyebrow mt-3">{SUPPORT_HOURS}</p>
+            <p className="mt-2.5 text-xs text-white/35">{SUPPORT_HOURS}</p>
           </div>
-
-          <p className="text-sm leading-relaxed text-ink-muted sm:text-right">
-            {SITE_NAME} is not affiliated with any television network or content
-            provider. All trademarks are the property of their respective owners.
-          </p>
         </div>
 
-        <p className="eyebrow mt-10">
-          © {year} {SITE_NAME}
-        </p>
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {SITE_NAME}
+          </p>
+          <p className="max-w-xl sm:text-right">
+            Not affiliated with any television network or content provider. All
+            trademarks are the property of their respective owners.
+          </p>
+        </div>
       </div>
     </footer>
   );

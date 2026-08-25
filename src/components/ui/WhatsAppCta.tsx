@@ -43,8 +43,8 @@ export function WhatsAppCta({
       className={cn(
         "inline-flex items-center justify-center gap-2.5 px-6 py-3.5 font-display text-sm font-bold tracking-tight transition-colors",
         tone === "solid"
-          ? "bg-orange text-white hover:bg-orange-hover"
-          : "border border-current text-orange hover:bg-orange hover:text-white",
+          ? "bg-gold text-white hover:bg-gold-hover"
+          : "border border-current text-gold hover:bg-gold hover:text-white",
         className
       )}
     >

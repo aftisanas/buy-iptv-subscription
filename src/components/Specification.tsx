@@ -16,11 +16,12 @@ export default function Specification() {
           <div>
             <p className="eyebrow">Specification</p>
             <h2 className="marker mt-4 font-display text-3xl lg:text-4xl">
-              Exactly what you get
+              Buy IPTV UK — The Full Specification
             </h2>
             <p className="measure mt-4 text-ink-muted">
-              Every figure below is checkable against the plan table or a
-              published policy. Where something is not included, it says so.
+              Every figure below is checkable against the plan table or a published
+              policy. Where something is not included when you buy IPTV UK, it
+              says so.
             </p>
           </div>
 
@@ -41,7 +42,7 @@ export default function Specification() {
                     {row.label}
                   </th>
                   <td className="py-3.5 pr-4 align-top">
-                    <span className="data font-medium text-ink">
+                    <span className="tabular font-medium text-ink">
                       {row.value}
                     </span>
                   </td>
