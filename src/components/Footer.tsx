@@ -43,7 +43,7 @@ export default function Footer() {
           <nav aria-label="Site">
             <p className="eyebrow">Site</p>
             <ul className="mt-3 space-y-1.5">
-              {[...NAV_LINKS, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map(
+              {[...NAV_LINKS, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map(
                 (link) => (
                   <li key={link.href}>
                     <Link

@@ -71,6 +71,7 @@ Formuler boxes, Apple TV.
 ## Pages
 
 - [Home](${SITE_URL}/): plans, features, FAQ
+- [About](${SITE_URL}/about): what the service is, how it delivers, and its stated limits
 - [Blog](${SITE_URL}/blog): setup guides and comparisons
 - [Contact](${SITE_URL}/contact): support channels and hours
 - [Refund Policy](${SITE_URL}/refund): 30-day money-back terms
