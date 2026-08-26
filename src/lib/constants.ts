@@ -32,6 +32,32 @@ export const NAV_LINKS = [
   { label: "FAQ", href: "/#faq" },
 ] as const;
 
+/**
+ * Site-wide silo column, rendered in the footer on every page.
+ *
+ * This is the only link source that reaches every landing page from every
+ * other page. A landing page missing from this list is orphaned: reachable
+ * only via the sitemap, with no internal link equity flowing into it. Add a
+ * page here at the same time you create its route, not afterwards.
+ */
+export const PILLAR_LINKS = [
+  { label: "Buy IPTV Subscription", href: "/buy-iptv-subscription" },
+  { label: "Buy IPTV", href: "/buy-iptv" },
+  { label: "IPTV Buy", href: "/iptv-buy" },
+  { label: "Best IPTV Subscription", href: "/best-iptv-subscription" },
+  { label: "Best IPTV Subscription UK", href: "/best-iptv-subscription-uk" },
+  { label: "Cheap IPTV", href: "/cheap-iptv" },
+  { label: "Cheap IPTV UK", href: "/cheap-iptv-uk" },
+  { label: "Cheap IPTV Subscription", href: "/cheap-iptv-subscription" },
+  { label: "Cheapest IPTV", href: "/cheapest-iptv" },
+  { label: "IPTV Deals", href: "/iptv-deals" },
+  { label: "IPTV Cost", href: "/iptv-cost" },
+  { label: "IPTV Price", href: "/iptv-price" },
+  { label: "IPTV Subscriptions UK", href: "/iptv-subscriptions-uk" },
+  { label: "UK IPTV Subscriptions", href: "/uk-iptv-subscriptions" },
+  { label: "IPTV 12 Month Subscription", href: "/iptv-12-month-subscription" },
+] as const;
+
 export const LEGAL_LINKS = [
   { label: "Terms of Service", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy" },
