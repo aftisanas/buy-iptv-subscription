@@ -1,3 +1,4 @@
+import { CHECKOUT_HUB_URL } from "./constants";
 
 export type CheckoutResponse =
   | { kind: "shopify"; checkoutUrl: string; orderId: string }
@@ -25,7 +26,7 @@ export async function callCheckoutHub(
 ): Promise<CheckoutResponse> {
   const { planName, siteSlug, email, name, phone, proxyEnabled, extraConnections } = params;
 
-  const res = await fetch("/api/checkout-hub/checkout", {
+  const res = await fetch(`${CHECKOUT_HUB_URL}/api/checkout`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

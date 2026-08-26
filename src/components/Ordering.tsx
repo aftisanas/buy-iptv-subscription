@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SectionLink from "./SectionLink";
 import { CreditCard, Mail, PlayCircle, MessageCircle } from "lucide-react";
 import { WhatsAppCta } from "./ui/WhatsAppCta";
 
@@ -76,12 +76,12 @@ export default function Ordering() {
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row sm:items-center">
-            <Link
-              href="/checkout"
+            <SectionLink
+              href="/#plans"
               className="rounded-lg bg-gradient-to-r from-gold-bright to-gold px-6 py-3.5 text-center text-sm font-bold text-night transition-all hover:brightness-110"
             >
               Go to checkout
-            </Link>
+            </SectionLink>
             <WhatsAppCta
               label="WhatsApp"
               tone="outline"

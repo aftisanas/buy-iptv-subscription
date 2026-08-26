@@ -1,6 +1,17 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
-import { PRICING_PLANS } from "@/lib/constants";
+import OrderSummaryModal from "./OrderSummaryModal";
+import { CHECKOUT_MODE, PRICING_PLANS } from "@/lib/constants";
+
+type PricingPlan = (typeof PRICING_PLANS)[number];
+
+const toAccessLabel = (planName: string) => {
+  const match = planName.match(/^(\d+)\s+Months?$/i);
+  return match ? `${match[1]}-Month Access` : `${planName} Access`;
+};
 
 /**
  * Plan cards, each carrying its own feature list.
@@ -16,6 +27,20 @@ import { PRICING_PLANS } from "@/lib/constants";
  * charged.
  */
 export default function Plans() {
+  const router = useRouter();
+  const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
+
+  // "hub" sends the buyer into the full /checkout flow; "whatsapp" keeps the
+  // order modal and goes straight to wa.me. Either way they end up with a
+  // WhatsApp route if Shopify is unavailable.
+  const handleChoosePlan = (plan: PricingPlan) => {
+    if (CHECKOUT_MODE === "hub") {
+      router.push(`/checkout?plan=${plan.id}`);
+      return;
+    }
+    setSelectedPlan(plan);
+  };
+
   return (
     <section id="plans" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
@@ -77,8 +102,9 @@ export default function Plans() {
                 </ul>
 
                 <div className="px-6 pb-6">
-                  <Link
-                    href={`/checkout?plan=${encodeURIComponent(plan.name)}`}
+                  <button
+                    type="button"
+                    onClick={() => handleChoosePlan(plan)}
                     className={`block w-full rounded-lg px-5 py-3.5 text-center text-sm font-bold transition-all ${
                       popular
                         ? "bg-gradient-to-r from-gold-bright to-gold text-night hover:brightness-110"
@@ -86,7 +112,7 @@ export default function Plans() {
                     }`}
                   >
                     Choose {plan.name} — £{plan.price.toFixed(2)}
-                  </Link>
+                  </button>
                 </div>
               </li>
             );
@@ -99,6 +125,15 @@ export default function Plans() {
         </p>
       </div>
 
+      <OrderSummaryModal
+        key={selectedPlan?.id ?? "none"}
+        open={selectedPlan !== null}
+        onClose={() => setSelectedPlan(null)}
+        planName={selectedPlan ? toAccessLabel(selectedPlan.name) : ""}
+        planPrice={selectedPlan?.price ?? 0}
+        proxyPrice={selectedPlan?.proxyPrice ?? 0}
+        extraConnectionPrice={selectedPlan?.extraConnectionPrice}
+      />
     </section>
   );
 }

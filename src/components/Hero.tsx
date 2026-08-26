@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import SectionLink from "./SectionLink";
 import ChannelWallArt from "./art/ChannelWallArt";
 import { ShieldCheck, Zap, Tv, Users } from "lucide-react";
@@ -96,17 +95,17 @@ export default function Hero({
                   : "items-center justify-center lg:justify-start"
               }`}
             >
-              <Link
-                href="/checkout"
+              <SectionLink
+                href="/#plans"
                 className="w-full rounded-lg bg-gradient-to-r from-gold-bright to-gold px-8 py-4 text-center text-sm font-bold text-night shadow-lg shadow-gold/20 transition-all hover:brightness-110 sm:w-auto"
               >
                 Get my codes — from £25.99
-              </Link>
+              </SectionLink>
               <SectionLink
-                href="/#plans"
+                href="/#ordering"
                 className="w-full rounded-lg bg-white/10 px-8 py-4 text-center text-sm font-bold text-white transition-colors hover:bg-white/15 sm:w-auto"
               >
-                See the four plans
+                How it works
               </SectionLink>
             </div>
 

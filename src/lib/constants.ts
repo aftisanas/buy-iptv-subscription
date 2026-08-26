@@ -6,12 +6,25 @@ export const CONTACT_EMAIL = "contact@buy-iptv-uk.com";
 // priceValidUntil, so keep this comfortably in the future.
 export const SITE_SLUG = "buy-iptv-subscription";
 
-// The shared checkout hub. Reached through this site's own /api/checkout-hub
-// proxy in the browser so the hub hostname is not visible in page source —
-// every property in the network POSTs to the same origin, which is the
-// cheapest way to enumerate them.
+// The shared checkout hub, called directly from the browser — the same way
+// best-iptv-uk-subscription and fast-iptv-clean do it. A same-origin proxy was
+// tried here and removed: it returned 503 from its own catch block whenever its
+// upstream fetch hiccuped, which the client reads as "store unavailable" and
+// degrades to WhatsApp even while Shopify is up. Not worth the failure surface
+// on the one flow that takes money.
 export const CHECKOUT_HUB_URL =
   process.env.NEXT_PUBLIC_CHECKOUT_HUB_URL ?? "https://checkout.british-iptv-4k.com";
+
+// Operator switch, mirroring best-iptv-uk-subscription. This is NOT the
+// Shopify availability check — the hub's /api/availability answers "is a store
+// free right now". This answers the question above it: "is this site wired to
+// the hub at all". Without it, a buyer on a site with no provisioned store
+// fills in the whole checkout form before discovering it has to fall back.
+//   "hub"      -> plan card routes to /checkout (form -> Shopify -> WhatsApp fallback)
+//   "whatsapp" -> plan card opens the order modal and goes straight to wa.me
+export const CHECKOUT_MODE = (process.env.NEXT_PUBLIC_CHECKOUT_MODE ?? "whatsapp") as
+  | "whatsapp"
+  | "hub";
 
 export const PRICE_VALID_UNTIL = "2027-12-31";
 

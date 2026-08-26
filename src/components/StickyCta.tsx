@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import SectionLink from "./SectionLink";
 import { Zap } from "lucide-react";
 
 /**
@@ -47,12 +47,12 @@ export default function StickyCta() {
           </div>
         </div>
 
-        <Link
-          href="/checkout"
+        <SectionLink
+          href="/#plans"
           className="shrink-0 rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-3 text-center text-sm font-bold whitespace-nowrap text-night transition-all hover:brightness-110 sm:px-7"
         >
           Buy now — from £25.99
-        </Link>
+        </SectionLink>
       </div>
     </div>
   );

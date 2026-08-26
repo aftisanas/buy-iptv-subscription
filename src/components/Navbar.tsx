@@ -62,12 +62,12 @@ export default function Navbar() {
               {link.label}
             </SectionLink>
           ))}
-          <Link
-            href="/checkout"
+          <SectionLink
+            href="/#plans"
             className="rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-2.5 text-sm font-bold text-night transition-all hover:brightness-110"
           >
             Buy
-          </Link>
+          </SectionLink>
         </nav>
 
         <button
@@ -100,13 +100,13 @@ export default function Navbar() {
               {link.label}
             </SectionLink>
           ))}
-          <Link
-            href="/checkout"
+          <SectionLink
+            href="/#plans"
             onClick={() => setOpen(false)}
             className="mt-6 block rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-3.5 text-center text-sm font-bold text-night"
           >
             Buy now — from £25.99
-          </Link>
+          </SectionLink>
           <a
             href={buildWhatsAppEnquiryUrl()}
             target="_blank"

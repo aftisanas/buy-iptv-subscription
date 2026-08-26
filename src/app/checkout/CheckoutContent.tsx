@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import {
   CHECKOUT_COPY,
+  CHECKOUT_HUB_URL,
   CONTACT_EMAIL,
   EXTRA_CONNECTIONS_MAX,
   PRICING_PLANS,
@@ -70,9 +71,17 @@ export default function CheckoutContent() {
   const searchParams = useSearchParams();
   const planId = searchParams.get("plan");
 
+  // Accept either the plan id ("gold") or its display name ("12 Months").
+  // Links have been written both ways; a mismatch used to resolve to null and
+  // silently bounce the buyer back to /#plans, which read as a broken checkout.
   const plan = useMemo<Plan | null>(() => {
     if (!planId) return null;
-    return PRICING_PLANS.find((p) => p.id === planId) ?? null;
+    const key = planId.trim().toLowerCase();
+    return (
+      PRICING_PLANS.find((p) => p.id.toLowerCase() === key) ??
+      PRICING_PLANS.find((p) => p.name.toLowerCase() === key) ??
+      null
+    );
   }, [planId]);
 
   // Redirect if plan is missing/invalid.
@@ -105,7 +114,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
   useEffect(() => {
     let cancelled = false;
 
-    const url = `/api/checkout-hub/availability?siteSlug=${SITE_SLUG}&planName=${encodeURIComponent(plan.name)}`;
+    const url = `${CHECKOUT_HUB_URL}/api/availability?siteSlug=${SITE_SLUG}&planName=${encodeURIComponent(plan.name)}`;
 
     fetch(url)
       .then(async (res) => {
@@ -750,7 +759,7 @@ function logDiversion(params: {
   reason: string;
 }) {
   try {
-    fetch("/api/checkout-hub/diversion", {
+    fetch(`${CHECKOUT_HUB_URL}/api/diversion`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       keepalive: true,
