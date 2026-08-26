@@ -1,6 +1,5 @@
 import Image from "next/image";
 import SectionLink from "./SectionLink";
-import ChannelWallArt from "./art/ChannelWallArt";
 import { ShieldCheck, Zap, Tv, Users } from "lucide-react";
 
 /**
@@ -128,8 +127,19 @@ export default function Hero({
 
           {/* Artwork — right column on desktop, below the copy when stacked */}
           {!compact && (
-            <div className="rise rise-5 mx-auto w-full max-w-lg lg:max-w-none">
-              <ChannelWallArt className="h-auto w-full" />
+            <div className="rise rise-5 mx-auto w-full max-w-md lg:max-w-none">
+              {/* Explicit width/height + aspect-square so the reserved box is
+                  known before load. CLS measured 0 on the last audit and this
+                  must not reintroduce it. */}
+              <Image
+                src="/buy-iptv-uk-hero.webp"
+                alt="Buy IPTV UK — streaming on a smart TV and a phone in a UK living room"
+                width={740}
+                height={740}
+                priority
+                sizes="(min-width: 1024px) 34rem, (min-width: 640px) 28rem, 90vw"
+                className="aspect-square w-full rounded-2xl object-cover ring-1 ring-white/10"
+              />
             </div>
           )}
         </div>
