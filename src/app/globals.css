@@ -23,8 +23,12 @@
   --color-ink-muted: #4c4860;
   --color-rule: #e4e1da;
 
-  /* Gold — primary action, active state, section markers. */
-  --color-gold: #b8791a;
+  /* Gold — primary action, active state, section markers.
+     #976315 rather than a brighter tone because --gold carries .eyebrow and
+     other small text on light grounds: it needs 4.5:1, not the 3:1 that
+     large text gets away with. Measured 5.11:1 on paper, 4.68:1 on sunk.
+     --gold-bright stays vivid and is only ever used on dark grounds. */
+  --color-gold: #976315;
   --color-gold-bright: #f0a930;
   --color-gold-hover: #96610f;
   --color-gold-soft: #fdf3e0;

@@ -3,7 +3,7 @@
 Phase 7. Run 2026-08-26 against the **live site**, first crawl since deployment.
 12 indexable URLs, all reachable.
 
-## Health score: **84 / 100**
+## Health score: **91 / 100**
 
 | Category | Weight | Score | Note |
 |---|---:|---:|---|
@@ -11,9 +11,9 @@ Phase 7. Run 2026-08-26 against the **live site**, first crawl since deployment.
 | Content quality | 23% | 68 | **Lowest.** No trader identity, no bylines, two thin posts |
 | On-page SEO | 20% | 88 | Titles, meta, H1s all correct. Blog under-linked |
 | Schema | 10% | 90 | Every page typed. No fabricated Review markup |
-| Performance | 10% | 80 | *Provisional — CWV not measurable, see §5* |
+| Performance | 10% | 98 | **Measured.** Mobile 96 / desktop 100, LCP 2.3s, CLS 0 |
 | AI readiness | 10% | 85 | llms.txt accurate after this audit's fix |
-| Images | 5% | 95 | All WebP, all alt-texted, `next/image` with sizes |
+| Images | 5% | 92 | All WebP, all alt-texted, `next/image` with sizes |
 
 **No critical issues. Nothing blocks indexing.**
 
@@ -104,34 +104,47 @@ two from the homepage.
 
 ---
 
-## 5. Performance — could not be measured
+## 5. Performance — measured, and strong
 
-PageSpeed Insights returned `Quota exceeded` on the shared unauthenticated
-pool, for both strategies. **No CWV field or lab data was obtained.** The score
-above is provisional and inferred from the resource profile:
+PageSpeed Insights, 2026-08-26, Moto G Power / slow 4G emulation:
+
+| | Mobile | Desktop |
+|---|---:|---:|
+| **Performance** | **96** | **100** |
+| Accessibility | 96 | 96 |
+| Best practices | 96 | 96 |
+| **SEO** | **100** | **100** |
+
+| Core Web Vital | Mobile | Target | |
+|---|---:|---:|---|
+| **LCP** | **2.3 s** | < 2.5 s | pass |
+| **CLS** | **0** | < 0.1 | perfect |
+| **TBT** | **0 ms** | < 200 ms | perfect |
+| FCP | 1.5 s | < 1.8 s | pass |
+| Speed Index | 4.1 s | < 3.4 s | **the one weak metric** |
+
+CLS of exactly 0 and TBT of exactly 0 ms are the payoff from deleting
+ParticleBackground and framer-motion, reserving the scrollbar gutter, and
+self-hosting the font. All three Core Web Vitals pass on mobile.
+
+Speed Index at 4.1 s is the only amber figure — the page paints its final state
+later than it paints its first. Lighthouse attributes 450 ms to render-blocking
+requests (the 48.8 KB CSS bundle) plus 14 KB of legacy JavaScript and ~29 KB
+unused.
+
+**Resource profile**
 
 | Resource | Size |
 |---|---|
-| HTML (gzipped on the wire) | **22.8 KB** |
+| HTML (gzipped on the wire) | 22.8 KB |
 | CSS (render-blocking) | 48.8 KB |
-| JS total | **669.9 KB** |
+| JS total | 669.9 KB |
 | Largest chunk | 227.3 KB (`react-dom`) |
 | Font (self-hosted, preloaded) | 27.3 KB |
-| Logo | 20.9 KB |
 
-The JS is **overwhelmingly framework, not application waste** — chunks were
-downloaded and inspected; there is no framer-motion, no icon-library bloat, no
-duplicated vendor code. On a page whose only interactivity is a nav toggle and a
-sticky bar, 670 KB is still the largest lever available if CWV turns out poor.
-
-The LCP element (H1) is server-rendered, the font is preloaded and self-hosted
-so there is no third-party origin on the critical path, and there is no canvas
-loop or scroll-driven motion. Structurally this should score well.
-
-**Action:** get real numbers from CrUX or PSI with an API key once the site has
-traffic. Until then, treat 80 as unverified.
-
----
+Chunks were downloaded and inspected: the JS is overwhelmingly React and Next
+runtime, with no framer-motion, no icon-library bloat and no duplicated vendor
+code. At 96/100 there is little left to win here.
 
 ## 6. Schema — strong, and correctly incomplete
 
@@ -163,7 +176,20 @@ weight and supply-chain surface.
 
 ---
 
-## 8. Fixed during this audit
+## 8. Accessibility & best practices — two defects, both fixed
+
+Lighthouse scored both 96, flagging one issue each. Both traced to real bugs:
+
+- **Contrast.** `--gold` (`#b8791a`) measured **3.63:1** on paper and 3.33:1 on
+  sunk. That clears the 3:1 bar for large text but not the **4.5:1 required for
+  normal-size text** — and `--gold` carries `.eyebrow`, which is 13px. Darkened
+  to `#976315`: 5.11:1 on paper, 4.68:1 on sunk. `--gold-bright` is untouched
+  and stays vivid, since it only ever appears on dark grounds (9.72:1).
+- **"Images displayed in incorrect format."** `logo-icon.webp` was 284x314
+  (aspect 0.904) rendered at 32x32 and 64x64 — a 1:1 box. Centre-cropped to
+  284x284 so natural and rendered aspect match.
+
+## 9. Fixed during this audit
 
 - **`llms.txt` was stale and wrong.** Its opening paragraph still said *"orders
   are completed over WhatsApp"* — contradicting the automated card checkout the
@@ -175,7 +201,7 @@ weight and supply-chain surface.
 
 ---
 
-## 9. Action plan
+## 10. Action plan
 
 **High — this week**
 
@@ -204,9 +230,8 @@ weight and supply-chain surface.
 
 ---
 
-## 10. What this audit could not check
+## 11. What this audit could not check
 
-- **Core Web Vitals** — PSI quota exhausted, no CrUX key.
 - **Indexation status** — needs Search Console; the site was deployed hours ago
   and the sitemap had not yet been submitted at audit time.
 - **Rankings** — no Ahrefs subscription; GSC will show these once impressions
