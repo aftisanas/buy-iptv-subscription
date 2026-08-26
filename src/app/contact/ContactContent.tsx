@@ -1,202 +1,130 @@
-"use client";
+import { Mail, Clock, Headphones, MessageCircle } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
+import { WhatsAppCta } from "@/components/ui/WhatsAppCta";
+import {
+  CONTACT_EMAIL,
+  SUPPORT_HOURS,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "@/lib/constants";
 
-import { motion } from "framer-motion";
-import { Mail, Clock, MapPin, Headphones, Star, HeadphonesIcon } from "lucide-react";
-import { CONTACT_EMAIL } from "@/lib/constants";
+/**
+ * Contact page on the shared design system.
+ *
+ * WhatsApp is listed alongside email — the previous version advertised a
+ * "named British team" on "live chat" while offering exactly one channel, and
+ * omitted the one channel most buyers actually use.
+ *
+ * "Based in London, United Kingdom" is not reinstated: it was removed from
+ * llms.txt in the credibility pass as unverifiable and should not survive here.
+ */
 
-const contactMethods = [
-  {
-    icon: Mail,
-    title: "Email Us",
-    description: "For detailed enquiries and account-related questions.",
-    detail: CONTACT_EMAIL,
-    action: `mailto:${CONTACT_EMAIL}`,
-    badge: "24/7",
-    badgeColor: "bg-primary/10 text-primary border border-primary/10",
-  },
+const HELP_WITH = [
+  "Device setup and installation guidance",
+  "Account and subscription management",
+  "Technical troubleshooting",
+  "Channel and content enquiries",
+  "Billing and payment support",
+  "General enquiries and feedback",
+];
+
+const HOURS = [
+  { dept: "Customer support", hours: "24/7" },
+  { dept: "Technical support", hours: "24/7" },
+  { dept: "Refund requests", hours: "24/7" },
+  { dept: "Sales & billing", hours: "Mon–Fri, 9am–6pm GMT" },
 ];
 
 export default function ContactContent() {
   return (
     <div>
-      {/* ── Premium Hero Section ── */}
-      <section className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-24">
-        {/* Deep premium gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0a3e] to-[#0c1445]" />
+      <PageHeader
+        eyebrow="Buy IPTV UK · Support"
+        title={
+          <>
+            Questions Before You <span className="gold-text">Buy IPTV UK?</span>
+          </>
+        }
+        standfirst="Ask before you pay rather than after. Support answers on WhatsApp and email around the clock, including evenings and weekends."
+      >
+        <WhatsAppCta />
+      </PageHeader>
 
-        {/* Aurora blobs */}
-        <div
-          className="aurora-blob w-[600px] h-[600px] bg-purple-600/20 -top-32 -left-32"
-          style={{ animationDelay: "0s" }}
-        />
-        <div
-          className="aurora-blob w-[450px] h-[450px] bg-blue-500/15 top-1/4 right-[-8%]"
-          style={{ animationDelay: "4s" }}
-        />
-        <div
-          className="aurora-blob w-[400px] h-[400px] bg-cyan-500/15 bottom-[-15%] left-1/3"
-          style={{ animationDelay: "8s" }}
-        />
-        <div
-          className="aurora-blob w-[300px] h-[300px] bg-fuchsia-500/12 top-[30%] left-[55%]"
-          style={{ animationDelay: "6s" }}
-        />
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-2xl bg-paper p-6 shadow-sm ring-1 ring-ink/10 transition-shadow hover:shadow-lg hover:shadow-ink/5"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold text-night">
+                <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h2 className="mt-4 font-display text-lg">WhatsApp</h2>
+              <p className="mt-1.5 text-sm text-ink-muted">
+                Fastest route for order questions and setup help.
+              </p>
+              <p className="mt-3 text-sm font-medium text-gold">
+                {WHATSAPP_DISPLAY}
+              </p>
+            </a>
 
-        {/* Radial overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(124,58,237,0.18),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(6,182,212,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.07),transparent_60%)]" />
-
-        {/* Subtle grid */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Floating orbs */}
-        <div className="absolute top-[20%] left-[12%] w-2 h-2 rounded-full bg-purple-400/50 animate-float" />
-        <div className="absolute top-[40%] right-[10%] w-1.5 h-1.5 rounded-full bg-cyan-400/40 animate-float" style={{ animationDelay: "3s" }} />
-        <div className="absolute bottom-[20%] left-[25%] w-1 h-1 rounded-full bg-blue-400/50 animate-float" style={{ animationDelay: "5s" }} />
-
-        {/* Content */}
-        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-white/[0.07] backdrop-blur-md px-5 py-2.5 text-sm text-purple-200 mb-8"
-          >
-            <HeadphonesIcon className="h-4 w-4 text-cyan-400" />
-            <span className="font-medium">Dedicated UK Support — 24/7</span>
-            <span className="flex gap-0.5 text-amber-400">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
-          >
-            <span className="text-white">Contact The Buy IPTV Subscription</span>{" "}
-            <span className="gradient-text-hero">Support Team</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg text-gray-300/90 leading-relaxed"
-          >
-            Support is available 24/7 by email and WhatsApp, including evenings and weekends. Send us your order details and we will pick it up as quickly as we can.
-          </motion.p>
-        </div>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#fafbff] via-[#fafbff]/80 to-transparent" />
-      </section>
-
-      {/* Contact Methods */}
-      <section className="pb-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 max-w-md mx-auto">
-            {contactMethods.map((method, i) => (
-              <motion.a
-                key={method.title}
-                href={method.action}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative rounded-2xl border border-gray-100 bg-white p-6 text-center transition-all duration-500 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
-              >
-                <div className="absolute top-4 right-4">
-                  <span className={`inline-block rounded-full px-2.5 py-1 text-[10px] font-medium ${method.badgeColor}`}>
-                    {method.badge}
-                  </span>
-                </div>
-
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/10 to-accent/5 transition-all group-hover:from-primary/15 group-hover:to-accent/10">
-                  <method.icon className="h-6 w-6 text-primary" />
-                </div>
-
-                <h3 className="text-lg font-semibold text-foreground mb-2">{method.title}</h3>
-                <p className="text-sm text-muted mb-3">{method.description}</p>
-                <p className="text-sm font-medium text-primary">{method.detail}</p>
-              </motion.a>
-            ))}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="group rounded-2xl bg-paper p-6 shadow-sm ring-1 ring-ink/10 transition-shadow hover:shadow-lg hover:shadow-ink/5"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-night text-gold-bright">
+                <Mail className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h2 className="mt-4 font-display text-lg">Email</h2>
+              <p className="mt-1.5 text-sm text-ink-muted">
+                For account, billing and anything needing a paper trail.
+              </p>
+              <p className="mt-3 text-sm font-medium break-all text-gold">
+                {CONTACT_EMAIL}
+              </p>
+            </a>
           </div>
-        </div>
-      </section>
 
-      {/* Hours & Info */}
-      <section className="pb-24 lg:pb-32">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Clock className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">Support Hours</h3>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl bg-paper-sunk p-8 ring-1 ring-ink/10">
+              <div className="mb-5 flex items-center gap-3">
+                <Clock className="h-5 w-5 text-gold" aria-hidden="true" />
+                <h2 className="font-display text-lg">Support hours</h2>
               </div>
-              <div className="space-y-4">
-                {[
-                  { dept: "Customer Support", hours: "24/7 — Always Available" },
-                  { dept: "Technical Support", hours: "24/7 — Always Available" },
-                  { dept: "Sales Department", hours: "Mon–Fri, 9am–6pm GMT" },
-                  { dept: "Billing Enquiries", hours: "Mon–Fri, 9am–6pm GMT" },
-                ].map((item) => (
-                  <div key={item.dept} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
-                    <span className="text-sm text-muted">{item.dept}</span>
-                    <span className="text-sm font-medium text-foreground">{item.hours}</span>
+              <dl>
+                {HOURS.map((item) => (
+                  <div
+                    key={item.dept}
+                    className="flex items-center justify-between border-b border-rule/70 py-2.5 last:border-0"
+                  >
+                    <dt className="text-sm text-ink-muted">{item.dept}</dt>
+                    <dd className="text-sm font-medium text-ink">{item.hours}</dd>
                   </div>
                 ))}
-              </div>
-            </motion.div>
+              </dl>
+              <p className="mt-4 text-xs text-ink-muted">{SUPPORT_HOURS}</p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Headphones className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">What We Can Help With</h3>
+            <div className="rounded-2xl bg-paper-sunk p-8 ring-1 ring-ink/10">
+              <div className="mb-5 flex items-center gap-3">
+                <Headphones className="h-5 w-5 text-gold" aria-hidden="true" />
+                <h2 className="font-display text-lg">What we can help with</h2>
               </div>
-              <div className="space-y-3">
-                {[
-                  "Device setup and installation guidance",
-                  "Account and subscription management",
-                  "Technical troubleshooting",
-                  "Channel and content enquiries",
-                  "Billing and payment support",
-                  "General enquiries and feedback",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                    <span className="text-sm text-muted">{item}</span>
-                  </div>
+              <ul className="space-y-3">
+                {HELP_WITH.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm text-ink-muted">{item}</span>
+                  </li>
                 ))}
-              </div>
-
-              <div className="mt-6 flex items-center gap-2 text-xs text-muted">
-                <MapPin className="h-3 w-3" />
-                <span>Based in London, United Kingdom</span>
-              </div>
-            </motion.div>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

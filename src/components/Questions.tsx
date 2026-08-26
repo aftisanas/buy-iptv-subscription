@@ -23,13 +23,13 @@ export default function Questions() {
             </p>
           </div>
 
-          <div className="border-t-2 border-ink">
+          <div className="border-t border-rule">
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
                 className="group border-b border-rule"
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 font-display text-base font-extrabold tracking-tight marker:content-['']">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 font-display text-base font-bold tracking-tight marker:content-['']">
                   {item.question}
                   <span
                     aria-hidden="true"

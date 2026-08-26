@@ -33,7 +33,7 @@ export default function Specification() {
               {SPECIFICATION.map((row, i) => (
                 <tr
                   key={row.label}
-                  className={`border-t border-rule ${i === 0 ? "border-t-2 border-t-ink" : ""}`}
+                  className={`border-t border-rule ${i === 0 ? "border-t border-rule" : ""}`}
                 >
                   <th
                     scope="row"

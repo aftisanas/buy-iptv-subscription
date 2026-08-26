@@ -24,18 +24,18 @@ export default function Devices() {
           </p>
         </div>
 
-        <ul className="mt-12 grid grid-cols-2 gap-px border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {DEVICES.map((device) => {
             const Icon = deviceIconMap[device.icon];
             return (
               <li
                 key={device.name}
-                className="group flex flex-col items-center gap-3 bg-night px-4 py-8 text-center transition-colors hover:bg-night-2"
+                className="group flex flex-col items-center gap-3 rounded-lg bg-night px-4 py-8 text-center transition-colors hover:bg-night-2"
               >
                 {Icon && (
                   <Icon className="h-9 w-9 text-white/45 transition-colors group-hover:text-gold-bright" />
                 )}
-                <span className="text-xs font-semibold text-white/70">
+                <span className="text-xs font-medium text-white/70">
                   {device.name}
                 </span>
               </li>

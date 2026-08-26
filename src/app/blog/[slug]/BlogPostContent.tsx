@@ -1,9 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Clock, ArrowLeft, Tag } from "lucide-react";
 import Link from "next/link";
-import SectionLink from "@/components/SectionLink";
+import PageHeader from "@/components/PageHeader";
 
 interface BlogPostContentProps {
   post: {
@@ -33,7 +30,11 @@ function renderInline(text: string, keyPrefix: string) {
       const [, label, href] = link;
       if (href.startsWith("/")) {
         return (
-          <Link key={key} href={href} className="text-primary hover:underline">
+          <Link
+            key={key}
+            href={href}
+            className="text-gold underline-offset-2 hover:underline"
+          >
             {label}
           </Link>
         );
@@ -44,7 +45,7 @@ function renderInline(text: string, keyPrefix: string) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline"
+          className="text-gold underline-offset-2 hover:underline"
         >
           {label}
         </a>
@@ -54,7 +55,7 @@ function renderInline(text: string, keyPrefix: string) {
     const bold = token.match(/^\*\*([^*]+)\*\*$/);
     if (bold) {
       return (
-        <strong key={key} className="text-foreground">
+        <strong key={key} className="font-semibold text-ink">
           {bold[1]}
         </strong>
       );
@@ -65,64 +66,43 @@ function renderInline(text: string, keyPrefix: string) {
 }
 
 export default function BlogPostContent({ post, content }: BlogPostContentProps) {
+  const published = new Date(post.date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <div className="pt-20">
-      <article className="py-16 lg:py-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          {/* Back link */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
+    <div>
+      <PageHeader
+        eyebrow={post.category}
+        title={post.title}
+        standfirst={post.excerpt}
+      >
+        <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/50">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
+            <Tag className="h-3 w-3" aria-hidden="true" />
+            {post.category}
+          </span>
+          <span>{published}</span>
+          <span className="flex items-center gap-1">
+            <Clock className="h-3 w-3" aria-hidden="true" />
+            {post.readTime}
+          </span>
+        </div>
+      </PageHeader>
+
+      <article className="py-14 lg:py-20">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <Link
+            href="/blog"
+            className="mb-10 inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-gold"
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Blog
-            </Link>
-          </motion.div>
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            All guides
+          </Link>
 
-          {/* Header */}
-          <motion.header
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-12"
-          >
-            <div className="flex items-center gap-4 text-sm text-muted mb-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                <Tag className="h-3 w-3" />
-                {post.category}
-              </span>
-              <span>
-                {new Date(post.date).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </span>
-              <span className="flex items-center gap-1">
-                <Clock className="h-3 w-3" />
-                {post.readTime}
-              </span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-              {post.title}
-            </h1>
-
-            <p className="text-lg text-muted leading-relaxed">
-              {post.excerpt}
-            </p>
-          </motion.header>
-
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="prose-custom"
-          >
+          <div className="measure">
             {content.map((block, i) => {
               const lines = block.split("\n");
               return (
@@ -130,20 +110,14 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                   {lines.map((line, j) => {
                     if (line.startsWith("### ")) {
                       return (
-                        <h3
-                          key={j}
-                          className="text-lg font-semibold text-foreground mt-7 mb-3"
-                        >
+                        <h3 key={j} className="mt-7 mb-3 font-display text-lg">
                           {renderInline(line.replace("### ", ""), `${i}-${j}`)}
                         </h3>
                       );
                     }
                     if (line.startsWith("## ")) {
                       return (
-                        <h2
-                          key={j}
-                          className="text-2xl font-bold text-foreground mt-10 mb-4"
-                        >
+                        <h2 key={j} className="mt-10 mb-4 font-display text-2xl">
                           {renderInline(line.replace("## ", ""), `${i}-${j}`)}
                         </h2>
                       );
@@ -152,7 +126,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                       return (
                         <li
                           key={j}
-                          className="text-sm text-gray-600 leading-relaxed ml-4 mb-2 list-disc"
+                          className="mb-2 ml-5 list-disc leading-relaxed text-ink-muted"
                         >
                           {renderInline(line.replace("- ", ""), `${i}-${j}`)}
                         </li>
@@ -160,10 +134,7 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                     }
                     if (line.trim() === "") return <br key={j} />;
                     return (
-                      <p
-                        key={j}
-                        className="text-base text-gray-600 leading-relaxed mb-4"
-                      >
+                      <p key={j} className="mb-4 leading-relaxed text-ink-muted">
                         {renderInline(line, `${i}-${j}`)}
                       </p>
                     );
@@ -171,28 +142,21 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
                 </div>
               );
             })}
-          </motion.div>
+          </div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 rounded-2xl border border-primary/15 bg-blue-50 p-8 text-center"
-          >
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              Ready to Start Streaming?
-            </h3>
-            <p className="text-muted mb-6">
-              Get started with Buy IPTV Subscription today. Plans from £25.99 with a 30-day money-back guarantee.
+          <div className="mt-14 rounded-2xl bg-paper-sunk p-8 text-center ring-1 ring-ink/10">
+            <h3 className="font-display text-xl">Ready to buy IPTV UK?</h3>
+            <p className="mx-auto mt-3 max-w-md text-ink-muted">
+              Plans start at £25.99 with automated Xtream code delivery and a
+              30-day money-back guarantee.
             </p>
-            <SectionLink
-              href="/#pricing"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary/20"
+            <Link
+              href="/checkout"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-gold-bright to-gold px-8 py-3.5 text-sm font-bold text-night transition-all hover:brightness-110"
             >
-              View Subscription Plans
-            </SectionLink>
-          </motion.div>
+              Buy IPTV UK Now
+            </Link>
+          </div>
         </div>
       </article>
     </div>

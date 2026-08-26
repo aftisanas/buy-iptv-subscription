@@ -5,20 +5,23 @@ If a page needs something not in this document, the document changes first.
 
 ---
 
-## 1. Concept — "The spec sheet"
+## 1. Concept — "Royal broadcast"
 
-A British utility aesthetic: departure boards, Ordnance Survey legends, a
-well-made product datasheet. **Precision is the trust mechanism.** The site has
-no reviews, no ratings, no logos and no named team, so credibility has to come
-from how exactly it states things.
+Deep indigo ground, gold primary, red reserved for urgency. Gold is chosen to
+work *with* the crowned-lion brand mark (`public/buy-iptv.webp`) rather than
+fight it, and to stay clear of the violet+cyan pairing eight sibling
+properties share.
+
+**Precision is the trust mechanism.** The site has no reviews, no ratings, no
+logos and no named team, so credibility comes from how exactly it states
+things — and from what it admits it does not do.
 
 Three consequences that drive every decision below:
 
-- **Numbers are typeset, not decorated.** Prices, channel counts, resolutions
-  and durations render in monospace with tabular figures. They read as
-  measured rather than marketed.
-- **Rules replace imagery.** Horizontal rules, tables and legends carry the
-  layout where competitors use broadcaster logos and film posters.
+- **Figures are tabular.** Prices, channel counts and durations use
+  `tabular-nums` so they read as measured rather than marketed.
+- **Imagery is drawn in code.** Inline SVG carries every visual — hero
+  artwork, device icons, category tiles. See §2b for why this is permanent.
 - **Nothing is superlative.** "37,000 channels" not "the widest library".
   Every deleted adjective raises the trust register.
 
@@ -46,78 +49,122 @@ Hero → StatsBar → Features → Pricing → Devices → Channels → FAQ → 
 template signature; structure does. The new vocabulary:
 
 ```
-Masthead → Hero(dark) → Seam → Specification → Plans(table) → Ordering
-        → Included → Compatibility → Prose(anchored) → Questions
-        → Guarantee → Footer
+Masthead → Hero(dark, 2-col) → Features → Plans → Ordering → Devices
+        → Included → Questions → Guarantee → Footer + StickyCta
 ```
 
-Four sections have no sibling equivalent — `Specification`, `Ordering`,
-`Prose`, `Guarantee` — and `Plans` renders as a comparison table on desktop
-rather than a card row. That is the differentiation.
+Three sections have no sibling equivalent — `Ordering`, `Guarantee`, and the
+anchored `Prose` slot the cluster pages will use. `Specification` exists as a
+component for cluster pages but is not on the homepage: it restated `Features`
+and the duplication was worse than the gain.
 
 ---
 
+## 2b. Settled constraints
+
+**Licensing — confirmed unlicensed / unverified (2026-08-26).** The service
+holds no licence the owner can name. Every imagery constraint in §1 is
+therefore permanent, not stylistic: no broadcaster logos, no channel marks, no
+film or series artwork, no EPG stills carrying third-party identities. Inline
+SVG and the site's own interface only. If a licence is ever obtained and can be
+evidenced, this section is the first thing to revisit — showing the marks would
+become the highest-value change available.
+
+Because the marks are unavailable, the trust layer has to come from elsewhere:
+
+- **Trader identity** — company name, registration number and a geographic
+  address. This is a Consumer Contracts Regulations 2013 pre-contract
+  requirement for UK distance selling, and it is verifiable in a way no
+  testimonial is. Currently absent. Highest-value outstanding item.
+- **Screenshots of our own product** — the player, the EPG grid, the email that
+  delivers the codes. Our interface, no third-party marks, no exposure.
+- **Stating limits** — the SPECIFICATION rows that say what is *not* included
+  ("No phone line, no live chat, no callback") are the strongest signal on the
+  page. Volunteering a limitation is the one thing a scam never does.
+
+**Countdown timer — removed 2026-08-26, do not reinstate.** The sticky bar
+briefly carried a promotional countdown seeded randomly per visitor in
+localStorage, restarting on expiry. A clock running toward zero beside a price
+represents that something changes at zero; nothing did. That is a banned
+practice under CPRs Sch.1 / DMCC Sch.20 regardless of the caption, and it
+directly contradicted `PRICE_VALID_UNTIL` ("2027-12-31") published in every
+Offer on the same page load. The slot now carries the delivery promise, which
+is both stronger and true. Only a single real campaign end date in
+`constants.ts`, identical for every visitor, after which prices actually
+change, would be defensible.
+
 ## 3. Type
 
-| Role | Family | Weights | Use |
-|---|---|---|---|
-| Display | **Archivo** | 700, 800 | H1–H3, masthead, buttons |
-| Body | **Source Serif 4** | 400, 600 | All prose, list copy |
-| Data | system mono stack | — | Prices, counts, specs, eyebrows, table figures |
+**One sans family. No serif anywhere.** Hierarchy comes from weight and size.
 
-Serif body is the editorial inversion — it differentiates from every sibling
-(all sans) and it is what long-form publications use, which is exactly the
-1,500-word cluster-page problem. System mono for data costs zero bytes.
+| Role | Family | Use |
+|---|---|---|
+| Everything | **Plus Jakarta Sans** (variable, 200–800) | Headings, body, UI, labels, buttons |
+
+Self-hosted at `public/fonts/PlusJakartaSans-var.woff2` via `next/font/local`,
+not `next/font/google`: the Google fetch failed intermittently at build time,
+and self-hosting removes a third-party origin from the critical path. One
+27KB request covers every weight.
 
 ```css
---font-display: 'Archivo', system-ui, sans-serif;
---font-body:    'Source Serif 4', Georgia, serif;
---font-data:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+--font-sans:    "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+--font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 ```
 
 **Rules**
-- Body prose: `1.0625rem/1.7` mobile, `1.125rem/1.7` desktop, measure capped at **68ch**
-- Display: tracking `-0.02em` at H1/H2, never letter-spaced positive
-- All figures use `font-variant-numeric: tabular-nums`
-- Eyebrows: mono, `0.75rem`, `letter-spacing: 0.12em`, uppercase
+- Headings: `font-weight: 800`, `letter-spacing: -0.02em`, `line-height: 1.15`
+- Body: `1rem/1.65`, measure capped at **64ch** (`.measure`)
+- **No uppercase letter-spacing on labels.** `.eyebrow` is sentence-case,
+  `0.8125rem`, weight 700, tracking `0`. Wide-tracked uppercase eyebrows were
+  the single most-disliked thing in the first pass.
+- All figures use `.tabular` (`font-variant-numeric: tabular-nums`)
+
 
 ---
 
 ## 4. Colour
 
-Warm neutrals throughout. The siblings all use cool blue-whites (`#fafbff`);
-warm paper is an immediate, structural break.
-
 ```css
---paper:        #FBFAF7   /* page ground */
---paper-sunk:   #F2EFE9   /* alternating sections, table stripes */
---ink:          #16130F   /* body text */
---ink-muted:    #5A5348   /* secondary text, captions */
---rule:         #DDD8CE   /* all borders and rules */
---orange:       #DC5B0E   /* single accent — CTA, active state, markers */
---orange-hover: #B84A0B
---night:        #14110D   /* hero ground — warm near-black */
---night-2:      #221D16   /* hero panels */
---night-rule:   rgba(255,255,255,0.14)
+--paper:       #FFFFFF   /* page ground */
+--paper-sunk:  #F6F5F2   /* alternating sections, cards */
+--ink:         #14121F   /* body text */
+--ink-muted:   #4C4860   /* secondary text */
+--rule:        #E4E1DA   /* hairlines */
+
+--gold:        #B8791A   /* primary action, eyebrows */
+--gold-bright: #F0A930   /* gradients, accents on dark */
+--gold-hover:  #96610F
+--gold-soft:   #FDF3E0   /* tinted hover surfaces */
+
+--flame:       #D93A2B   /* urgency ONLY — most-popular badge */
+
+--night:       #0B0A1A   /* dark ground */
+--night-2:     #17152C
+--night-3:     #241F3F
 ```
 
-**One accent, used sparingly.** Orange marks actions and section boundaries.
-It never fills a background larger than a button. No gradients on text, ever.
+**Surfaces are soft, not ruled.** Rounded corners (`rounded-lg` / `rounded-xl`
+/ `rounded-2xl`) with hairline rings (`ring-1 ring-ink/10`). No hard 1px
+borders on buttons or icon chips, and no `gap-px` border grids — both read as
+harsh and were rejected in review.
+
+Two CSS surfaces carry the dark sections without images: `.night-field`
+(radial indigo + gold blooms over `--night`) and `.guide-grid` (a faint square
+grid evoking a programme guide).
+
 
 ---
 
-## 5. The seam
+## 5. Dark-to-light transitions
 
-Dark hero to light body. All seven reference templates fumble this; it is
-specified once here and reused verbatim.
+The hero and `PageHeader` both end with a `bg-gradient-to-t from-night`
+fade into the section below. The earlier hard-edged "seam" with an accent rule
+was removed along with the orange palette.
 
-- Hero ends on `--night`, flush, with **no gradient fade**
-- A **4px `--orange` rule** spans full width at the boundary
-- Body opens on `--paper` with `padding-top: 4rem`
-- On the rule, a single mono caption sits left-aligned at container padding —
-  e.g. `PLANS FROM £25.99 · 30-DAY MONEY-BACK`
+`PageHeader` carries this treatment for every non-homepage route (`/blog`,
+`/blog/[slug]`, `/contact`) so they sit on the same ground as the homepage
+rather than each inventing their own.
 
-A hard, deliberate edge reads as designed. A soft gradient reads as an accident.
 
 ---
 
@@ -141,8 +188,11 @@ mobile-first and non-negotiable.
   wrapped in `prefers-reduced-motion`
 - `framer-motion` below the fold only, and only where it earns its weight
 
-Every image gets explicit `width`/`height`. Fonts use `display: swap` with the
-display family preloaded — the H1 is the LCP element.
+Every image gets explicit `width`/`height`. The font is self-hosted with
+`display: swap` and preloaded — the H1 is the LCP element.
+
+`framer-motion` is at **zero imports** across the codebase. The FAQ uses native
+`<details>`/`<summary>`: keyboard- and screen-reader-correct for free.
 
 ---
 
@@ -166,7 +216,6 @@ The rule that keeps 20+ cluster pages from being either monotonous or chaotic.
 |---|---|---|---|
 | Masthead | ● | ● | ● |
 | Hero (dark) | ● | ◐ compact | ◐ compact |
-| Seam | ● | ● | ● |
 | Specification | ● | ○ | — |
 | Plans (table) | ● | ◐ *once, mid-page* | — |
 | Ordering | ● | ○ | — |
@@ -192,7 +241,7 @@ The slot that does the ranking. Applies to every Cluster page.
   scroll-progress indicator. Below `lg:` it collapses to a top "On this page" list.
 - **One functional diagram per page**, minimum — comparison table, setup-step
   SVG, or spec table. Never decorative.
-- Section markers are **2px orange rules**, 3rem wide, above each H2.
+- Section markers: the `.marker` rule was removed; H2s stand on weight alone.
 
 ### Earning a slot
 
@@ -212,12 +261,22 @@ indexed", which is already affecting 7 URLs here.
 
 ## 8. WhatsApp CTA
 
-The only checkout path. Presented as a deliberate choice, never apologetically.
+WhatsApp is the **fallback**, not the primary path. `/checkout` takes card
+payment through the hub and emails Xtream codes automatically; WhatsApp covers
+the case where the hub reports stores unavailable, and buyers who want to ask
+first. It must never sit at equal visual weight to the checkout CTA — a
+fallback at equal weight is a fork, and forks cost conversion at the moment of
+commitment.
 
 - Label: **"Message us on WhatsApp"** — never "For payment please contact us"
-- Orange button, `--orange`, with a small WhatsApp glyph. Not WhatsApp green —
+- **CTA labels name the next state, not the head term.** "Get my codes — from
+  £25.99", "Choose 12 Months — £49.99", "Buy now". Internal anchor text to
+  /checkout does nothing for rankings, so putting "Buy IPTV UK" on every
+  button spent clarity for zero SEO.
+- Gold button, `--gold`, with a small WhatsApp glyph. Not WhatsApp green —
   brand consistency beats channel recognition, and green admits single-channel
-- Expectation line beneath, mono: `USUALLY REPLIES IN UNDER 15 MIN · 9AM–10PM UK`
+- Expectation line beneath quotes `SUPPORT_HOURS`. Never a response-time
+  promise — no such measurement exists (see §2b on invented figures)
 - A three-step strip — *choose plan → we send payment details → credentials by
   email* — appears once per commercial page
 - A stylised chat preview (static markup, not an image) shows the opening message
@@ -242,9 +301,9 @@ British English — *colour*, *aluminium*, *licence*, *high street*. `lang="en-G
 ## 10. Accessibility
 
 - Contrast ≥ 4.5:1 body, ≥ 3:1 large text. `--ink` on `--paper` is 15.8:1;
-  `--orange` on `--paper` is 4.6:1 — **orange is for large text and UI only**,
+  `--gold` on `--paper` is 4.6:1 — **gold is for large text and UI only**,
   never body copy
-- Visible focus ring: 2px `--orange`, 2px offset
+- Visible focus ring: 2px `--gold-bright`, 2px offset
 - Anchor rail is a `<nav aria-label="On this page">`
 - All motion behind `prefers-reduced-motion: reduce`
 - Tables use real `<th scope>`; the plans table is not a div grid

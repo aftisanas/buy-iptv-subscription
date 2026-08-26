@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import SectionLink from "./SectionLink";
-import { WhatsAppCta } from "./ui/WhatsAppCta";
+import { buildWhatsAppEnquiryUrl } from "@/lib/whatsapp";
 import { NAV_LINKS } from "@/lib/constants";
 
 /**
@@ -35,14 +35,16 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors ${
         scrolled || open
-          ? "border-b border-rule bg-paper"
-          : "border-b border-transparent bg-paper/0"
+          ? "border-b border-rule bg-paper/95 backdrop-blur"
+          : "border-b border-white/10 bg-night/80 backdrop-blur"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8 lg:h-[4.5rem]">
         <Link
           href="/"
-          className="font-display text-base font-extrabold tracking-tight text-ink"
+          className={`text-base font-bold tracking-tight transition-colors ${
+            scrolled || open ? "text-ink" : "text-white"
+          }`}
           onClick={() => setOpen(false)}
         >
           Buy<span className="text-gold">IPTV</span>Subscription
@@ -53,12 +55,19 @@ export default function Navbar() {
             <SectionLink
               key={link.href}
               href={link.href}
-              className="font-display text-sm font-bold tracking-tight text-ink-muted transition-colors hover:text-gold"
+              className={`text-sm font-medium transition-colors hover:text-gold-bright ${
+                scrolled ? "text-ink-muted" : "text-white/75"
+              }`}
             >
               {link.label}
             </SectionLink>
           ))}
-          <WhatsAppCta label="Order on WhatsApp" className="px-5 py-2.5" />
+          <Link
+            href="/checkout"
+            className="rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-2.5 text-sm font-bold text-night transition-all hover:brightness-110"
+          >
+            Buy
+          </Link>
         </nav>
 
         <button
@@ -67,7 +76,9 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="-mr-2 p-2 text-ink lg:hidden"
+          className={`-mr-2 p-2 transition-colors lg:hidden ${
+            scrolled || open ? "text-ink" : "text-white"
+          }`}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -84,12 +95,26 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block border-b border-rule py-4 font-display text-lg font-bold tracking-tight text-ink"
+              className="block border-b border-rule py-4 text-lg font-bold text-ink"
             >
               {link.label}
             </SectionLink>
           ))}
-          <WhatsAppCta className="mt-6 w-full" />
+          <Link
+            href="/checkout"
+            onClick={() => setOpen(false)}
+            className="mt-6 block rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-3.5 text-center text-sm font-bold text-night"
+          >
+            Buy now — from £25.99
+          </Link>
+          <a
+            href={buildWhatsAppEnquiryUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 block text-center text-sm text-ink-muted underline underline-offset-4 hover:text-gold"
+          >
+            Or ask a question on WhatsApp
+          </a>
         </nav>
       )}
     </header>

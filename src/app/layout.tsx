@@ -1,28 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HashScrollHandler from "@/components/HashScrollHandler";
 import { SITE_URL } from "@/lib/constants";
 
-// Display carries the H1, which is the LCP element, so it preloads.
-// Newsreader (serif) for narrative headings, Plus Jakarta Sans for body and
-// UI — the inverse of the first pass, which put a serif in the body and read
-// as an essay rather than a subscription page.
-const newsreader = Newsreader({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["500", "600", "700"],
-  preload: true,
-});
-
-const jakarta = Plus_Jakarta_Sans({
+// One sans family for the whole site. No serif — hierarchy comes from weight
+// and size. Self-hosted rather than next/font/google: the Google fetch failed
+// intermittently at build time, and self-hosting also removes a third-party
+// origin from the critical path. Plus Jakarta Sans ships as a single variable
+// woff2 covering 200-800, so all weights cost one 27KB request.
+const jakarta = localFont({
+  src: "../../public/fonts/PlusJakartaSans-var.woff2",
   variable: "--font-sans",
-  subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "200 800",
   preload: true,
 });
 
@@ -33,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Buy IPTV UK",
   },
   description:
-    "Buy IPTV UK the fast way — automated checkout, Xtream codes emailed in 60 seconds. 37,000 UK channels, 4K UHD, 5 screens. From £25.99.",
+    "Buy IPTV UK the fast way — automated checkout, Xtream codes emailed in 60 seconds. 37,000 UK channels, 4K UHD, extra connections available. From £25.99.",
   keywords: [
     "buy iptv uk",
     "buy iptv",
@@ -76,12 +69,12 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Buy IPTV UK — Automated Checkout, Xtream Codes In 60 Seconds",
     description:
-      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and five simultaneous screens. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
+      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and extra connections on demand. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
     images: [
       {
         // 1.91:1 — the ratio summary_large_image and Facebook/LinkedIn expect.
         // The square logo letterboxed badly at 1024x1024.
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og-buy-iptv-uk.jpg`,
         width: 1200,
         height: 630,
         alt: "Buy IPTV UK — 37,000+ channels in 4K UHD with UK support, from £25.99",
@@ -92,8 +85,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Buy IPTV UK — Automated Checkout, Xtream Codes In 60 Seconds",
     description:
-      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and five simultaneous screens. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
-    images: [`${SITE_URL}/og-image.jpg`],
+      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and extra connections on demand. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
+    images: [`${SITE_URL}/og-buy-iptv-uk.jpg`],
   },
   robots: {
     index: true,
@@ -122,7 +115,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${newsreader.variable} ${jakarta.variable}`}
+      className={jakarta.variable}
     >
       <body className="min-h-screen bg-paper text-ink">
         <a

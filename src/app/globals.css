@@ -8,13 +8,12 @@
    (public/buy-iptv.webp) rather than fight it, and to stay off
    the violet+cyan pairing that eight sibling properties share.
 
-   Font rule:
-     --font-display (Newsreader, serif) → narrative headings.
-       H1, H2, H3, plan names, card titles.
-     --font-sans (Plus Jakarta Sans)    → body copy, UI, labels,
-       eyebrows, table headers, buttons.
-   Tracking stays tight. Wide letter-spacing on uppercase labels
-   was the single most-disliked thing in the first pass.
+   Type: ONE sans family (Plus Jakarta Sans). No serif anywhere.
+   Hierarchy comes from weight and size, not from a second face.
+   No uppercase letter-spacing on labels.
+
+   Surfaces: soft. Rounded corners and hairline rings instead of
+   hard 1px borders and px-gap border grids.
    ───────────────────────────────────────────────────────────── */
 
 @theme {
@@ -47,8 +46,13 @@
   --color-muted: #4c4860;
   --color-border: #e4e1da;
 
-  --font-display: "Newsreader", Georgia, serif;
+  /* Single sans family. No serif anywhere — weight and size carry the
+     hierarchy instead. */
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --radius: 0.625rem;
+  --radius-lg: 0.875rem;
 }
 
 html {
@@ -77,11 +81,19 @@ h3,
 h4,
 .font-display {
   font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  line-height: 1.18;
+}
+
+/* Only the hero H1 earns the heaviest weight. */
+h1 {
+  font-weight: 800;
+}
+
+h3,
+h4 {
   font-weight: 600;
-  /* Near-zero tracking. The first pass used -0.02em display plus 0.12em
-     uppercase eyebrows and read as over-spaced throughout. */
-  letter-spacing: -0.011em;
-  line-height: 1.12;
 }
 
 .tabular,
@@ -90,23 +102,17 @@ td {
   font-variant-numeric: tabular-nums;
 }
 
-/* Eyebrow — tightened from 0.12em to 0.05em and no longer monospace. */
+/* Eyebrow — sentence case, no tracking, no uppercase. */
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--color-gold);
 }
 
 .marker::before {
-  content: "";
-  display: block;
-  width: 2.5rem;
-  height: 3px;
-  background: var(--color-gold-bright);
-  margin-bottom: 1rem;
+  content: none;
 }
 
 .measure {

@@ -61,7 +61,7 @@ export default async function ThanksPage({
     <div className="pt-20">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="rounded-2xl border border-rule/60 bg-white p-8 sm:p-10 shadow-2xl shadow-night/10">
-          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
+          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold-soft">
             <CheckCircle2 className="h-8 w-8 text-success" aria-hidden="true" />
           </div>
 
@@ -82,7 +82,7 @@ export default async function ThanksPage({
           </div>
 
           {showSummary && (
-            <div className="mb-6 rounded-xl border border-gray-100 bg-gray-50/80 px-5 py-4">
+            <div className="mb-6 rounded-xl border border-rule bg-paper-sunk/80 px-5 py-4">
               <div className="text-[10px] font-semibold tracking-[0.15em] text-muted mb-3">
                 ORDER SUMMARY
               </div>
@@ -96,7 +96,7 @@ export default async function ThanksPage({
                 )}
               </ul>
               {amountPounds !== null && (
-                <div className="border-t border-gray-100 mt-3 pt-3 flex items-center justify-between">
+                <div className="border-t border-rule mt-3 pt-3 flex items-center justify-between">
                   <span className="text-sm font-semibold text-foreground">Total</span>
                   <span className="text-base font-extrabold text-accent">
                     £{amountPounds.toFixed(2)}
@@ -150,7 +150,7 @@ export default async function ThanksPage({
 
             <Link
               href="/"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-rule bg-white px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-paper-sunk focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
             >
               Back to {SITE_NAME}
             </Link>

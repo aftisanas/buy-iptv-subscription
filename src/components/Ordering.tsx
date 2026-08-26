@@ -29,7 +29,7 @@ const STEPS = [
     icon: PlayCircle,
     n: "03",
     title: "Sign in and start watching",
-    body: "Enter the codes in IPTV Smarters, TiviMate or any Xtream-compatible player and the full channel list loads straight away on up to five screens.",
+    body: "Enter the codes in IPTV Smarters, TiviMate or any Xtream-compatible player and the full channel list loads straight away.",
   },
 ];
 
@@ -50,11 +50,11 @@ export default function Ordering() {
 
         <ol className="mt-12 grid gap-6 lg:grid-cols-3">
           {STEPS.map((step) => (
-            <li key={step.n} className="relative border border-rule bg-paper p-6">
+            <li key={step.n} className="relative rounded-xl bg-paper ring-1 ring-ink/10 p-6">
               <span className="tabular absolute right-5 top-5 font-display text-4xl text-rule">
                 {step.n}
               </span>
-              <span className="flex h-11 w-11 items-center justify-center bg-gold text-night">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold text-night">
                 <step.icon className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 className="mt-4 font-display text-xl">{step.title}</h3>
@@ -65,7 +65,7 @@ export default function Ordering() {
           ))}
         </ol>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-5 border border-rule bg-night px-6 py-7 text-center sm:flex-row sm:text-left">
+        <div className="mt-10 flex flex-col items-center justify-between gap-5 rounded-xl bg-night px-6 py-7 text-center sm:flex-row sm:text-left">
           <div>
             <h3 className="font-display text-xl text-white">
               Would rather talk before you buy IPTV UK?
@@ -78,14 +78,14 @@ export default function Ordering() {
           <div className="flex shrink-0 flex-col gap-2.5 sm:flex-row sm:items-center">
             <Link
               href="/checkout"
-              className="bg-gradient-to-r from-gold-bright to-gold px-6 py-3.5 text-center text-sm font-extrabold text-night transition-all hover:brightness-110"
+              className="rounded-lg bg-gradient-to-r from-gold-bright to-gold px-6 py-3.5 text-center text-sm font-bold text-night transition-all hover:brightness-110"
             >
               Go to checkout
             </Link>
             <WhatsAppCta
               label="WhatsApp"
               tone="outline"
-              className="border-white/25 text-white hover:border-gold-bright hover:bg-transparent hover:text-gold-bright"
+              className="bg-white/10 text-white hover:bg-white/15"
             />
           </div>
         </div>

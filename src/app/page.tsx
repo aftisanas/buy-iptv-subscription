@@ -4,7 +4,6 @@ import Plans from "@/components/Plans";
 import Ordering from "@/components/Ordering";
 import Devices from "@/components/Devices";
 import Included from "@/components/Included";
-import Specification from "@/components/Specification";
 import Questions from "@/components/Questions";
 import Guarantee from "@/components/Guarantee";
 import StickyCta from "@/components/StickyCta";
@@ -33,7 +32,6 @@ export default function HomePage() {
       <Ordering />
       <Devices />
       <Included />
-      <Specification />
       <Questions />
       <Guarantee />
       <StickyCta />
@@ -56,7 +54,7 @@ export default function HomePage() {
                   url: logoUrl,
                 },
                 description:
-                  "Buy IPTV UK with 37,000 channels in 4K. Automated checkout, Xtream codes emailed in 60 seconds, five screens, optional Secure Proxy and a 30-day money-back guarantee — from £25.99.",
+                  "Buy IPTV UK with 37,000 channels in 4K. Automated checkout, Xtream codes emailed in 60 seconds, extra connections and an optional Secure Proxy and a 30-day money-back guarantee — from £25.99.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -92,7 +90,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Buy IPTV UK and stream 37,000 channels in 4K. Automated checkout with Xtream codes in 60 seconds, five screens and a 30-day money-back guarantee.",
+                  "Buy IPTV UK and stream 37,000 channels in 4K. Automated checkout with Xtream codes in 60 seconds and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -125,9 +123,9 @@ export default function HomePage() {
             "@id": productId,
             name: "Buy IPTV UK Subscription",
             url: SITE_URL,
-            image: [`${SITE_URL}/og-image.jpg`, logoUrl],
+            image: [`${SITE_URL}/og-buy-iptv-uk.jpg`, logoUrl],
             description:
-              "Buy IPTV UK subscription with automated 60-second Xtream code delivery, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £25.99.",
+              "Buy IPTV UK subscription with automated 60-second Xtream code delivery, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, optional extra connections and a Secure Proxy add-on — from £25.99.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
@@ -137,7 +135,7 @@ export default function HomePage() {
               availability: "https://schema.org/InStock",
               itemCondition: "https://schema.org/NewCondition",
               priceValidUntil: PRICE_VALID_UNTIL,
-              url: `${SITE_URL}/#pricing`,
+              url: `${SITE_URL}/#plans`,
               seller: { "@id": organizationId },
               hasMerchantReturnPolicy: {
                 "@type": "MerchantReturnPolicy",

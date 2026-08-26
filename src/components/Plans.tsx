@@ -1,17 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { Check, MessageCircle } from "lucide-react";
-import OrderSummaryModal from "./OrderSummaryModal";
+import { Check } from "lucide-react";
 import { PRICING_PLANS } from "@/lib/constants";
-
-type PricingPlan = (typeof PRICING_PLANS)[number];
-
-const toAccessLabel = (planName: string) => {
-  const match = planName.match(/^(\d+)\s+Months?$/i);
-  return match ? `${match[1]}-Month Access` : `${planName} Access`;
-};
 
 /**
  * Plan cards, each carrying its own feature list.
@@ -27,8 +16,6 @@ const toAccessLabel = (planName: string) => {
  * charged.
  */
 export default function Plans() {
-  const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
-
   return (
     <section id="plans" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
@@ -39,7 +26,7 @@ export default function Plans() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-muted">
             Every plan to buy IPTV UK carries the identical channel library, 4K
-            streaming and five screens. Only the term and the price change, and
+            streaming and one connection. Only the term and the price change, and
             longer terms cost less per month. Nothing renews automatically.
           </p>
         </div>
@@ -50,14 +37,14 @@ export default function Plans() {
             return (
               <li
                 key={plan.id}
-                className={`relative flex flex-col bg-paper transition-shadow ${
+                className={`relative flex flex-col rounded-2xl bg-paper transition-shadow ${
                   popular
-                    ? "border-2 border-gold shadow-xl shadow-gold/15 lg:-mt-4 lg:mb-4"
-                    : "border border-rule hover:shadow-lg hover:shadow-ink/5"
+                    ? "shadow-xl shadow-gold/20 ring-2 ring-gold lg:-mt-4 lg:mb-4"
+                    : "shadow-sm ring-1 ring-ink/10 hover:shadow-lg hover:shadow-ink/5"
                 }`}
               >
                 {popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-flame px-3.5 py-1 text-[0.7rem] font-extrabold uppercase tracking-wide text-white">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-flame px-3.5 py-1 text-[0.7rem] font-bold text-white">
                     Most popular
                   </span>
                 )}
@@ -72,32 +59,12 @@ export default function Plans() {
                     </span>
                     <span className="text-sm text-ink-muted">one-off</span>
                   </div>
-                  <p className="tabular mt-1 text-sm font-semibold text-gold">
+                  <p className="tabular mt-1 text-sm font-medium text-gold">
                     £{plan.perMonth.toFixed(2)} / month effective
                   </p>
-
-                  <Link
-                    href={`/checkout?plan=${encodeURIComponent(plan.name)}`}
-                    className={`mt-5 block w-full px-5 py-3.5 text-center text-sm font-extrabold transition-all ${
-                      popular
-                        ? "bg-gradient-to-r from-gold-bright to-gold text-night hover:brightness-110"
-                        : "bg-night text-white hover:bg-night-2"
-                    }`}
-                  >
-                    Buy IPTV UK — {plan.name}
-                  </Link>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPlan(plan)}
-                    className="mt-2.5 flex w-full items-center justify-center gap-1.5 py-1.5 text-xs font-semibold text-ink-muted transition-colors hover:text-gold"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-                    or order on WhatsApp
-                  </button>
                 </div>
 
-                <ul className="mt-auto space-y-2.5 border-t border-rule px-6 py-6">
+                <ul className="mt-auto space-y-2.5 border-t border-rule/70 px-6 pb-5 pt-5">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-muted">
                       <Check
@@ -108,6 +75,19 @@ export default function Plans() {
                     </li>
                   ))}
                 </ul>
+
+                <div className="px-6 pb-6">
+                  <Link
+                    href={`/checkout?plan=${encodeURIComponent(plan.name)}`}
+                    className={`block w-full rounded-lg px-5 py-3.5 text-center text-sm font-bold transition-all ${
+                      popular
+                        ? "bg-gradient-to-r from-gold-bright to-gold text-night hover:brightness-110"
+                        : "bg-night text-white hover:bg-night-2"
+                    }`}
+                  >
+                    Choose {plan.name} — £{plan.price.toFixed(2)}
+                  </Link>
+                </div>
               </li>
             );
           })}
@@ -119,15 +99,6 @@ export default function Plans() {
         </p>
       </div>
 
-      <OrderSummaryModal
-        key={selectedPlan?.id ?? "none"}
-        open={selectedPlan !== null}
-        onClose={() => setSelectedPlan(null)}
-        planName={selectedPlan ? toAccessLabel(selectedPlan.name) : ""}
-        planPrice={selectedPlan?.price ?? 0}
-        proxyPrice={selectedPlan?.proxyPrice ?? 0}
-        extraConnectionPrice={selectedPlan?.extraConnectionPrice}
-      />
     </section>
   );
 }

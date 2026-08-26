@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation";
  * Lands #hash deep-links on their section.
  *
  * Two cases the browser/router get wrong on this site:
- *  - a fresh load of /#pricing fires the native anchor jump before images and
+ *  - a fresh load of /#plans fires the native anchor jump before images and
  *    in-view sections have laid out, so the target drifts away from the viewport;
- *  - a client-side Link from /blog to /#pricing changes the URL without scrolling.
+ *  - a client-side Link from /blog to /#plans changes the URL without scrolling.
  *
  * Both are handled by re-aiming at the target until its position stops moving.
  */

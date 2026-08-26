@@ -41,10 +41,10 @@ export function WhatsAppCta({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "inline-flex items-center justify-center gap-2.5 px-6 py-3.5 font-display text-sm font-bold tracking-tight transition-colors",
+        "inline-flex items-center justify-center gap-2.5 rounded-lg px-6 py-3.5 text-sm font-bold transition-colors",
         tone === "solid"
           ? "bg-gold text-white hover:bg-gold-hover"
-          : "border border-current text-gold hover:bg-gold hover:text-white",
+          : "bg-gold-soft text-gold hover:bg-gold hover:text-white",
         className
       )}
     >

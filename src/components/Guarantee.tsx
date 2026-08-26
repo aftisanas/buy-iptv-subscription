@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/constants";
-import { WhatsAppCta, WhatsAppExpectation } from "./ui/WhatsAppCta";
 
 /**
  * The guarantee, quoted verbatim from /refund rather than paraphrased.
@@ -13,7 +12,7 @@ export default function Guarantee() {
   return (
     <section id="guarantee" className="bg-night py-16 text-white lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-16">
+        <div>
           <div>
             <p className="eyebrow text-white/45">Guarantee</p>
             <h2 className="mt-4 font-display text-3xl lg:text-4xl">
@@ -52,10 +51,6 @@ export default function Guarantee() {
             </p>
           </div>
 
-          <div className="self-end">
-            <WhatsAppCta className="w-full" />
-            <WhatsAppExpectation className="mt-3 text-white/45" />
-          </div>
         </div>
       </div>
     </section>

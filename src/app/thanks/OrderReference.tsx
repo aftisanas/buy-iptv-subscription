@@ -24,7 +24,7 @@ export default function OrderReference({
   };
 
   return (
-    <div className="mb-6 rounded-xl border border-gray-100 bg-gray-50/80 px-5 py-4">
+    <div className="mb-6 rounded-xl border border-rule bg-paper-sunk/80 px-5 py-4">
       <div className="text-[10px] font-semibold tracking-[0.15em] text-muted">
         {label}
       </div>
@@ -36,7 +36,7 @@ export default function OrderReference({
           type="button"
           onClick={handleCopy}
           aria-label={copied ? "Reference copied" : "Copy reference to clipboard"}
-          className="shrink-0 rounded-md border border-gray-200 bg-white p-1.5 text-muted transition-colors hover:bg-gray-50 hover:text-foreground focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+          className="shrink-0 rounded-md border border-rule bg-white p-1.5 text-muted transition-colors hover:bg-paper-sunk hover:text-foreground focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
         >
           {copied ? (
             <Check className="h-3.5 w-3.5 text-success" aria-hidden="true" />

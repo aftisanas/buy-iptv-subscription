@@ -100,9 +100,9 @@ export default function OrderSummaryModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="order-summary-title"
-        className="relative max-h-[92dvh] w-full max-w-md overflow-y-auto border border-rule bg-paper"
+        className="relative max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-xl bg-paper ring-1 ring-ink/10"
       >
-        <div className="flex items-center justify-between border-b-2 border-ink px-5 py-4">
+        <div className="flex items-center justify-between border-b border-rule px-5 py-4">
           <h2 id="order-summary-title" className="eyebrow text-ink">
             Order summary
           </h2>
@@ -119,7 +119,7 @@ export default function OrderSummaryModal({
 
         <div className="px-5 py-5">
           <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-4">
-            <span className="font-display text-lg font-extrabold tracking-tight">
+            <span className="font-display text-lg font-bold tracking-tight">
               {planName}
             </span>
             <div className="text-right">
@@ -133,9 +133,9 @@ export default function OrderSummaryModal({
           <h3 className="eyebrow mt-5">Optional add-ons</h3>
 
           {/* Secure Proxy */}
-          <div className="mt-3 border border-rule bg-white px-4 py-4">
+          <div className="mt-3 rounded-xl bg-white ring-1 ring-ink/10 px-4 py-4">
             <div className="flex items-start justify-between gap-3">
-              <span className="font-display text-sm font-extrabold tracking-tight">
+              <span className="font-display text-sm font-bold tracking-tight">
                 Secure Proxy
               </span>
               <button
@@ -165,10 +165,10 @@ export default function OrderSummaryModal({
           </div>
 
           {/* Extra connections */}
-          <div className="mt-3 border border-rule bg-white px-4 py-4">
+          <div className="mt-3 rounded-xl bg-white ring-1 ring-ink/10 px-4 py-4">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="font-display text-sm font-extrabold tracking-tight">
+                <div className="font-display text-sm font-bold tracking-tight">
                   {CHECKOUT_COPY.extraConnectionsLabel}
                 </div>
                 <p className="mt-1 text-xs leading-relaxed text-ink-muted">
@@ -182,7 +182,7 @@ export default function OrderSummaryModal({
                   onClick={() => setExtraConnections((v) => Math.max(0, v - 1))}
                   disabled={extraConnections === 0}
                   aria-label="Decrease extra connections"
-                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-paper-sunk text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
                 >
                   <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
@@ -201,7 +201,7 @@ export default function OrderSummaryModal({
                   }
                   disabled={extraConnections === EXTRA_CONNECTIONS_MAX}
                   aria-label="Increase extra connections"
-                  className="flex h-8 w-8 items-center justify-center border border-rule text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-paper-sunk text-ink transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-rule disabled:hover:text-ink"
                 >
                   <Plus className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
@@ -221,7 +221,7 @@ export default function OrderSummaryModal({
           </div>
         </div>
 
-        <div className="border-t-2 border-ink bg-paper-sunk px-5 py-5">
+        <div className="border-t border-rule bg-paper-sunk px-5 py-5">
           <div className="flex items-baseline justify-between">
             <span className="eyebrow">Total</span>
             <span className="tabular text-2xl font-medium">
@@ -233,7 +233,7 @@ export default function OrderSummaryModal({
             type="button"
             onClick={handleCheckout}
             aria-label={`${CHECKOUT_COPY.buttonLabelPrefix} for ${formatPrice(total, currency)}`}
-            className="mt-4 flex w-full items-center justify-center gap-2 bg-gold px-6 py-3.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-gold-hover"
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-gold px-6 py-3.5 font-display text-sm font-bold tracking-tight text-white transition-colors hover:bg-gold-hover"
           >
             {CHECKOUT_COPY.buttonLabelPrefix} · {formatPrice(total, currency)}
           </button>

@@ -33,12 +33,12 @@ export default function Features() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((feature) => {
             const Icon = iconMap[feature.icon];
             return (
-              <li key={feature.title} className="group bg-paper p-6 transition-colors hover:bg-gold-soft">
-                <span className="flex h-11 w-11 items-center justify-center bg-night text-gold-bright transition-colors group-hover:bg-gold group-hover:text-night">
+              <li key={feature.title} className="group rounded-xl bg-paper-sunk p-6 transition-colors hover:bg-gold-soft">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-night text-gold-bright transition-colors group-hover:bg-gold group-hover:text-night">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <h3 className="mt-4 font-display text-lg leading-snug">

@@ -80,7 +80,7 @@ export default function CheckoutContent() {
   useEffect(() => {
     if (!plan && !redirectedRef.current) {
       redirectedRef.current = true;
-      router.replace("/#pricing");
+      router.replace("/#plans");
     }
   }, [plan, router]);
 
@@ -256,22 +256,9 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
     <div>
       {/* ── Hero Header ── */}
       <section className="relative overflow-hidden pt-28 pb-12 lg:pt-32 lg:pb-14">
-        {/* Deep premium gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0a3e] to-[#0c1445]" />
-
-        {/* Aurora blobs */}
-        <div
-          className="aurora-blob w-[500px] h-[500px] bg-gold/20 -top-32 -left-32"
-          style={{ animationDelay: "0s" }}
-        />
-        <div
-          className="aurora-blob w-[400px] h-[400px] bg-gold-bright/15 top-1/4 right-[-8%]"
-          style={{ animationDelay: "4s" }}
-        />
-
-        {/* Radial overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(124,58,237,0.18),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(6,182,212,0.1),transparent_50%)]" />
+        {/* Shared night ground — same treatment as the homepage hero. */}
+        <div className="night-field absolute inset-0" />
+        <div className="guide-grid absolute inset-0" aria-hidden="true" />
 
         {/* Subtle grid */}
         <div
@@ -285,8 +272,8 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
         <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Back to plans */}
           <Link
-            href="/#pricing"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
+            href="/#plans"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-bright hover:text-gold-bright transition-colors"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back to plans
@@ -304,7 +291,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
               <span className="text-3xl font-extrabold text-white">
                 {formatPrice(plan.price)}
               </span>
-              <span className="text-xs font-semibold tracking-[0.15em] text-gray-300">
+              <span className="text-xs font-semibold tracking-[0.15em] text-rule">
                 ONE-TIME PAYMENT
               </span>
             </div>
@@ -322,7 +309,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
           <div className="space-y-6 lg:sticky lg:top-24">
             {/* Top Card: Order Summary */}
             <div className="rounded-2xl border border-rule/60 bg-white p-6 shadow-lg shadow-night/5">
-              <h2 className="text-xs font-bold tracking-[0.18em] text-foreground uppercase border-b border-gray-100 pb-4 mb-4">
+              <h2 className="text-xs font-bold tracking-[0.18em] text-foreground uppercase border-b border-rule pb-4 mb-4">
                 ORDER SUMMARY
               </h2>
 
@@ -339,7 +326,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                 )}
               </div>
 
-              <div className="border-t border-gray-100 mt-4 pt-4 flex items-center justify-between">
+              <div className="border-t border-rule mt-4 pt-4 flex items-center justify-between">
                 <span className="text-base font-semibold text-foreground">TOTAL</span>
                 <span className="text-xl font-extrabold text-accent">
                   {formatPrice(total)}
@@ -365,7 +352,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                     if (promoNotice) setPromoNotice(null);
                   }}
                   placeholder="Promo code"
-                  className="w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-violet-400 focus:outline-2 focus:outline-gold focus-visible:outline-none"
+                  className="w-full rounded-xl border border-rule bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold-bright focus:outline-2 focus:outline-gold focus-visible:outline-none"
                 />
                 <button
                   type="button"
@@ -385,7 +372,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
 
           {/* Right Column (Wider / Main Container Card): Billing Details */}
           <div className="rounded-2xl border border-rule/60 bg-white p-6 sm:p-8 shadow-lg shadow-night/5 space-y-8">
-            <h2 className="text-xs font-bold tracking-[0.18em] text-foreground uppercase border-b border-gray-100 pb-4">
+            <h2 className="text-xs font-bold tracking-[0.18em] text-foreground uppercase border-b border-rule pb-4">
               BILLING DETAILS
             </h2>
 
@@ -396,7 +383,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
               </div>
 
               {/* Extra Connections */}
-              <div className="rounded-xl border border-gray-200/80 bg-white p-5 shadow-sm">
+              <div className="rounded-xl border border-rule/80 bg-white p-5 shadow-sm">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <div className="text-sm font-semibold text-foreground">
@@ -419,7 +406,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                         onClick={() => setExtraConnections((v) => Math.max(0, v - 1))}
                         disabled={extraConnections === 0}
                         aria-label="Decrease extra connections"
-                        className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 bg-white text-foreground transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-rule bg-white text-foreground transition-colors hover:bg-paper-sunk disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
                       >
                         <Minus className="h-3 w-3" aria-hidden="true" />
                       </button>
@@ -435,7 +422,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                         }
                         disabled={extraConnections === EXTRA_CONNECTIONS_MAX}
                         aria-label="Increase extra connections"
-                        className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 bg-white text-foreground transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-rule bg-white text-foreground transition-colors hover:bg-paper-sunk disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white"
                       >
                         <Plus className="h-3 w-3" aria-hidden="true" />
                       </button>
@@ -444,7 +431,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                 </div>
 
                 {extraConnections > 0 && (
-                  <div className="mt-2.5 text-xs text-muted pt-2 border-t border-gray-100">
+                  <div className="mt-2.5 text-xs text-muted pt-2 border-t border-rule">
                     {extraConnections} × {formatPrice(plan.extraConnectionPrice)} ={" "}
                     <span className="font-semibold text-foreground">
                       {formatPrice(extraConnectionsSubtotal)}
@@ -462,7 +449,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
               </div>
 
               {/* Proxy Protection */}
-              <div className="rounded-xl border border-gray-200/80 bg-white p-5 shadow-sm">
+              <div className="rounded-xl border border-rule/80 bg-white p-5 shadow-sm">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
@@ -493,7 +480,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                       className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 ${
                         proxyOn
                           ? "bg-gradient-to-r from-gold to-gold-bright"
-                          : "bg-gray-200"
+                          : "bg-rule"
                       }`}
                     >
                       <span
@@ -533,7 +520,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                     onChange={(e) => setFirstName(e.target.value)}
                     disabled={submitting}
                     placeholder="Jane"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-violet-400 focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-gray-50"
+                    className="w-full rounded-xl border border-rule bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold-bright focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-paper-sunk"
                   />
                 </div>
 
@@ -555,7 +542,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                     onChange={(e) => setLastName(e.target.value)}
                     disabled={submitting}
                     placeholder="Smith"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-violet-400 focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-gray-50"
+                    className="w-full rounded-xl border border-rule bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold-bright focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-paper-sunk"
                   />
                 </div>
               </div>
@@ -580,7 +567,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                   placeholder="+44 7XXX XXXXXX"
                   aria-invalid={!phoneValid}
                   aria-describedby="checkout-phone-help"
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-violet-400 focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-gray-50"
+                  className="w-full rounded-xl border border-rule bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold-bright focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-paper-sunk"
                 />
                 {!phoneValid && (
                   <p className="mt-1.5 text-[11px] leading-relaxed text-red-600">
@@ -615,7 +602,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
                   placeholder="you@example.com"
                   aria-invalid={trimmedEmail !== "" && !emailValid}
                   aria-describedby="checkout-email-help"
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-violet-400 focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-gray-50"
+                  className="w-full rounded-xl border border-rule bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold-bright focus:outline-2 focus:outline-gold focus:outline-offset-1 disabled:cursor-not-allowed disabled:bg-paper-sunk"
                 />
                 {trimmedEmail !== "" && !emailValid && (
                   <p className="mt-1.5 text-[11px] leading-relaxed text-red-600">
@@ -632,7 +619,7 @@ function CheckoutForPlan({ plan }: { plan: Plan }) {
             </section>
 
             {/* Primary CTA Section at bottom of right card */}
-            <div className="pt-6 border-t border-gray-100 space-y-4">
+            <div className="pt-6 border-t border-rule space-y-4">
               {submitError && (
                 <div
                   role="alert"
@@ -697,7 +684,7 @@ function CtaArea({
         type="button"
         disabled
         aria-label="Checking availability"
-        className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-gray-200 px-6 py-3.5 text-sm font-bold tracking-wide text-muted"
+        className="flex w-full items-center justify-center gap-2.5 rounded-xl bg-rule px-6 py-3.5 text-sm font-bold tracking-wide text-muted"
       >
         <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         Checking availability…
@@ -743,7 +730,7 @@ function CtaArea({
   return (
     <a
       href={`mailto:${CONTACT_EMAIL}`}
-      className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-bold tracking-wide text-foreground transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+      className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-rule bg-white px-6 py-3.5 text-sm font-bold tracking-wide text-foreground transition-colors hover:bg-paper-sunk focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
     >
       Contact us to complete your order
     </a>

@@ -1,6 +1,6 @@
 export const SITE_NAME = "Buy IPTV Subscription";
 export const SITE_URL = "https://buy-iptv-subscription.tv";
-export const CONTACT_EMAIL = "support@buy-iptv-subscription.tv";
+export const CONTACT_EMAIL = "contact@buy-iptv-uk.com";
 
 // Bump when prices change. Google warns on Offers with a stale or missing
 // priceValidUntil, so keep this comfortably in the future.
@@ -19,7 +19,7 @@ export const PRICE_VALID_UNTIL = "2027-12-31";
 // WhatsApp CTA. Keep it identical to the hours published in /llms.txt and on
 // /contact — a CTA that promises more than the contact page is a trust leak.
 export const SUPPORT_HOURS =
-  "Support answers 24/7 · sales and billing Mon–Fri, 9am–6pm GMT";
+  "Activation is automatic, 24/7 · support 24/7 · sales & billing Mon–Fri, 9am–6pm GMT";
 
 export const WHATSAPP_NUMBER = "447878757831";
 export const WHATSAPP_DISPLAY = "+44 7878 757831";
@@ -30,7 +30,7 @@ export const EXTRA_CONNECTION_PRICE = 7.25;
 export const EXTRA_CONNECTIONS_MAX = 5;
 
 export const CHECKOUT_COPY = {
-  buttonLabelPrefix: "Complete Order on WhatsApp",
+  buttonLabelPrefix: "Send order on WhatsApp",
   buttonSubtitle: "Instant reply · payment details sent to you",
   footerNote: "Secure checkout · 30-day money-back",
   extraConnectionsLabel: "Extra Connections",
@@ -40,10 +40,10 @@ export const CHECKOUT_COPY = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Specification", href: "/#specification" },
-  { label: "Plans", href: "/#plans" },
-  { label: "Ordering", href: "/#ordering" },
-  { label: "Questions", href: "/#faq" },
+  { label: "Why Us", href: "/#features" },
+  { label: "How It Works", href: "/#ordering" },
+  { label: "Pricing", href: "/#plans" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export const LEGAL_LINKS = [
@@ -60,7 +60,7 @@ export const LEGAL_LINKS = [
 export const STATS = [
   { value: "37,000+", label: "Live Channels" },
   { value: "198,000+", label: "Films & Series" },
-  { value: "5", label: "Screens Included" },
+  { value: "1 + 5", label: "Connections Available" },
   { value: "30-Day", label: "Money-Back Guarantee" },
 ] as const;
 
@@ -72,13 +72,13 @@ export const SPECIFICATION = [
   { label: "Live channels", value: "37,000+", note: "UK, Irish and international" },
   { label: "Films & series", value: "198,000+", note: "On demand, included" },
   { label: "Resolution", value: "Up to 4K UHD", note: "Where the broadcaster supplies it" },
-  { label: "Simultaneous screens", value: "5", note: "Up to 5 more at checkout" },
+  { label: "Connections", value: "1 included", note: "Add up to 5 more at checkout" },
   { label: "Programme guide", value: "7-day catch-up", note: "Full EPG" },
   { label: "Activation", value: "Under 60 seconds", note: "Automatic on payment" },
   { label: "Contract", value: "None", note: "One payment, no auto-renewal" },
   { label: "Refund window", value: "30 days", note: "See /refund for the full terms" },
-  { label: "Support", value: "WhatsApp & email", note: "No phone line, no live chat" },
-  { label: "Payment", value: "Arranged on WhatsApp", note: "No card form on this site" },
+  { label: "Support", value: "WhatsApp & email", note: "No phone line, no live chat, no callback" },
+  { label: "Payment", value: "Card at checkout", note: "Processed off-site; WhatsApp if checkout is down" },
 ] as const;
 
 export const FEATURES = [
@@ -107,9 +107,9 @@ export const FEATURES = [
     icon: "Clock" as const,
   },
   {
-    title: "Buy IPTV UK For The Whole House — Five Screens At Once",
+    title: "Buy IPTV UK And Add Extra Connections For The Whole House",
     description:
-      "One transaction, five simultaneous streams. Parents, children and housemates each pick their own channel in 4K without a single clash. Need more? Extra Connections are available at checkout, priced by plan length.",
+      "Your subscription includes one connection. Need the kids on one screen and the football on another? Add up to five Extra Connections at checkout, priced by plan length, and each one streams in full 4K.",
     icon: "LayoutGrid" as const,
   },
   {
@@ -142,18 +142,17 @@ export const PRICING_PLANS = [
     originalPrice: 59.99,
     perMonth: 8.66,
     period: "3 months",
-    devices: 5,
+    devices: 1,
     proxyPrice: 4.75,
     extraConnectionPrice: 7.25,
     badge: "Quick Start",
     discount: "-35%",
-    accentColor: "violet",
     features: [
       "37,000+ live channels with full UK coverage",
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens, extra connections available as add-ons",
+      "One connection included, up to 5 extra available at checkout",
       "24/7 dedicated UK support",
       "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
@@ -171,18 +170,17 @@ export const PRICING_PLANS = [
     originalPrice: 119.99,
     perMonth: 6.0,
     period: "6 months",
-    devices: 5,
+    devices: 1,
     proxyPrice: 9.5,
     extraConnectionPrice: 14.5,
     badge: "Half-Year Savings",
     discount: "-45%",
-    accentColor: "violet",
     features: [
       "37,000+ live channels with full UK coverage",
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens, extra connections available as add-ons",
+      "One connection included, up to 5 extra available at checkout",
       "24/7 dedicated UK support",
       "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
@@ -200,18 +198,17 @@ export const PRICING_PLANS = [
     originalPrice: 89.99,
     perMonth: 4.17,
     period: "year",
-    devices: 5,
+    devices: 1,
     proxyPrice: 19,
     extraConnectionPrice: 29.0,
     badge: "Most Popular — Save 40%",
     discount: "-40%",
-    accentColor: "blue",
     features: [
       "37,000+ live channels with full UK coverage",
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens, extra connections available as add-ons",
+      "One connection included, up to 5 extra available at checkout",
       "24/7 dedicated UK support",
       "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
@@ -229,18 +226,17 @@ export const PRICING_PLANS = [
     originalPrice: 159.99,
     perMonth: 2.96,
     period: "2 years",
-    devices: 5,
+    devices: 1,
     proxyPrice: 38,
     extraConnectionPrice: 58.0,
     badge: "Deepest Discount — Save 55%",
     discount: "-55%",
-    accentColor: "violet",
     features: [
       "37,000+ live channels with full UK coverage",
       "198,000+ films, series and documentaries on demand",
       "Full EPG with 7-day catch-up TV",
       "HD, Full HD and native 4K UHD streaming",
-      "Five simultaneous screens, extra connections available as add-ons",
+      "One connection included, up to 5 extra available at checkout",
       "24/7 dedicated UK support",
       "Secure Proxy add-on available (from £4.75/term)",
       "30-day money-back guarantee",
@@ -271,12 +267,12 @@ export const FAQ_ITEMS = [
   {
     question: "How do I buy IPTV UK from this website?",
     answer:
-      "Choose a plan from the pricing grid, add the Secure Proxy or extra connections if you want them, then complete your order on WhatsApp. Payment details come back instantly and your credentials arrive by email in under sixty seconds.",
+      "Choose a plan, add the Secure Proxy or extra connections if you want them, and pay by card at the checkout. Your Xtream codes are emailed automatically in under sixty seconds. If the card checkout is unavailable, the order falls back to WhatsApp and we send payment details in the chat."
   },
   {
     question: "What buy IPTV UK plans are available?",
     answer:
-      "Four options: 3-month, 6-month, 12-month and 24-month. Every plan includes 37,000 channels, 4K UHD, five screens and instant activation, with the Secure Proxy and extra connections available at checkout. Longer plans unlock deeper discounts.",
+      "Four options: 3-month, 6-month, 12-month and 24-month. Every plan includes 37,000 channels, 4K UHD, one connection and instant activation, with the Secure Proxy and extra connections available at checkout. Longer plans unlock deeper discounts."
   },
   {
     question: "Is it safe to buy IPTV UK online?",
@@ -289,9 +285,9 @@ export const FAQ_ITEMS = [
       "Under sixty seconds. Your M3U link and app login arrive by email the instant payment clears. No manual review, no office-hours restriction.",
   },
   {
-    question: "Can I buy IPTV UK and watch on five devices?",
+    question: "Can I buy IPTV UK and watch on more than one device?",
     answer:
-      "Yes. Every plan supports five simultaneous streams. Each device runs in full 4K where available, with no throttling regardless of how many connections are active. Need more than five? Add up to five Extra Connections at checkout — from £7.25 each on the 3-month plan, scaled by term length.",
+      "Every plan includes one connection as standard, so one device streams at a time. To watch on more than one screen at once, add up to five Extra Connections at checkout — from £7.25 each on the 3-month plan, scaled by term length. Each connection runs in full 4K where available, with no throttling."
   },
   {
     question: "Is there a money-back guarantee when I buy IPTV UK?",
@@ -321,7 +317,7 @@ export const FAQ_ITEMS = [
   {
     question: "Why should I buy IPTV from buy-iptv-subscription.tv?",
     answer:
-      "37,000 channels, 198,000 films and series, native 4K, five simultaneous screens, automatic 60-second activation, 24/7 UK support, an optional Secure Proxy and a 30-day money-back guarantee — from £25.99, with no contract and no auto-renewal.",
+      "37,000 channels, 198,000 films and series, native 4K, automatic 60-second activation, 24/7 UK support, extra connections and an optional Secure Proxy at checkout, and a 30-day money-back guarantee — from £25.99, with no contract and no auto-renewal."
   },
 ] as const;
 

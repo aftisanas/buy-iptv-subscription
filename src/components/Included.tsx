@@ -1,4 +1,4 @@
-import { CHANNEL_CATEGORIES, DEVICES } from "@/lib/constants";
+import { CHANNEL_CATEGORIES } from "@/lib/constants";
 
 /**
  * What's included, and what it runs on.
@@ -7,6 +7,8 @@ import { CHANNEL_CATEGORIES, DEVICES } from "@/lib/constants";
  * broadcaster logos (Sky, BT, beIN, Netflix) and film posters; both are
  * enforcement triggers we will not ship, and a sister property was deindexed
  * overnight after a DMCA event. Category names are not trademarks.
+ *
+ * Device compatibility lives in Devices.tsx — it was duplicated here.
  *
  * These categories are presented as a visual device only — they are
  * deliberately NOT spun into cluster URLs, because /sports-iptv would compete
@@ -21,11 +23,11 @@ export default function Included() {
           Buy IPTV UK and Get Every Category Covered
         </h2>
 
-        <ul className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CHANNEL_CATEGORIES.map((cat) => (
             <li key={cat.name} className="bg-paper p-6">
               <p className="tabular text-sm text-gold">{cat.count}</p>
-              <h3 className="mt-2 font-display text-base font-extrabold tracking-tight">
+              <h3 className="mt-2 font-display text-base font-bold tracking-tight">
                 {cat.name.split("—")[0].trim()}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">
@@ -35,24 +37,6 @@ export default function Included() {
           ))}
         </ul>
 
-        <div className="mt-14">
-          <p className="eyebrow">Compatibility</p>
-          <h3 className="marker mt-4 font-display text-2xl lg:text-3xl">
-            Buy IPTV UK on Hardware You Already Own
-          </h3>
-          <p className="measure mt-4 text-ink-muted">
-            Any device that runs an M3U or Xtream-compatible player. Setup takes
-            a few minutes and we will walk you through it on WhatsApp if it
-            does not go smoothly.
-          </p>
-          <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-2 border-t border-rule pt-5">
-            {DEVICES.map((device) => (
-              <li key={device.name} className="tabular text-sm text-ink-muted">
-                {device.name}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );
