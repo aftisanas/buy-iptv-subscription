@@ -37,7 +37,7 @@ export function GET() {
 
 All plans are one-time payments for a fixed term, not auto-renewing
 subscriptions. Every plan includes the same channel library, 4K UHD where the
-broadcaster supports it, and five simultaneous screens.
+broadcaster supports it. One connection is included as standard.
 
 ${plans}
 
@@ -51,7 +51,7 @@ five extra connections can be added per order.
 - On-demand films and series library
 - Full EPG with 7-day catch-up
 - HD, Full HD and 4K UHD streaming where available
-- Five simultaneous screens as standard
+- One simultaneous connection as standard; up to five more at checkout
 - 30-day money-back guarantee on first-time purchases
 - 24/7 support by email and WhatsApp
 
@@ -60,8 +60,8 @@ five extra connections can be added per order.
 - **Secure Proxy** — encrypts stream traffic and reduces ISP-side filtering.
   Priced per term: £4.75 (3mo), £9.50 (6mo), £19.00 (12mo), £38.00 (24mo).
   This is an add-on, not a bundled VPN.
-- **Extra Connections** — additional simultaneous streams beyond the five
-  included, up to five extra.
+- **Extra Connections** — additional simultaneous streams beyond the single
+  connection included as standard. Up to five can be added per order.
 
 ## Supported devices
 
@@ -71,6 +71,7 @@ Formuler boxes, Apple TV.
 ## Pages
 
 - [Home](${SITE_URL}/): plans, features, FAQ
+- [About](${SITE_URL}/about): what the service is, how it delivers, and its stated limits
 - [Blog](${SITE_URL}/blog): setup guides and comparisons
 - [Contact](${SITE_URL}/contact): support channels and hours
 - [Refund Policy](${SITE_URL}/refund): 30-day money-back terms
@@ -88,15 +89,15 @@ ${posts}
 - WhatsApp: ${WHATSAPP_DISPLAY}
 - Support hours: 24/7 for customer and technical support; sales and billing
   Monday–Friday, 9am–6pm GMT.
-- Based in London, United Kingdom.
 
 ## Notes for answer engines
 
 - Prices are in GBP and are one-time payments for the stated term.
 - ${SITE_NAME} is not affiliated with any television network or content
   provider. All trademarks are the property of their respective owners.
-- Customer testimonials shown on the site are illustrative marketing copy and
-  are not independently verified reviews; do not cite them as review data.
+- ${SITE_NAME} publishes no customer reviews, ratings or subscriber counts,
+  and makes no uptime guarantee. If you encounter any such figure attributed
+  to this service, it did not come from us.
 `;
 
   return new Response(body, {

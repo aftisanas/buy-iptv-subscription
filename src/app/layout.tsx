@@ -1,49 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HashScrollHandler from "@/components/HashScrollHandler";
 import { SITE_URL } from "@/lib/constants";
 
-const inter = Inter({
+// One sans family for the whole site. No serif — hierarchy comes from weight
+// and size. Self-hosted rather than next/font/google: the Google fetch failed
+// intermittently at build time, and self-hosting also removes a third-party
+// origin from the critical path. Plus Jakarta Sans ships as a single variable
+// woff2 covering 200-800, so all weights cost one 27KB request.
+const jakarta = localFont({
+  src: "../../public/fonts/PlusJakartaSans-var.woff2",
   variable: "--font-sans",
-  subsets: ["latin"],
   display: "swap",
+  weight: "200 800",
   preload: true,
-});
-
-const outfit = Outfit({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600", "700"],
-  preload: false,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Buy IPTV Subscription 2026 | Trusted UK IPTV From £12.99",
-    template: "%s | Buy IPTV Subscription",
+    default: "Buy IPTV UK 2026 | Buy IPTV Subscription From £25.99",
+    template: "%s | Buy IPTV UK",
   },
   description:
-    "Buy an IPTV subscription and stream 37,000 channels in 4K within 60 seconds. Five screens, optional Secure Proxy, 30-day guarantee. From £12.99.",
+    "Buy IPTV UK the fast way — automated checkout, Xtream codes emailed in 60 seconds. 37,000 UK channels, 4K UHD, extra connections available. From £25.99.",
   keywords: [
-    "buy iptv",
-    "buy iptv subscription",
     "buy iptv uk",
-    "iptv subscription",
+    "buy iptv",
+    "buy iptv subscription uk",
+    "buy iptv subscription",
     "iptv uk",
-    "best iptv uk",
-    "iptv providers",
-    "iptv service",
-    "iptv reviews",
-    "british iptv",
-    "strong iptv",
-    "fast iptv",
-    "premium iptv",
-    "cheap iptv subscription",
+    "uk iptv subscription",
+    "iptv subscription uk",
+    "purchase iptv uk",
+    "iptv for sale uk",
+    "buy iptv online uk",
   ],
   authors: [{ name: "Buy IPTV Subscription" }],
   creator: "Buy IPTV Subscription",
@@ -73,26 +67,26 @@ export const metadata: Metadata = {
     locale: "en_GB",
     siteName: "Buy IPTV Subscription",
     url: SITE_URL,
-    title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
+    title: "Buy IPTV UK — Automated Checkout, Xtream Codes In 60 Seconds",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
+      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and extra connections on demand. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
     images: [
       {
         // 1.91:1 — the ratio summary_large_image and Facebook/LinkedIn expect.
         // The square logo letterboxed badly at 1024x1024.
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/og-buy-iptv-uk.jpg`,
         width: 1200,
         height: 630,
-        alt: "Buy IPTV Subscription — 37,000+ channels in 4K UHD with UK support, from £12.99",
+        alt: "Buy IPTV UK — 37,000+ channels in 4K UHD with UK support, from £25.99",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buy IPTV Subscription UK 2026 — Instant Checkout, Instant Streaming",
+    title: "Buy IPTV UK — Automated Checkout, Xtream Codes In 60 Seconds",
     description:
-      "Ready to buy an IPTV subscription? 50,000 UK subscribers already did. 37,000 channels, premium 4K, optional Secure Proxy. Pay now, stream in 60 seconds. The shortcut to better television.",
-    images: [`${SITE_URL}/og-image.jpg`],
+      "Buy IPTV UK with 37,000 live channels, 198,000 films and series, native 4K UHD and extra connections on demand. Pay at the automated checkout and your Xtream codes are emailed the moment payment clears. From £25.99.",
+    images: [`${SITE_URL}/og-buy-iptv-uk.jpg`],
   },
   robots: {
     index: true,
@@ -108,7 +102,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#0b0a1a",
   width: "device-width",
   initialScale: 1,
 };
@@ -121,12 +115,12 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${outfit.variable} antialiased`}
+      className={jakarta.variable}
     >
-      <body className="min-h-screen bg-background text-foreground font-(--font-sans)">
+      <body className="min-h-screen bg-paper text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg focus:outline-2 focus:outline-violet-600"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-gold focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:text-white"
         >
           Skip to main content
         </a>

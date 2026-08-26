@@ -1,290 +1,244 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   "Royal broadcast" — see docs/DESIGN-SPEC.md
+
+   Deep indigo ground, gold primary, red for urgency. Gold is
+   chosen to work WITH the existing crowned-lion brand mark
+   (public/logo-icon.webp) rather than fight it, and to stay off
+   the violet+cyan pairing that eight sibling properties share.
+
+   Type: ONE sans family (Plus Jakarta Sans). No serif anywhere.
+   Hierarchy comes from weight and size, not from a second face.
+   No uppercase letter-spacing on labels.
+
+   Surfaces: soft. Rounded corners and hairline rings instead of
+   hard 1px borders and px-gap border grids.
+   ───────────────────────────────────────────────────────────── */
+
 @theme {
-  /* ── Premium vibrant palette ── */
-  --color-background: #fafbff;
-  --color-foreground: #0c0f1d;
-  --color-card: #ffffff;
-  --color-card-hover: #f5f3ff;
-  --color-border: #e0dff5;
-  --color-border-bright: #c4b5fd;
-  --color-muted: #555770;
-  --color-muted-foreground: #8b8da8;
+  --color-paper: #ffffff;
+  --color-paper-sunk: #f6f5f2;
+  --color-ink: #14121f;
+  --color-ink-muted: #4c4860;
+  --color-rule: #e4e1da;
 
-  --color-primary: #6d28d9;
-  --color-primary-hover: #5b21b6;
-  --color-primary-glow: rgba(109, 40, 217, 0.15);
+  /* Gold — primary action, active state, section markers. */
+  --color-gold: #b8791a;
+  --color-gold-bright: #f0a930;
+  --color-gold-hover: #96610f;
+  --color-gold-soft: #fdf3e0;
 
-  --color-accent: #0891b2;
-  --color-accent-hover: #0e7490;
-  --color-accent-glow: rgba(8, 145, 178, 0.12);
+  /* Red — urgency only: most-popular badge, savings, promo. */
+  --color-flame: #d93a2b;
+  --color-flame-hover: #b32c1f;
 
-  --color-neon: #06b6d4;
-  --color-neon-glow: rgba(6, 182, 212, 0.1);
+  --color-night: #0b0a1a;
+  --color-night-2: #17152c;
+  --color-night-3: #241f3f;
 
-  --color-success: #059669;
-  --color-warning: #d97706;
-  --color-danger: #dc2626;
+  --color-success: #1f6f43;
+  --color-danger: #b3261e;
 
-  /* Hero-specific palette — deep premium */
-  --color-hero-bg: #0f0524;
-  --color-hero-card: rgba(255, 255, 255, 0.06);
-  --color-hero-border: rgba(255, 255, 255, 0.08);
+  /* Aliases so legacy utilities still resolve on un-migrated pages. */
+  --color-background: #ffffff;
+  --color-foreground: #14121f;
+  --color-muted: #4c4860;
+  --color-border: #e4e1da;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
+  /* Single sans family. No serif anywhere — weight and size carry the
+     hierarchy instead. */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.5s ease-out;
+  --radius: 0.625rem;
+  --radius-lg: 0.875rem;
 }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes aurora {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  25% { transform: translate(50px, -30px) rotate(3deg) scale(1.05); }
-  50% { transform: translate(-20px, 20px) rotate(-2deg) scale(0.98); }
-  75% { transform: translate(30px, 10px) rotate(1deg) scale(1.02); }
-  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-}
-
-@keyframes orbit {
-  0% { transform: rotate(0deg) translateX(var(--orbit-r, 120px)) rotate(0deg); }
-  100% { transform: rotate(360deg) translateX(var(--orbit-r, 120px)) rotate(-360deg); }
-}
-
-@keyframes gradient-x {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f5f3ff; }
-::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
-
-::selection { background: var(--color-primary); color: white; }
 
 html {
   scroll-behavior: smooth;
-  /* Offset anchor jumps by the fixed navbar height (h-16 / lg:h-20) plus breathing room */
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 5rem;
+  /* Reserve the scrollbar gutter permanently. Opening the mobile menu locks
+     body overflow, which otherwise removes the scrollbar and shifts the whole
+     header right — making the close icon land in a different spot from the
+     hamburger that opened it. */
+  scrollbar-gutter: stable;
 }
 
 @media (min-width: 1024px) {
-  html { scroll-padding-top: 6.5rem; }
+  html {
+    scroll-padding-top: 5.75rem;
+  }
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Glass effect — light (premium tint) */
-.glass {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(196, 181, 253, 0.3);
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  line-height: 1.18;
 }
 
-/* Gradient text — purple to cyan */
-.gradient-text {
-  background: linear-gradient(135deg, #7c3aed, #6d28d9, #0891b2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Gradient text — hero accent (vivid) */
-.gradient-text-hero {
-  background: linear-gradient(135deg, #a78bfa, #c084fc, #22d3ee, #67e8f9);
-  background-size: 200% 200%;
-  animation: gradient-x 6s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Particle canvas */
-.particles-container {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Aurora background blobs for hero */
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  animation: aurora 15s ease-in-out infinite;
-}
-
-/* Premium section backgrounds */
-.section-gradient-1 {
-  background: linear-gradient(180deg, #fafbff 0%, #f0ecff 50%, #fafbff 100%);
-}
-
-.section-gradient-2 {
-  background: linear-gradient(180deg, #fafbff 0%, #ecfeff 50%, #fafbff 100%);
-}
-
-/* Premium card hover */
-.premium-card {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.premium-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -12px rgba(109, 40, 217, 0.12), 0 8px 24px -8px rgba(0, 0, 0, 0.06);
-}
-
-/* Subtle mesh gradient for section bg */
-.mesh-gradient {
-  background-image:
-    radial-gradient(at 20% 20%, rgba(124, 58, 237, 0.06) 0px, transparent 50%),
-    radial-gradient(at 80% 20%, rgba(8, 145, 178, 0.05) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(168, 85, 247, 0.04) 0px, transparent 50%);
-}
-
-/* Promo Banner Countdown */
-.countdown-block {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  border-radius: 8px;
-  padding: 6px 12px;
-  min-width: 58px;
-  text-align: center;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow:
-    0 0 14px rgba(139, 92, 246, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-@media (min-width: 640px) {
-  .countdown-block {
-    padding: 8px 14px;
-    min-width: 68px;
-  }
-}
-
-.countdown-number {
-  font-size: 1.5rem;
+/* Only the hero H1 earns the heaviest weight. */
+h1 {
   font-weight: 800;
-  color: #ffffff;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
 }
 
-@media (min-width: 640px) {
-  .countdown-number {
-    font-size: 1.875rem;
-  }
-}
-
-.countdown-label {
-  font-size: 0.55rem;
+h3,
+h4 {
   font-weight: 600;
-  color: rgba(196, 181, 253, 0.85);
-  letter-spacing: 0.14em;
-  margin-top: 4px;
 }
 
-@media (min-width: 640px) {
-  .countdown-label {
-    font-size: 0.6rem;
+.tabular,
+th,
+td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Eyebrow — sentence case, no tracking, no uppercase. */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--color-gold);
+}
+
+.marker::before {
+  content: none;
+}
+
+.measure {
+  max-width: 64ch;
+}
+
+/* ── Surfaces ─────────────────────────────────────────────── */
+
+/* Night ground with a subtle indigo bloom — carries the hero and
+   the guarantee band without needing a photographic background. */
+.night-field {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(80, 60, 160, 0.4),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 30%,
+      rgba(184, 121, 26, 0.16),
+      transparent 70%
+    ),
+    var(--color-night);
+}
+
+/* Faint grid, evokes a programme guide. Pure CSS, no image request. */
+.guide-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.gold-text {
+  color: var(--color-gold-bright);
+}
+
+::selection {
+  background: var(--color-gold-bright);
+  color: var(--color-night);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-sunk);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-bright);
+  outline-offset: 2px;
+}
+
+/* ── Motion ────────────────────────────────────────────────
+   CSS only, transform/opacity only. ParticleBackground (a
+   per-frame O(n²) canvas loop inside the LCP region) stays
+   deleted — 70% of clicks are mobile. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
-.countdown-separator {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: rgba(139, 92, 246, 0.85);
-  padding: 0 2px;
-  padding-top: 6px;
-  text-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
-}
-
-@media (min-width: 640px) {
-  .countdown-separator {
-    font-size: 1.5rem;
-    padding: 0 3px;
-    padding-top: 8px;
-  }
-}
-
-.countdown-tick {
-  animation: countdownTick 1s ease-out;
-}
-
-@keyframes countdownTick {
-  0% { transform: scale(1.08); text-shadow: 0 0 28px rgba(192, 132, 252, 1); }
-  100% { transform: scale(1); text-shadow: 0 0 20px rgba(139, 92, 246, 0.8); }
-}
-
-.promo-banner {
-  animation: bannerGlow 3s ease-in-out infinite;
-}
-
-@keyframes bannerGlow {
-  0%, 100% {
-    box-shadow:
-      0 0 20px rgba(139, 92, 246, 0.3),
-      0 0 40px rgba(59, 130, 246, 0.1);
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
   }
   50% {
-    box-shadow:
-      0 0 30px rgba(139, 92, 246, 0.5),
-      0 0 60px rgba(59, 130, 246, 0.22);
+    opacity: 0.85;
   }
 }
 
-.promo-banner-shimmer {
-  animation: bannerShimmer 4s linear infinite;
+.rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes bannerShimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+.rise-1 {
+  animation-delay: 0.04s;
+}
+.rise-2 {
+  animation-delay: 0.1s;
+}
+.rise-3 {
+  animation-delay: 0.16s;
+}
+.rise-4 {
+  animation-delay: 0.22s;
+}
+.rise-5 {
+  animation-delay: 0.28s;
 }
 
-/* Pricing badge shimmer */
-.badge-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.badge-shimmer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmer 3s linear infinite;
-  background-size: 200% 100%;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .rise-1,
+  .rise-2,
+  .rise-3,
+  .rise-4,
+  .rise-5 {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

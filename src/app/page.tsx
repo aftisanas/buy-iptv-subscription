@@ -1,13 +1,13 @@
-import HeroSection from "@/components/HeroSection";
-import StatsBar from "@/components/StatsBar";
-import FeaturesSection from "@/components/FeaturesSection";
-import PricingSection from "@/components/PricingSection";
-import DevicesSection from "@/components/DevicesSection";
-import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FAQSection from "@/components/FAQSection";
-import TrustSection from "@/components/TrustSection";
-import CTASection from "@/components/CTASection";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import Plans from "@/components/Plans";
+import Ordering from "@/components/Ordering";
+import Proof from "@/components/Proof";
+import Devices from "@/components/Devices";
+import Included from "@/components/Included";
+import Questions from "@/components/Questions";
+import Guarantee from "@/components/Guarantee";
+import StickyCta from "@/components/StickyCta";
 import {
   CONTACT_EMAIL,
   FAQ_ITEMS,
@@ -23,20 +23,20 @@ export default function HomePage() {
   const webpageId = `${SITE_URL}/#webpage`;
   const productId = `${SITE_URL}/#product`;
   const breadcrumbId = `${SITE_URL}/#breadcrumb`;
-  const logoUrl = `${SITE_URL}/buy-iptv.webp`;
+  const logoUrl = `${SITE_URL}/logo-icon.webp`;
 
   return (
     <>
-      <HeroSection />
-      <StatsBar />
-      <FeaturesSection />
-      <PricingSection />
-      <DevicesSection />
-      <ChannelsSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <TrustSection />
-      <CTASection />
+      <Hero />
+      <Features />
+      <Ordering />
+      <Plans />
+      <Proof />
+      <Devices />
+      <Included />
+      <Questions />
+      <Guarantee />
+      <StickyCta />
 
       {/* JSON-LD Structured Data */}
       <script
@@ -49,14 +49,14 @@ export default function HomePage() {
                 "@type": "Organization",
                 "@id": organizationId,
                 name: SITE_NAME,
-                alternateName: "Buy IPTV Subscription UK",
+                alternateName: "Buy IPTV UK",
                 url: SITE_URL,
                 logo: {
                   "@type": "ImageObject",
                   url: logoUrl,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription with five screens, an optional Secure Proxy, 30-day guarantee and 24/7 UK support — from £12.99.",
+                  "Buy IPTV UK with 37,000 channels in 4K. Automated checkout, Xtream codes emailed in 60 seconds, extra connections and an optional Secure Proxy and a 30-day money-back guarantee — from £25.99.",
                 areaServed: { "@type": "Country", name: "United Kingdom" },
                 contactPoint: {
                   "@type": "ContactPoint",
@@ -80,7 +80,7 @@ export default function HomePage() {
                 "@type": "WebPage",
                 "@id": webpageId,
                 url: SITE_URL,
-                name: "Buy IPTV Subscription 2026 | Trusted UK IPTV From £12.99",
+                name: "Buy IPTV UK 2026 | Buy IPTV Subscription From £25.99",
                 inLanguage: "en-GB",
                 isPartOf: {
                   "@id": websiteId,
@@ -92,7 +92,7 @@ export default function HomePage() {
                   "@id": breadcrumbId,
                 },
                 description:
-                  "Buy IPTV and stream 37,000 channels in 4K within 60 seconds. Trusted UK subscription, five screens, an optional Secure Proxy and a 30-day money-back guarantee.",
+                  "Buy IPTV UK and stream 37,000 channels in 4K. Automated checkout with Xtream codes in 60 seconds and a 30-day money-back guarantee.",
               },
               {
                 "@type": "BreadcrumbList",
@@ -107,7 +107,7 @@ export default function HomePage() {
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: "Buy IPTV",
+                    name: "Buy IPTV UK",
                     item: `${SITE_URL}/#features`,
                   },
                 ],
@@ -123,11 +123,11 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Product",
             "@id": productId,
-            name: "Buy IPTV Subscription",
+            name: "Buy IPTV UK Subscription",
             url: SITE_URL,
-            image: [`${SITE_URL}/og-image.jpg`, logoUrl],
+            image: [`${SITE_URL}/og-buy-iptv-uk.jpg`, logoUrl],
             description:
-              "Buy IPTV subscription with 60-second activation, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, five simultaneous screens and an optional Secure Proxy add-on — from £12.99.",
+              "Buy IPTV UK subscription with automated 60-second Xtream code delivery, 37,000+ live channels, 198,000+ on-demand films and series in 4K UHD, optional extra connections and a Secure Proxy add-on — from £25.99.",
             brand: { "@type": "Brand", name: SITE_NAME },
             offers: PRICING_PLANS.map((plan) => ({
               "@type": "Offer",
@@ -137,7 +137,7 @@ export default function HomePage() {
               availability: "https://schema.org/InStock",
               itemCondition: "https://schema.org/NewCondition",
               priceValidUntil: PRICE_VALID_UNTIL,
-              url: `${SITE_URL}/#pricing`,
+              url: `${SITE_URL}/#plans`,
               seller: { "@id": organizationId },
               hasMerchantReturnPolicy: {
                 "@type": "MerchantReturnPolicy",
@@ -170,12 +170,13 @@ export default function HomePage() {
         }}
       />
       {/*
-        Review / AggregateRating markup intentionally omitted.
-        The on-page testimonials are illustrative marketing copy, not collected
-        customer reviews, so marking them up as schema.org/Review would be
-        fabricated structured data — a spammy-structured-markup manual action
-        risk. Reinstate only when backed by genuine, verifiable reviews with a
-        real count (e.g. a Trustpilot feed).
+        Review / AggregateRating markup intentionally omitted, and the on-page
+        testimonials section was deleted on 2026-08-25 — its six entries were
+        invented customers. Publishing fake consumer reviews to UK buyers is
+        prohibited under the DMCC Act 2024 (in force April 2025, CMA-enforced),
+        and marking them up as schema.org/Review would additionally be
+        fabricated structured data. Reinstate neither without genuine,
+        verifiable, attributable reviews (e.g. a live Trustpilot feed).
       */}
     </>
   );

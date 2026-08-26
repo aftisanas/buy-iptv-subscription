@@ -1,100 +1,115 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin } from "lucide-react";
-import { NAV_LINKS, LEGAL_LINKS, SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
-import SectionLink from "@/components/SectionLink";
+import { Mail, MessageCircle } from "lucide-react";
+import {
+  CONTACT_EMAIL,
+  LEGAL_LINKS,
+  NAV_LINKS,
+  SITE_NAME,
+  SUPPORT_HOURS,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "@/lib/constants";
 
+/** Compact four-column footer. The previous version ran to nearly a full
+ *  viewport of mostly empty space; this one is dense by design. */
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="relative border-t border-violet-100/50 bg-gradient-to-b from-[#fafbff] to-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 py-10 sm:py-14 lg:py-16 lg:max-w-5xl lg:mx-auto">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="relative h-12 w-12 shrink-0">
-                <Image
-                  src="/buy-iptv.webp"
-                  alt="Buy IPTV Subscription logo"
-                  fill
-                  sizes="48px"
-                  loading="lazy"
-                  className="object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-                />
-              </div>
-              <span className="text-lg font-bold text-foreground">
-                Buy<span className="gradient-text"> IPTV </span>Subscription
+    <footer className="bg-night text-white/70">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/logo-icon.webp"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8"
+              />
+              <span className="font-display text-base text-white">
+                Buy IPTV UK
               </span>
-            </Link>
-            <p className="text-sm text-muted leading-relaxed mb-6">
-              Buy IPTV and stream in 60 seconds. 37,000 channels, 198,000 films in native 4K, five screens, an optional Secure Proxy and 24/7 UK support — trusted by 50,000 UK homes from £12.99.
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <Mail className="h-4 w-4 text-violet-500/60" />
-                <span>{CONTACT_EMAIL}</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <MapPin className="h-4 w-4 text-violet-500/60" />
-                <span>London, United Kingdom</span>
-              </div>
             </div>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/50">
+              Buy IPTV UK with 37,000 live channels and 198,000 films and series
+              over standard broadband. One payment per term, no contract, no
+              auto-renewal.
+            </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="lg:justify-self-center">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <SectionLink
-                    href={link.href}
-                    className="text-sm text-muted transition-colors hover:text-violet-600"
-                  >
-                    {link.label}
-                  </SectionLink>
-                </li>
-              ))}
+          <nav aria-label="Site">
+            <p className="eyebrow">Site</p>
+            <ul className="mt-3 space-y-1.5">
+              {[...NAV_LINKS, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map(
+                (link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/55 transition-colors hover:text-gold-bright"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
-          </div>
+          </nav>
 
-          {/* Legal */}
-          <div className="lg:justify-self-start">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-              Legal
-            </h3>
-            <ul className="space-y-3">
+          <nav aria-label="Legal">
+            <p className="eyebrow">Legal</p>
+            <ul className="mt-3 space-y-1.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted transition-colors hover:text-violet-600"
+                    className="text-sm text-white/55 transition-colors hover:text-gold-bright"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
+          <div>
+            <p className="eyebrow">Support</p>
+            <ul className="mt-3 space-y-1.5">
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-gold-bright"
+                >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-gold-bright"
+                >
+                  <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                  {WHATSAPP_DISPLAY}
+                </a>
+              </li>
+            </ul>
+            <p className="mt-2.5 text-xs text-white/35">{SUPPORT_HOURS}</p>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-violet-100/50 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted text-center sm:text-left">
-              © {new Date().getFullYear()} buy-iptv-subscription.tv — Buy IPTV | Buy IPTV Subscription | IPTV UK | Trusted UK IPTV
-            </p>
-            <p className="text-xs text-gray-500 text-center sm:text-right max-w-md">
-              {SITE_NAME} is not affiliated with any television networks or content providers.
-              All trademarks are property of their respective owners.
-            </p>
-          </div>
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {SITE_NAME}
+          </p>
+          <p className="max-w-xl sm:text-right">
+            Not affiliated with any television network or content provider. All
+            trademarks are the property of their respective owners.
+          </p>
         </div>
       </div>
     </footer>
