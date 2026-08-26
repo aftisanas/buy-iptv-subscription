@@ -42,7 +42,7 @@ export default function Plans() {
   };
 
   return (
-    <section id="plans" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
+    <section id="plans" className="border-b border-rule py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="text-center">
           <p className="eyebrow">Pricing</p>
@@ -62,7 +62,7 @@ export default function Plans() {
             return (
               <li
                 key={plan.id}
-                className={`relative flex flex-col rounded-2xl bg-paper transition-shadow ${
+                className={`relative flex flex-col rounded-2xl bg-paper-sunk transition-shadow ${
                   popular
                     ? "shadow-xl shadow-gold/20 ring-2 ring-gold lg:-mt-4 lg:mb-4"
                     : "shadow-sm ring-1 ring-ink/10 hover:shadow-lg hover:shadow-ink/5"

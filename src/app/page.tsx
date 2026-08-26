@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Plans from "@/components/Plans";
 import Ordering from "@/components/Ordering";
+import Proof from "@/components/Proof";
 import Devices from "@/components/Devices";
 import Included from "@/components/Included";
 import Questions from "@/components/Questions";
@@ -22,14 +23,15 @@ export default function HomePage() {
   const webpageId = `${SITE_URL}/#webpage`;
   const productId = `${SITE_URL}/#product`;
   const breadcrumbId = `${SITE_URL}/#breadcrumb`;
-  const logoUrl = `${SITE_URL}/buy-iptv.webp`;
+  const logoUrl = `${SITE_URL}/logo-icon.webp`;
 
   return (
     <>
       <Hero />
       <Features />
-      <Plans />
       <Ordering />
+      <Plans />
+      <Proof />
       <Devices />
       <Included />
       <Questions />

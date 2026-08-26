@@ -5,7 +5,7 @@
 
    Deep indigo ground, gold primary, red for urgency. Gold is
    chosen to work WITH the existing crowned-lion brand mark
-   (public/buy-iptv.webp) rather than fight it, and to stay off
+   (public/logo-icon.webp) rather than fight it, and to stay off
    the violet+cyan pairing that eight sibling properties share.
 
    Type: ONE sans family (Plus Jakarta Sans). No serif anywhere.
@@ -58,6 +58,11 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* Reserve the scrollbar gutter permanently. Opening the mobile menu locks
+     body overflow, which otherwise removes the scrollbar and shifts the whole
+     header right — making the close icon land in a different spot from the
+     hamburger that opened it. */
+  scrollbar-gutter: stable;
 }
 
 @media (min-width: 1024px) {

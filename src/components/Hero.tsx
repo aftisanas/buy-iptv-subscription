@@ -54,7 +54,7 @@ export default function Hero({
           <div className={compact ? "text-center" : "text-center lg:text-left"}>
             {!compact && (
               <Image
-                src="/buy-iptv.webp"
+                src="/logo-icon.webp"
                 alt="Buy IPTV UK"
                 width={64}
                 height={64}

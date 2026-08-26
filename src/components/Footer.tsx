@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5">
               <Image
-                src="/buy-iptv.webp"
+                src="/logo-icon.webp"
                 alt=""
                 width={32}
                 height={32}

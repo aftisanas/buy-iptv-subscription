@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import SectionLink from "./SectionLink";
 import { buildWhatsAppEnquiryUrl } from "@/lib/whatsapp";
@@ -42,12 +43,20 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8 lg:h-[4.5rem]">
         <Link
           href="/"
-          className={`text-base font-bold tracking-tight transition-colors ${
+          className={`flex items-center gap-2.5 text-base font-bold tracking-tight transition-colors ${
             scrolled || open ? "text-ink" : "text-white"
           }`}
           onClick={() => setOpen(false)}
         >
-          Buy<span className="text-gold">IPTV</span>Subscription
+          <Image
+            src="/logo-icon.webp"
+            alt=""
+            width={32}
+            height={32}
+            priority
+            className="h-8 w-8 rounded-lg"
+          />
+          Buy IPTV <span className={scrolled || open ? "text-gold" : "text-gold-bright"}>UK</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -66,7 +75,7 @@ export default function Navbar() {
             href="/#plans"
             className="rounded-lg bg-gradient-to-r from-gold-bright to-gold px-5 py-2.5 text-sm font-bold text-night transition-all hover:brightness-110"
           >
-            Buy
+            Buy now
           </SectionLink>
         </nav>
 
@@ -76,7 +85,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className={`-mr-2 p-2 transition-colors lg:hidden ${
+          className={`-mr-2 flex h-10 w-10 items-center justify-center transition-colors lg:hidden ${
             scrolled || open ? "text-ink" : "text-white"
           }`}
         >
