@@ -51,7 +51,7 @@ export default function HomePage() {
                 "@type": "Organization",
                 "@id": organizationId,
                 name: SITE_NAME,
-                alternateName: "Buy IPTV UK",
+                alternateName: "Buy IPTV Subscription",
                 url: SITE_URL,
                 logo: {
                   "@type": "ImageObject",

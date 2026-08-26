@@ -1,4 +1,7 @@
-export const SITE_NAME = "Buy IPTV Subscription";
+// The brand as it appears everywhere visible — navbar, H1, titles, logo.
+// It feeds Organization.name, the Product brand, llms.txt, the OG siteName
+// and every legal page, so a mismatch here contradicts the whole site.
+export const SITE_NAME = "Buy IPTV UK";
 export const SITE_URL = "https://buy-iptv-subscription.tv";
 export const CONTACT_EMAIL = "contact@buy-iptv-uk.com";
 
