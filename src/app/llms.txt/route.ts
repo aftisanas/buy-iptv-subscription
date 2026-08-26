@@ -30,8 +30,10 @@ export function GET() {
 
 > A UK-focused IPTV subscription service. Live channels and on-demand films
 > and series delivered over standard home broadband — no satellite dish, no
-> cable line, no engineer visit. Credentials are delivered by email after
-> checkout; orders are completed over WhatsApp.
+> cable line, no engineer visit. Orders are placed at an automated checkout
+> that takes card payment; Xtream credentials are generated and emailed
+> automatically once payment clears, typically within a minute. WhatsApp is
+> the documented fallback if the card checkout is unavailable.
 
 ## Plans
 
