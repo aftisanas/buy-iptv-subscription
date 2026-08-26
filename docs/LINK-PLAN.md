@@ -129,11 +129,12 @@ none contacted:
 
 ## 4. Order of operations
 
-1. Confirm the disavow is uploaded to Search Console for this property
-2. Refresh the disavow from a current referring-domains export
-3. Re-verify the eight prospects; drop anything with DR/traffic mismatch
+1. ~~Upload the disavow~~ — done, confirmed 2026-08-26
+2. Refresh it from a current **Search Console → Links** export, and re-upload
+   the complete list (submissions replace, they do not append)
+3. Re-verify the eight prospects; drop anything with a DR/traffic mismatch
 4. Rewrite the outreach templates for buy-iptv-subscription.tv
 5. Begin placements, brand-anchor first, per §2
 6. Re-check the referring-domain profile after every five placements
 
-**Do not** start at step 5.
+**Do not** start at step 5. Steps 2–4 are the whole point of this document.
