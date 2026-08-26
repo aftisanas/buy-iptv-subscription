@@ -5,6 +5,7 @@ import Ordering from "@/components/Ordering";
 import Proof from "@/components/Proof";
 import Devices from "@/components/Devices";
 import Included from "@/components/Included";
+import Guides from "@/components/Guides";
 import Questions from "@/components/Questions";
 import Guarantee from "@/components/Guarantee";
 import StickyCta from "@/components/StickyCta";
@@ -34,6 +35,7 @@ export default function HomePage() {
       <Proof />
       <Devices />
       <Included />
+      <Guides />
       <Questions />
       <Guarantee />
       <StickyCta />

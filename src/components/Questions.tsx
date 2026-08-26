@@ -9,7 +9,7 @@ import { FAQ_ITEMS } from "@/lib/constants";
  */
 export default function Questions() {
   return (
-    <section id="faq" className="border-b border-rule bg-paper-sunk py-16 lg:py-24">
+    <section id="faq" className="border-b border-rule py-16 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
           <div>

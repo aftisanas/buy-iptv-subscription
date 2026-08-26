@@ -1,6 +1,7 @@
 import { Clock, ArrowLeft, Tag } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import RelatedGuides from "@/components/RelatedGuides";
 
 interface BlogPostContentProps {
   post: {
@@ -143,6 +144,8 @@ export default function BlogPostContent({ post, content }: BlogPostContentProps)
               );
             })}
           </div>
+
+          <RelatedGuides exclude={post.slug} />
 
           <div className="mt-14 rounded-2xl bg-paper-sunk p-8 text-center ring-1 ring-ink/10">
             <h3 className="font-display text-xl">Ready to buy IPTV UK?</h3>

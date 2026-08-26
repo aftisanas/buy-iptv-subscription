@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, X } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import RelatedGuides from "@/components/RelatedGuides";
 import { WhatsAppCta } from "@/components/ui/WhatsAppCta";
 import {
   CONTACT_EMAIL,
@@ -262,6 +263,12 @@ export default function AboutPage() {
             </li>
           </ul>
           <p className="eyebrow mt-3">{SUPPORT_HOURS}</p>
+
+          <RelatedGuides
+            limit={3}
+            heading="Guides worth reading first"
+            standfirst="How to buy IPTV UK without getting burned, and how to set it up once you have."
+          />
 
           <div className="mt-12 rounded-2xl bg-paper-sunk p-8 text-center ring-1 ring-ink/10">
             <h2 className="font-display text-xl">Ready to buy IPTV UK?</h2>
