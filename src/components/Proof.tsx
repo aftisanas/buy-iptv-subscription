@@ -15,9 +15,15 @@ import Image from "next/image";
  * presented as evidence, not as rated reviews.
  *
  * Every image must be checked for personal data before it is added here —
- * names, profile photos, phone numbers, payment-account identifiers. Two of
- * the supplied screenshots still carry partial recipient names inside the
- * payment card and are withheld until that is redacted at source.
+ * names, profile photos, phone numbers, payment-account identifiers.
+ *
+ * NO PAYMENT-PROCESSOR SCREENSHOTS. An earlier version showed a Skrill
+ * receipt; it was removed because a manual wallet transfer contradicts the
+ * automated card checkout the rest of the page describes, and seeing one at
+ * the decision point invites the buyer to assume the checkout is improvised.
+ * Threads about delivery and setup carry the same credibility without that
+ * cost.
+
  */
 
 type Shot = {
@@ -29,15 +35,22 @@ type Shot = {
 
 const SHOTS: Shot[] = [
   {
+    src: "/reviews/buy-iptv-uk-repeat-customer-samsung-tv.webp",
+    alt: "WhatsApp conversation: a customer who bought for a friend returns to buy a 3-month plan for a Samsung Smart TV",
+    caption: "Samsung Smart TV, 3-month plan at £25.99",
+    quote: "I brought this service for my mate and would like to now purchase it for myself as well",
+  },
+  {
     src: "/reviews/buy-iptv-uk-firestick-setup-review.webp",
     alt: "WhatsApp conversation: a customer sets up IPTV on a Fire Stick and confirms Formula 1 is playing",
     caption: "Fire Stick setup, walked through on WhatsApp",
     quote: "That was easier then I thought got the F1 on now cheers mate",
   },
   {
-    src: "/reviews/buy-iptv-uk-skrill-payment-confirmation.webp",
-    alt: "WhatsApp conversation: payment confirmed and a 12-month subscription being prepared",
-    caption: "12-month order, credentials prepared straight after payment",
+    src: "/reviews/buy-iptv-uk-login-details-delivered.webp",
+    alt: "WhatsApp conversation: access details delivered by email and the customer confirms setup is complete",
+    caption: "Access details emailed, setup confirmed working",
+    quote: "Yes, all good and setup. Thank you for your assistance",
   },
 ];
 
@@ -86,15 +99,6 @@ export default function Proof() {
               </div>
             </li>
           ))}
-
-          {/* Third slot: the two withheld screenshots go here once the partial
-              recipient names inside the payment cards are redacted. */}
-          <li className="flex items-center justify-center rounded-2xl border border-dashed border-rule p-8 text-center sm:col-span-2 lg:col-span-1">
-            <p className="text-sm text-ink-muted">
-              More order threads are added as customers agree to share them.
-              Ask on WhatsApp if you would like to see a specific setup.
-            </p>
-          </li>
         </ul>
       </div>
     </section>
